@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Level 4: Loop Lagoon!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <style>
+body {
+  min-height: 100vh;
+  margin: 0; padding: 0;
+  background: linear-gradient(135deg, #e2f9b7 0%, #faffd1 65%, #ffe082 100%);
+  position: relative; overflow-x: hidden;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+/* More and more animated circles! */
+.loop-lagoon-circles {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; overflow: hidden;
+}
+.loop-circle {
+  position: absolute; border-radius: 50%;
+  border: 6px solid #b0e15777;
+  background: none;
+  animation: loopTumble 7.5s infinite alternate ease-in-out, fadeFloat 9s infinite alternate;
+  opacity: 0.48;
+}
+@keyframes loopTumble {
+  0% { transform: scale(1) rotate(0deg);}
+  100% { transform: scale(1.17) rotate(25deg);}
+}
+@keyframes fadeFloat {
+  0%{ opacity: 0.17;}
+  20%{ opacity: 0.53;}
+  60%{ opacity: 0.38;}
+  100%{ opacity: 0.48;}
+}
+
+/* Unique color and animation for each extra circle */
+.loop-circle1 { left: 2vw; top: 9vh; width: 210px; height: 210px; border-color: #ffe382cc; animation-delay: 0s, 1s;}
+.loop-circle2 { left: 77vw; top: 14vh; width: 154px; height: 154px; border-color: #fff6b999; animation-delay: 1.5s, 0s;}
+.loop-circle3 { left: 43vw; top: 67vh; width: 110px; height: 110px; border-color: #ffd18099; animation-delay: 0.5s, 2.3s;}
+.loop-circle4 { left: 67vw; top: 59vh; width: 79px; height: 79px; border-color: #95ec92bb; animation-delay: 2.1s, 4.2s;}
+.loop-circle5 { left: 37vw; top: 11vh; width: 95px; height: 95px; border-color: #d7eda7; animation-delay: 0.9s, 6.1s;}
+.loop-circle6 { left: 14vw; top: 51vh; width: 125px; height: 125px; border-color: #eef29a99; animation-delay: 1.7s, 2.9s;}
+.loop-circle7 { left: 58vw; top: 33vh; width: 59px; height: 59px; border-color: #fae3c8aa; animation-delay: 0.7s, 2.5s;}
+.loop-circle8 { left: 60vw; top: 74vh; width: 78px; height: 78px; border-color: #fed442b3; animation-delay: 1.1s, 4.8s;}
+.loop-circle9 { left: 24vw; top: 34vh; width: 63px; height: 63px; border-color: #b0e6c0cc; animation-delay: 0.4s, 1.8s;}
+.loop-circle10 { left: 82vw; top: 49vh; width: 88px; height: 88px; border-color: #ffb347a9; animation-delay: 1.6s, 3.6s;}
+/* Tiny and mega circles for extra sparkle */
+.loop-circle11 { left: 5vw; top: 85vh; width: 38px; height: 38px; border-color: #fff4d2; animation-delay:2.5s,0.5s;}
+.loop-circle12 { left: 85vw; top: 82vh; width: 200px; height: 200px; border-color: #b0e15755; animation-delay:0.8s,6.2s;}
+</style>
+<body>
+  <div class="loop-lagoon-circles">
+    <div class="loop-circle loop-circle1"></div>
+    <div class="loop-circle loop-circle2"></div>
+    <div class="loop-circle loop-circle3"></div>
+    <div class="loop-circle loop-circle4"></div>
+    <div class="loop-circle loop-circle5"></div>
+    <div class="loop-circle loop-circle6"></div>
+    <div class="loop-circle loop-circle7"></div>
+    <div class="loop-circle loop-circle8"></div>
+    <div class="loop-circle loop-circle9"></div>
+    <div class="loop-circle loop-circle10"></div>
+    <div class="loop-circle loop-circle11"></div>
+    <div class="loop-circle loop-circle12"></div>
+  </div>
+  <!-- Your main-container and the rest of your content here! --->
+  
+  <div class="main-container">
+    <h1>Level 4: Loop Lagoon! 🌼</h1>
+    <div class="info-box">
+      <p>So you've finished level 3 huh? Well then, Welcome to <b>Loop Lagoon</b>!🌼 You've found this place while escaping from your boat! <br>Here, you'll learn Python magic for repeating things again and again—like jumping on lily pads, doing a silly dance, or making patterns! 🦆<br></p>
+    </div>
+    <div class="fun-fact-box">
+      First, lets look at what a loop is! In coding, a <b>loop</b> is what you use to repeat something. It's a superstar tool for every programmer!
+    </div>
+    <pre>
+for i in range(5):
+print("Splish! Splash!")
+    </pre>
+    <div class="example-box">
+      <p>Take a good look at the example above! This is how you write a for loop in python! This loop says <b>“Splish! Splash!”</b> 5 times! Loops save you from writing the same line over and over. We're going to break down each part so don't worry!</p>
+    </div>
+    <div class="fun-fact-box">
+     <b>💡Tip:</b> Loops are like merry-go-rounds—they go round and round so you don't have to!
+    </div>
+    <div class="challenge-box">
+      🌟 <b>Try this:</b> Change what's inside the <code>print()</code> quotes. Make sounds, jokes, emojis—have fun!
+    </div>
+
+    <div class="info-box">
+      <ul>
+        <li>Loops can draw art, count scores, and even make music!</li>
+        <li>There are 2 different types of loops, for loops and while loops!</li>
+      </ul>
+    </div>
+    <a href="lvl4pg2.html" class="button special">Next: Meet the Loop Counter ➡️</a>
+    <a href="index.html" class="button">Back to Home</a>
+  </div>
+</body>
+<html>

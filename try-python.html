@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Try Python Code!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <style>
+    .editor-area {
+      width: 100%;
+      min-height: 120px;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      font-size: 1.1em;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 16px;
+      background: #fffbe7;
+      color: #222;
+      border: 2px solid #ffb300;
+      box-sizing: border-box;
+    }
+    .output-area {
+      background: #e3f2fd;
+      color: #333;
+      border-radius: 10px;
+      padding: 12px;
+      min-height: 40px;
+      border: 2px solid #0288d1;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      margin-top: 12px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <h1>🐍 Try Python Code!</h1>
+    <div class="info-box">
+      <p>Type your Python code below and click <b>Run Code</b> to see what happens! Try printing your name, doing functions, or making variables! It's your wish!</p>
+    </div>
+    <textarea id="code" class="editor-area" rows="7" placeholder="Type your Python code here...">print("Hello, world!")</textarea>
+    <br>
+    <button class="button special" onclick="runCode()">Run Code ▶️</button>
+    <div id="output" class="output-area"></div>
+    <a href="index.html" class="button">Back to Home</a>
+  </div>
+  <!-- Skulpt JS (loads Python interpreter in browser) -->
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+  <script>
+    function outf(text) {
+      document.getElementById("output").textContent += text;
+    }
+    function runCode() {
+      const prog = document.getElementById("code").value;
+      document.getElementById("output").textContent = ""; // Clear previous output
+      Sk.configure({output:outf, read:builtinRead});
+      (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'output';
+      Sk.misceval.asyncToPromise(function() {
+        return Sk.importMainWithBody("<stdin>", false, prog, true);
+      }).catch(function(err) {
+        document.getElementById("output").textContent = err.toString();
+      });
+    }
+    function builtinRead(x) {
+      if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+        throw "File not found: '" + x + "'";
+      return Sk.builtinFiles["files"][x];
+    }
+  </script>
+</body>
+</html>

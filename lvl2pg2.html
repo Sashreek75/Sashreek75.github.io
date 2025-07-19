@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>More About Variables!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <style>
+body.variable-vault-bg {
+  min-height: 100vh; margin: 0; padding: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  overflow-x: hidden; position: relative;
+  background:
+    radial-gradient(circle farthest-side at 50% 78%, #ffa 20%, #ffd700ee 80%, #fff9ed 120%),
+    linear-gradient(120deg, #fff8d5 0%, #fffbe6 40%, #ffeaa0 90%);
+}
+.variable-vault-bg-art {
+  pointer-events: none;
+  z-index: 1; position: fixed; inset: 0;
+  width: 100vw; height: 100vh; overflow: hidden;
+}
+.vault-gem {
+  position: absolute; z-index: 1;
+  opacity: 0.8;
+  filter: blur(0.1px) drop-shadow(0 2px 11px #fff9);
+}
+.gem1 { left: 5vw; top: 86vh; width: 38px; height: 32px; background: linear-gradient(135deg, #fff393 30%, #ffe700 94%); border-radius: 42% 58% 55% 41% / 58% 46% 62% 57%;}
+.gem2 { left: 86vw; top: 85vh; width: 32px; height: 29px; background: linear-gradient(110deg, #f5f3fe 13%, #aeeaff 83%); border-radius: 60% 52% 47% 53% / 47% 67% 47% 50%;}
+.gem3 { left: 92vw; top: 10vh; width: 27px; height: 21px; background: linear-gradient(120deg, #fdedaa 0 60%, #e1b5fc 99%);  border-radius: 61% 64% 54% 55% / 52% 57% 51% 68%;}
+.gem4 { left: 9vw; top: 16vh; width: 33px; height: 21px; background: linear-gradient(142deg, #f7cdfd 17%, #ffe900 99%); border-radius: 65% 56% 63% 48% / 57% 66% 56% 59%;}
+.gem5 { left: 49vw; top: 7vh; width: 38px; height: 28px; background: linear-gradient(137deg, #ffd282 24%, #ffb3ef 89%); border-radius: 61% 62% 53% 62% / 50% 51% 66% 59%;}
+.vault-sparkle,
+.vault-sparkle.s2,
+.vault-sparkle.s3 {
+  position: absolute; z-index: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 33%, #fff9 0 63%, #fff0 100%);
+  opacity: .19;
+  pointer-events: none;
+  animation: sparkPulse 4.1s infinite alternate;
+}
+.vault-sparkle { left: 22vw; top:16vh; width:30px; height:30px;}
+.vault-sparkle.s2 {left: 68vw; top:22vh; width:23px; height:18px; animation-delay:1.09s;}
+.vault-sparkle.s3 {left: 56vw; top:92vh; width:29px; height:23px; animation-delay:2s;}
+@keyframes sparkPulse {0%{opacity:.08;}50%{opacity:.21;}100%{opacity:.19;}}
+#geekedbox.challengebox{ font-weight: normal;}
+  </style>
+</head>
+<body class="variable-vault-bg">
+  <div class="variable-vault-bg-art">
+    <div class="vault-gem gem1"></div>
+    <div class="vault-gem gem2"></div>
+    <div class="vault-gem gem3"></div>
+    <div class="vault-gem gem4"></div>
+    <div class="vault-gem gem5"></div>
+    <div class="vault-sparkle"></div>
+    <div class="vault-sparkle s2"></div>
+    <div class="vault-sparkle s3"></div>
+  </div>
+  <div class="main-container">
+    <h1>Level 2: Variable Vault - Part 2! 🔑</h1>
+    <div class="fun-fact-box">
+      🧠 <b>Did you know?</b> Variables can change their values as your program runs! This is unlike constants, which do the same thing as variables, but cannot be changed!
+    </div>
+    <pre>
+ score = 5
+print(score)   # shows 5
+
+
+ score = 10
+print(score)   # now shows 10!
+    </pre>  
+    <div class="info-box example-box">
+      <p>See? You can update a variable anytime. It's like swapping out the toy inside your box for a new one! 🎁</p>
+    </div>
+    <div class="challenge-box">
+      🔄 Mini Quest: Make a variable for your favorite color, then change it to another color. What happens if you print it before and after?
+    </div>
+    <div class="fun-fact-box">
+      💡 <b>Need Help?</b> You might have noticed some errors in your variable names! That's because Variable names can't have spaces, and they can't start with a number. Try names like <code>my_pet</code> or <code>age2</code>! 🐾
+    </div>
+    <div class = "info-box">
+      <p>You know, you can use a variable and a print function together too!🧩 You can use a variable, and then print out that variable so it shows! Observe:</p>
+    </div>
+    <pre>
+name = "Alice"
+print("Hello,", name)
+    </pre> 
+    <div class="challenge-box" id="geekedbox">
+      <p>Why don't you try the code out to see if I'm lying? <br>You should see a Hello, Alice in the console! 😃</p>
+    </div>
+    <a href="level2.html" class="button">⬅️ Back to First Variables Lesson</a>
+    <a href="index.html" class="button">🏠 Back to Home</a>
+    <a href="lvl2pg3.html" class="button special">Let's Keep Going! ➡️</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,413 @@
+body {
+  background: linear-gradient(135deg, orange 70%, gold 100%);
+  color: #fff;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  min-height: 100vh;
+}
+
+.main-container {
+  max-width: 700px;
+  margin: 40px auto 60px auto;
+  background: rgba(255,255,255,0.09);
+  border-radius: 28px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  padding: 36px 24px 32px 24px;
+  position: relative;
+}
+
+/* Headings */
+h1 {
+  background: linear-gradient(90deg, DodgerBlue, #ff5e62);
+  display: inline-block;
+  padding: 10px 40px;
+  border-radius: 16px;
+  color: white;
+  font-size: 2.8em;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 6px #0008;
+}
+#fukumean {
+  font-size: 60px;
+  padding: 10px;
+}
+
+/* Paragraphs */
+p {
+  color: #fff;
+  padding: 16px;
+  border: 3px double #ff5e62;
+  background: rgba(0,0,0,0.08);
+  border-radius: 12px;
+  margin-bottom: 30px;
+  font-size: 1.3em;
+}
+
+/* Buttons */
+.button-group {
+  margin: 20px 0;
+}
+.button, .rainbow-btn {
+  display: inline-block;
+  color: white;
+  padding: 18px 36px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 1.3em;
+  margin: 10px;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  cursor: pointer;
+  background: linear-gradient(90deg, #088F8F 80%, #357a6b 100%);
+  box-shadow: 2px 4px 16px #0003;
+  transition: background 0.3s, transform 0.2s;
+  border: none;
+  font-weight: bold;
+  text-align: center;
+}
+.button:hover, .rainbow-btn:hover, .button.special:hover {
+  background: linear-gradient(90deg, #357a6b 80%, #088F8F 100%);
+  transform: scale(1.05) rotate(-2deg);
+}
+.button.special, .rainbow-btn {
+  background: linear-gradient(90deg, #ff5e62 80%, #fbb03b 100%);
+  color: #fff;
+  font-weight: bold;
+}
+
+/* GRID LEVEL BUTTONS - RECTANGULAR AND STRETCHY! */
+.level-buttons-grid .button,
+.final-test-button {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  font-size: 1.35em;
+  padding: 18px 90px;
+  border-radius: 16px;
+  margin: 12px 0;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+}
+
+.final-test-button {
+  grid-column: span 2;
+  margin-top: 18px;
+}
+
+/* Info, Example, Challenge, Fun Fact, and Tip Boxes */
+.info-box {
+  background: linear-gradient(90deg, #ffe082 70%, #ffd54f 100%);
+  border: 2px solid #ffb300;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #ffecb3aa;
+  padding: 20px 24px;
+  margin: 28px 0;
+  color: #333;
+  text-align: left;
+  font-size: 1.15em;
+  box-sizing: border-box;
+}
+
+.example-box {
+  background: linear-gradient(90deg, #b3e5fc 70%, #81d4fa 100%);
+  border-left: 8px solid #0288d1;
+  border-radius: 18px;
+  margin: 22px 0;
+  padding: 18px 22px;
+  font-size: 1.13em;
+  box-shadow: 0 2px 12px #b3e5fcaa;
+  color: red;
+  text-align: left;
+}
+.example-box.green {
+  background: linear-gradient(90deg, #c8e6c9 70%, #a5d6a7 100%);
+  border-left: 8px solid #388e3c;
+  color: #00695c;
+  box-shadow: 0 2px 12px #b2dfdb99;
+}
+.example-box.purple {
+  background: linear-gradient(90deg, #8f1de8 0%, #e81dd1 60%, #ff5e62 100%);
+  border-left: 8px solid #8f1de8;
+  color: #fff !important;
+  box-shadow: 0 2px 12px #d1b3fcaa;
+}
+.example-box.pinkblue {
+  background: linear-gradient(90deg, #1ddde8 0%, #2b65ec 50%, #e81dd1 100%);
+  border-left: 8px solid #2b65ec;
+  color: #fff !important;
+  box-shadow: 0 2px 12px #b3e5fcaa;
+}
+.example-box.rainbow {
+  background: linear-gradient(90deg, #8f1de8 0%, #e81dd1 40%, #ff5e62 80%, #fbb03b 100%);
+  border-left: 8px solid #e81dd1;
+  color: #fff !important;
+  box-shadow: 0 2px 12px #fbb03baa;
+}
+
+.challenge-box {
+  background: linear-gradient(90deg, #c8e6c9 70%, #a5d6a7 100%);
+  border: 2px solid #388e3c;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #b2dfdb99;
+  padding: 20px 24px;
+  margin: 28px 0;
+  color: #005e36;
+  text-align: left;
+  font-size: 1.15em;
+  box-sizing: border-box;
+  font-weight: bold;
+}
+.challenge-box.purple, .challenge-box.pinkblue, .challenge-box.rainbow {
+  color: #fff !important;
+}
+.challenge-box.purple {
+  background: linear-gradient(90deg, #8f1de8 0%, #e81dd1 60%, #ff5e62 100%);
+  border: 2px solid #8f1de8;
+}
+.challenge-box.pinkblue {
+  background: linear-gradient(90deg, #1ddde8 0%, #2b65ec 50%, #e81dd1 100%);
+  border: 2px solid #2b65ec;
+}
+.challenge-box.rainbow {
+  background: linear-gradient(90deg, #8f1de8 0%, #e81dd1 40%, #ff5e62 80%, #fbb03b 100%);
+  border: 2px solid #e81dd1;
+}
+
+.fun-fact-box {
+  background: #fff3cd;
+  border: 2px solid brown;
+  border-left: 6px solid #ffd54f;
+  border-radius: 16px;
+  border-color: brown;
+  box-shadow: 0 2px 12px #ffecb3aa;
+  padding: 18px 22px;
+  margin: 24px auto;
+  font-size: 1.1em;
+  color: #6f4e00;
+  text-align: left;
+  font-style: italic;
+}
+.fun-fact-box.purple, .fun-fact-box.pinkblue, .fun-fact-box.rainbow {
+  color: #fff !important;
+}
+.fun-fact-box.purple {
+  background: linear-gradient(90deg, #8f1de8 0%, #e81dd1 60%, #ff5e62 100%);
+  border-left: 6px solid #8f1de8;
+}
+.fun-fact-box.pinkblue {
+  background: linear-gradient(90deg, #1ddde8 0%, #2b65ec 50%, #e81dd1 100%);
+  border-left: 6px solid #2b65ec;
+}
+.fun-fact-box.rainbow {
+  background: linear-gradient(90deg, #8f1de8 0%, #e81dd1 40%, #ff5e62 80%, #fbb03b 100%);
+  border-left: 6px solid #e81dd1;
+}
+
+.tip-box {
+  background: #e3f2fd;
+  border-left: 6px solid #0288d1;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #b3e5fcaa;
+  padding: 18px 22px;
+  margin: 24px auto;
+  font-size: 1.1em;
+  color: #01579b;
+  text-align: left;
+}
+.tip-box.purple, .tip-box.pinkblue, .tip-box.rainbow {
+  color: #fff !important;
+}
+.tip-box.purple {
+  background: linear-gradient(90deg, #8f1de8 0%, #e81dd1 60%, #ff5e62 100%);
+  border-left: 6px solid #8f1de8;
+}
+.tip-box.pinkblue {
+  background: linear-gradient(90deg, #1ddde8 0%, #2b65ec 50%, #e81dd1 100%);
+  border-left: 6px solid #2b65ec;
+}
+.tip-box.rainbow {
+  background: linear-gradient(90deg, #8f1de8 0%, #e81dd1 40%, #ff5e62 80%, #fbb03b 100%);
+  border-left: 6px solid #e81dd1;
+}
+
+pre {
+  font-size: 25px;
+  font-family: 'Fira Mono', 'Consolas', monospace;
+  max-width: 700px;
+  margin: 40px auto;
+  background: rgba(255,255,255,0.09);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  padding: 40px 20px 30px 20px;
+  color: #6f4e00;
+  border: 2.5px solid #f9a825;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Quiz Styles (unchanged from your base) */
+.quiz-container {
+  background: linear-gradient(135deg, #fffbe7 85%, #ffe0b2 100%);
+  border: 4px solid #ff9800;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px 0 rgba(255, 152, 0, 0.20);
+  max-width: 500px;
+  margin: 40px auto 0 auto;
+  padding: 28px 24px 22px 24px;
+  text-align: left;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.quiz-container h2 {
+  color: #ff5722;
+  font-size: 2em;
+  margin-bottom: 18px;
+  text-align: center;
+  text-shadow: 1px 2px 8px #fff3e0;
+}
+
+.quiz-container p {
+  color: #333;
+  font-size: 1.1em;
+  margin-bottom: 8px;
+}
+
+.quiz-container input[type="radio"] {
+  accent-color: #ff9800;
+  margin-right: 8px;
+  transform: scale(1.2);
+}
+
+.quiz-container button {
+  display: block;
+  margin: 24px auto 0 auto;
+  padding: 12px 32px;
+  background: linear-gradient(90deg, #ff9800 80%, #ff5722 100%);
+  color: #fff;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  box-shadow: 0 2px 8px #ff980033;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.quiz-container button:hover {
+  background: linear-gradient(90deg, #ff5722 80%, #ff9800 100%);
+  transform: scale(1.05) rotate(-1deg);
+}
+
+#quizResult1 {
+  margin-top: 24px;
+  font-size: 1.15em;
+  color: #388e3c;
+  text-align: center;
+  font-weight: bold;
+  min-height: 28px;
+}
+
+/* Rainbow answer choices */
+.rainbow-choice {
+  display: inline-block;
+  width: 95%;
+  margin: 6px 0;
+  padding: 8px 16px;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1em;
+  box-shadow: 0 2px 8px #0002;
+  cursor: pointer;
+  transition: transform 0.1s;
+  text-shadow: 1px 1px 4px #0008;
+}
+.rainbow-choice input[type="radio"] {
+  accent-color: #fff;
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+.rainbow1 { background: linear-gradient(90deg, #ff2400, #e81d1d, #e8b71d); }
+.rainbow2 { background: linear-gradient(90deg, #e8b71d, #e3e81d, #79e81d); }
+.rainbow3 { background: linear-gradient(90deg, #79e81d, #1de840, #1ddde8); }
+.rainbow4 { background: linear-gradient(90deg, #1ddde8, #2b65ec, #8f1de8); }
+.rainbow5 { background: linear-gradient(90deg, #8f1de8, #e81dd1, #ff2400); }
+.rainbow6 { background: linear-gradient(90deg, #e81dd1, #ff2400, #e8b71d); }
+.rainbow-choice:hover {
+  transform: scale(1.04);
+  filter: brightness(1.1);
+  box-shadow: 0 4px 16px #0003;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.6);
+}
+.modal-content {
+  background: linear-gradient(90deg, #ff5e62 70%, #fbb03b 100%);
+  margin: 10% auto;
+  padding: 40px 30px;
+  border-radius: 20px;
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 8px 32px rgba(255, 94, 98, 0.8);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: -10px;
+}
+.close:hover { color: #333; }
+#closeButton {
+  margin-top: 20px;
+  padding: 14px 36px;
+  font-size: 1.3em;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #357a6b 80%, #088F8F 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 2px 4px 16px #0003;
+  transition: background 0.3s;
+}
+#closeButton:hover {
+  background: linear-gradient(90deg, #088F8F 80%, #357a6b 100%);
+}
+
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  justify-items: stretch;
+  margin: 20px auto;
+  max-width: 700px;
+}
+
+.button-container .button {
+  width: 100%;
+  max-width: 180px;
+  min-width: 60px;
+  text-align: center;
+  box-sizing: border-box;
+  display: block;
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PyQuest: Learn Python Concepts</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, orange 70%, gold 100%);
+      color: #fff;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      min-height: 100vh;
+    }
+    .main-container {
+      max-width: 700px;
+      margin: 40px auto 60px auto;
+      background: rgba(255,255,255,0.09);
+      border-radius: 28px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      padding: 36px 24px 32px 24px;
+      position: relative;
+    }
+    #fukumean {
+      font-size: 60px;
+      padding: 10px;
+    }
+    h1 {
+      background: linear-gradient(90deg, DodgerBlue, #ff5e62);
+      display: inline-block;
+      padding: 10px 40px;
+      border-radius: 16px;
+      color: white;
+      font-size: 2.8em;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 6px #0008;
+    }
+    p {
+      color: #fff;
+      padding: 16px;
+      border: 3px double #ff5e62;
+      background: rgba(0,0,0,0.08);
+      border-radius: 12px;
+      margin-bottom: 30px;
+      font-size: 1.3em;
+    }
+
+    .level-buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      grid-template-rows: repeat(4, auto);
+      gap: 20px 28px;
+      max-width: 600px;
+      margin: 40px auto 36px auto;
+    }
+    .level-buttons-grid .button,
+    .final-test-button {
+      display: inline-block;
+      color: white;
+      background: linear-gradient(90deg, #088F8F 80%, #357a6b 100%);
+      box-shadow: 2px 4px 16px #0003;
+      padding: 18px 36px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-size: 1.35em;
+      margin: 4px auto;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      cursor: pointer;
+      border: none;
+      font-weight: bold;
+      text-align: center;
+      transition: background 0.3s, transform 0.2s;
+      line-height: 1.2;
+      letter-spacing: 0.03em;
+      max-width: 95%;
+      min-width: 160px;
+      justify-self: center;
+      word-break: normal;
+    }
+    .level-buttons-grid .button.special,
+    .final-test-button {
+      background: linear-gradient(90deg, #ff5e62 80%, #fbb03b 100%);
+      color: #fff;
+    }
+
+    /* SMOOTH BLUE-PINK GRADIENT BUTTON */
+    .level-buttons-grid .button.try-magic {
+      background: linear-gradient(90deg, #088F8F 0%, #53c6fa 45%, #ff63d4 100%);
+      color: #fff;
+      box-shadow: 0 2px 24px #e25ad958, 2px 4px 16px #0003;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .level-buttons-grid .button.try-magic:hover {
+      background: linear-gradient(90deg, #357a6b 0%, #80deea 45%, #ff63d4 100%);
+      transform: scale(1.05) rotate(-2deg);
+    }
+
+    .level-buttons-grid .button:hover,
+    .level-buttons-grid .button.special:hover,
+    .final-test-button:hover {
+      background: linear-gradient(90deg, #357a6b 80%, #088F8F 100%);
+      transform: scale(1.05) rotate(-2deg);
+    }
+    .final-test-button {
+      grid-column: span 2;
+      margin-top: 18px;
+      justify-self: center;
+      width: 80%;
+      min-width: 220px;
+    }
+    #funFact.fun-fact{
+      color: #fff;
+      padding: 16px;
+      border: 3px double #ff5e62;
+      background: rgba(0,0,0,0.08);
+      border-radius: 12px;
+      margin-bottom: 30px;
+      font-size: 1.3em;
+    }
+    @media (max-width: 600px) {
+      .level-buttons-grid {
+        grid-template-columns: 1fr;
+        max-width: 340px;
+      }
+      .final-test-button {
+        width: 95%;
+        min-width: 0;
+      }
+      .level-buttons-grid .button { min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <h1 id="fukumean">Welcome to <br>🐍 PyQuest! 🐍</h1>
+    <p>
+      Ready to unleash your inner Python?! Play, code, and solve puzzles as you learn!<br>
+      Remember, if you ever want to try out some code, go to Try it Yourself!<br>
+      Choose a quest to begin your adventure:
+    </p>
+    <div class="level-buttons-grid">
+      <a href="level1.html" class="button">🌟 Level 1: Print Power</a>
+      <a href="level2.html" class="button">💎 Level 2: Variable Vault</a>
+      <a href="level3.html" class="button">🪵 Level 3: Input Island</a>
+      <a href="level4.html" class="button">🌀 Level 4: Loop Lagoon</a>
+      <a href="level5.html" class="button">🏰 Level 5: Function Fortress</a>
+      <a href="try-python.html" class="button try-magic">💻 Try It Yourself</a>
+      <a href="finaltest.html" class="button special final-test-button">🏆 Final Test</a>
+    </div>
+    <div class="fun-fact" id="funFact"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Level 3 Quiz: Input Island!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="quiz-container">
+    <h2>🌈 Level 3 Quiz: Input Island!</h2>
+    <form id="quizInput">
+      <p><b>1. What does <code>input()</code> do?</b></p>
+      <label class="rainbow-choice rainbow1"><input type="radio" name="q1" value="a"> Asks the user for information</label><br>
+      <label class="rainbow-choice rainbow2"><input type="radio" name="q1" value="b"> Prints a message</label><br>
+      <label class="rainbow-choice rainbow3"><input type="radio" name="q1" value="c"> Makes a rainbow</label><br><br>
+
+      <p><b>2. What type does <code>input()</code> return?</b></p>
+      <label class="rainbow-choice rainbow4"><input type="radio" name="q2" value="a"> Number</label><br>
+      <label class="rainbow-choice rainbow5"><input type="radio" name="q2" value="b"> String</label><br>
+      <label class="rainbow-choice rainbow6"><input type="radio" name="q2" value="c"> Boolean</label><br><br>
+
+      <p><b>3. What does this code print if you type <code>7</code>?</b><br>
+      <code>num = input("Number? ")<br>print(num * 2)</code></p>
+      <label class="rainbow-choice rainbow1"><input type="radio" name="q3" value="a"> 14</label><br>
+      <label class="rainbow-choice rainbow2"><input type="radio" name="q3" value="b"> 77</label><br>
+      <label class="rainbow-choice rainbow3"><input type="radio" name="q3" value="c"> Error</label><br><br>
+
+      <p><b>4. How do you turn input into a number?</b></p>
+      <label class="rainbow-choice rainbow4"><input type="radio" name="q4" value="a"> int(input("..."))</label><br>
+      <label class="rainbow-choice rainbow5"><input type="radio" name="q4" value="b"> input(int("..."))</label><br>
+      <label class="rainbow-choice rainbow6"><input type="radio" name="q4" value="c"> print(input("..."))</label><br><br>
+
+      <p><b>5. What will this code print if you type <code>5</code>?</b><br>
+      <code>num = int(input("Number? "))<br>print(num * 2)</code></p>
+      <label class="rainbow-choice rainbow1"><input type="radio" name="q5" value="a"> 10</label><br>
+      <label class="rainbow-choice rainbow2"><input type="radio" name="q5" value="b"> 55</label><br>
+      <label class="rainbow-choice rainbow3"><input type="radio" name="q5" value="c"> Error</label><br><br>
+
+      <button type="submit" class="button special">Check Answers!</button>
+    </form>
+    <div id="quizInputResult" class="fun-fact"></div>
+    <a href="lvl3pg2.html" class="button" style="margin-top:20px; display:inline-block;">⬅️ Back to More Input</a>
+    <a href="index.html" class="button" style="margin-top:20px; display:inline-block;">🏠 Back to Home</a>
+  </div>
+  <!-- Add the same modal popup and JS logic as your other quizzes for congrats! -->
+</body>
+</html>

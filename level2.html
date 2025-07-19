@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Variables in Python</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <style>
+body.variable-vault-bg {
+  min-height: 100vh; margin: 0; padding: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  overflow-x: hidden; position: relative;
+  background:
+    radial-gradient(circle farthest-side at 50% 78%, #ffa 20%, #ffd700ee 80%, #fff9ed 120%),
+    linear-gradient(120deg, #fff8d5 0%, #fffbe6 40%, #ffeaa0 90%);
+}
+.variable-vault-bg-art {
+  pointer-events: none;
+  z-index: 1; position: fixed; inset: 0;
+  width: 100vw; height: 100vh; overflow: hidden;
+  /* No main content is ever covered; everything stays at the edges/deep background! */
+}
+.vault-gem {
+  position: absolute; z-index: 1;
+  opacity: 0.8;
+  filter: blur(0.1px) drop-shadow(0 2px 11px #fff9);
+}
+.gem1 { left: 5vw; top: 86vh; width: 38px; height: 32px; background: linear-gradient(135deg, #fff393 30%, #ffe700 94%); border-radius: 42% 58% 55% 41% / 58% 46% 62% 57%;}
+.gem2 { left: 86vw; top: 85vh; width: 32px; height: 29px; background: linear-gradient(110deg, #f5f3fe 13%, #aeeaff 83%); border-radius: 60% 52% 47% 53% / 47% 67% 47% 50%;}
+.gem3 { left: 92vw; top: 10vh; width: 27px; height: 21px; background: linear-gradient(120deg, #fdedaa 0 60%, #e1b5fc 99%);  border-radius: 61% 64% 54% 55% / 52% 57% 51% 68%;}
+.gem4 { left: 9vw; top: 16vh; width: 33px; height: 21px; background: linear-gradient(142deg, #f7cdfd 17%, #ffe900 99%); border-radius: 65% 56% 63% 48% / 57% 66% 56% 59%;}
+.gem5 { left: 49vw; top: 7vh; width: 38px; height: 28px; background: linear-gradient(137deg, #ffd282 24%, #ffb3ef 89%); border-radius: 61% 62% 53% 62% / 50% 51% 66% 59%;}
+.vault-sparkle,
+.vault-sparkle.s2,
+.vault-sparkle.s3 {
+  position: absolute; z-index: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 33%, #fff9 0 63%, #fff0 100%);
+  opacity: .19;
+  pointer-events: none;
+  animation: sparkPulse 4.1s infinite alternate;
+}
+.vault-sparkle { left: 22vw; top:16vh; width:30px; height:30px;}
+.vault-sparkle.s2 {left: 68vw; top:22vh; width:23px; height:18px; animation-delay:1.09s;}
+.vault-sparkle.s3 {left: 56vw; top:92vh; width:29px; height:23px; animation-delay:2s;}
+@keyframes sparkPulse {0%{opacity:.08;}50%{opacity:.21;}100%{opacity:.19;}}
+  </style>
+</head>
+<body class="variable-vault-bg">
+  <div class="variable-vault-bg-art">
+    <div class="vault-gem gem1"></div>
+    <div class="vault-gem gem2"></div>
+    <div class="vault-gem gem3"></div>
+    <div class="vault-gem gem4"></div>
+    <div class="vault-gem gem5"></div>
+    <div class="vault-sparkle"></div>
+    <div class="vault-sparkle s2"></div>
+    <div class="vault-sparkle s3"></div>
+  </div>
+  <div class="main-container">
+    <h1>Level 2: Variable Vault! 💎</h1>
+    <div class="info-box">
+      <p>🎉 <b>Congratulations!</b> You've made it past level 1 and learned all about the Print Statement! In this level, you'll find a treasure that unlocks your knowledge of <b>variables</b>! 🧰</p>
+    </div>
+    <div class="fun-fact-box">
+      <b>First off,</b> lets take a step back, and recall. You might have noticed the different types of values you can use. <br>Here's a quick tip💡: The types everyone should be aware of are <b>strings, integers, floats, and booleans.</b> Don't worry, we'll go over each one soon!
+    </div>
+    <pre>
+age = 7
+name = Sam
+    </pre>
+    <div class="example-box">
+      <p>Alright, lets get into it! You see the box above? 📦 Variables are just like boxes that store stuff! In this case, the words <code>age</code> and <code>name</code> represent the cardboard box on the outside, and the values represent your toy car inside the box!</p>
+    </div>
+    <div class="info-box challenge-box">
+      💡 <b>Challenge:</b> Can you make your own variable? Try using a string, a number, or even a float!
+    </div>
+    <a href="lvl2pg2.html" class="button special">Learn More About Variables ➡️</a>
+    <a href="try-python.html" class="button special">Try It Yourself</a>
+    <a href="index.html" class="button">Back to Home</a>
+  </div>
+</body>
+</html>

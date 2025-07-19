@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Level 2: Python Data Types</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <style>
+body.variable-vault-bg {
+  min-height: 100vh; margin: 0; padding: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  overflow-x: hidden; position: relative;
+  background:
+    radial-gradient(circle farthest-side at 50% 78%, #ffa 20%, #ffd700ee 80%, #fff9ed 120%),
+    linear-gradient(120deg, #fff8d5 0%, #fffbe6 40%, #ffeaa0 90%);
+}
+.variable-vault-bg-art {
+  pointer-events: none;
+  z-index: 1; position: fixed; inset: 0;
+  width: 100vw; height: 100vh; overflow: hidden;
+}
+.vault-gem {
+  position: absolute; z-index: 1;
+  opacity: 0.8;
+  filter: blur(0.1px) drop-shadow(0 2px 11px #fff9);
+}
+.gem1 { left: 5vw; top: 86vh; width: 38px; height: 32px; background: linear-gradient(135deg, #fff393 30%, #ffe700 94%); border-radius: 42% 58% 55% 41% / 58% 46% 62% 57%;}
+.gem2 { left: 86vw; top: 85vh; width: 32px; height: 29px; background: linear-gradient(110deg, #f5f3fe 13%, #aeeaff 83%); border-radius: 60% 52% 47% 53% / 47% 67% 47% 50%;}
+.gem3 { left: 92vw; top: 10vh; width: 27px; height: 21px; background: linear-gradient(120deg, #fdedaa 0 60%, #e1b5fc 99%);  border-radius: 61% 64% 54% 55% / 52% 57% 51% 68%;}
+.gem4 { left: 9vw; top: 16vh; width: 33px; height: 21px; background: linear-gradient(142deg, #f7cdfd 17%, #ffe900 99%); border-radius: 65% 56% 63% 48% / 57% 66% 56% 59%;}
+.gem5 { left: 49vw; top: 7vh; width: 38px; height: 28px; background: linear-gradient(137deg, #ffd282 24%, #ffb3ef 89%); border-radius: 61% 62% 53% 62% / 50% 51% 66% 59%;}
+.vault-sparkle,
+.vault-sparkle.s2,
+.vault-sparkle.s3 {
+  position: absolute; z-index: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 33%, #fff9 0 63%, #fff0 100%);
+  opacity: .19;
+  pointer-events: none;
+  animation: sparkPulse 4.1s infinite alternate;
+}
+.vault-sparkle { left: 22vw; top:16vh; width:30px; height:30px;}
+.vault-sparkle.s2 {left: 68vw; top:22vh; width:23px; height:18px; animation-delay:1.09s;}
+.vault-sparkle.s3 {left: 56vw; top:92vh; width:29px; height:23px; animation-delay:2s;}
+@keyframes sparkPulse {0%{opacity:.08;}50%{opacity:.21;}100%{opacity:.19;}}
+ h2, h3, h4, h5, h6 {
+  color: blue;
+}
+
+  </style>
+</head>
+<body class="variable-vault-bg">
+  <div class="variable-vault-bg-art">
+    <div class="vault-gem gem1"></div>
+    <div class="vault-gem gem2"></div>
+    <div class="vault-gem gem3"></div>
+    <div class="vault-gem gem4"></div>
+    <div class="vault-gem gem5"></div>
+    <div class="vault-sparkle"></div>
+    <div class="vault-sparkle s2"></div>
+    <div class="vault-sparkle s3"></div>
+  </div>
+  <div class="main-container">
+    <h1>Level 2: Variable Data Types! 🧠</h1>
+    <div class = "example-box">
+      <p>Alright, no more secrets! 🎩✨ I think it's time to tell you guys about something called Data Types! In Python, variables can hold different types of data. Here are four common data types you'll use:</p>
+    </div>
+    <h2>1. Integer (<code>int</code>) <span style="font-size:1.3em;">🔢</span></h2>
+    <div class="fun-fact-box">
+      Integers are just whole numbers without decimals! Lets check out some examples:
+    </div>
+    <pre><code>5
+-10
+0</code></pre>
+    <div class="fun-fact-box">
+      Pretty simple right? <span style="font-size:1.2em;">😊</span> Notice: Integers can also be negative numbers!
+    </div>
+    <h2>2. String (<code>str</code>) <span style="font-size:1.3em;">💬</span></h2>
+    <div class="info-box">
+      <p>The second data type we've seen is called a string! This is just words wrapped around with those quotes! See those strings below? <span style="font-size:1.2em;">✍️</span></p>
+    </div>
+    <pre><code>"Hello, world!"
+'Python is fun'</code></pre>
+    <div class="challenge-box">
+      Ok, so you've seen the first two data types in the first level, but now, lets look at something new! Booleans! <span style="font-size:1.3em;">🎯</span>
+    </div>
+    <h2>3. Boolean (<code>bool</code>) <span style="font-size:1.2em;">✅❌</span></h2>
+    <div class="example-box">
+      <p>Booleans are pretty cool because the only values a boolean has are true and false! <span style="font-size:1.2em;">😉</span></p>
+    </div>
+    <div class="fun-fact-box">
+      Think of it like a light switch. It can only be two things:
+      <br>
+      <span style="font-size:1.2em;">✅ ON (which means “Yes” or True)</span>
+      <br>
+      <span style="font-size:1.2em;">❌ OFF (which means “No” or False)</span>
+    </div>
+    <pre><code>True
+False</code></pre>
+    <div class="challenge-box">
+      In the end, a boolean is just a fancy way for a computer to say yes or no!
+    </div>
+    <h2>4. Float (<code>float</code>) <span style="font-size:1.3em;">🌊</span></h2>
+    <div class="info-box">
+      <p>Now, our last data type is a float! It's very similar to an integer, in fact, I want you to try and guess the difference! <span style="font-size:1.2em;">🤔</span></p>
+    </div>
+    <pre><code>3.14
+-0.5
+2.0</code></pre>
+    <div class="example-box">
+      <p>Did you get it? All floats have decimal points! It doesn't matter if the decimal is a 0, as long as it has a point, it's a float! <span style="font-size:1.2em;">💡</span></p>
+    </div>
+    <div class="info-box">
+      Now, I'm sure you're a pro at data types now, but just in case,you're a little stuck, Python has a tool to help you out! <span style="font-size:1.2em;">🛠️</span>
+    </div>
+    <div class="challenge-box">
+      You can check the type of any variable or value using the <code>type()</code> function in Python! <span style="font-size:1.2em;">🕵️</span>
+    </div>
+    <p>Example:</p>
+    <pre><code>x = 10
+print(type(x))  # &lt;class 'int'&gt;
+
+name = "Alice"
+print(type(name))  # &lt;class 'str'&gt;
+
+is_happy = True
+print(type(is_happy))  # &lt;class 'bool'&gt;
+
+pi = 3.14
+print(type(pi))  # &lt;class 'float'&gt;
+</code></pre>
+    <div class="info-box">
+      <p>The example above may seem overwhelming, but don't worry! It's all stuff that you know so far! I want you to take a moment to try and figure out what this code does! Test it out with our Try it Yourself feature to see if you're right! <span style="font-size:1.2em;">🎉</span></p>
+    </div>
+    <a href="lvl2pg2.html" class="button">⬅️ Back to Variables</a>
+    <a href="variables-quiz.html" class="button special">Ready to Take the Quiz? ➡️</a>
+    <a href="index.html" class="button">Back to Home</a>
+  </div>
+</body>
+</html>

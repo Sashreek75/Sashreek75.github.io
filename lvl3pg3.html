@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Level 1: Print Power!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom, #87ceeb 0%, #b0e0e6 60%, #f0e68c 100%);
+      position: relative;
+      overflow-x: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    /* Clouds — Fluffy, playful using pseudo-elements */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 60px 20px 0 0 #fff, 100px 30px 0 0 #fff, 140px 20px 0 0 #fff,
+                  180px 40px 0 0 #fff, 220px 30px 0 0 #fff;
+      opacity: 0.85;
+      z-index: 0;
+    }
+    body::before {
+      width: 120px;
+      height: 60px;
+      top: 10vh;
+      left: 10vw;
+    }
+    body::after {
+      width: 150px;
+      height: 70px;
+      top: 15vh;
+      left: 60vw;
+    }
+
+    /* Sun with soft glow */
+    .sun {
+      position: fixed;
+      top: 5vh;
+      right: 10vw;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle at center, #ffdd55 60%, #ffbb00 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 30px 10px #ffdd55aa;
+      z-index: 0;
+    }
+    .sun::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 140px;
+      height: 140px;
+      margin-left: -70px;
+      margin-top: -70px;
+      border-radius: 50%;
+      box-shadow: 0 0 40px 20px #ffdd5599;
+      animation: spin 20s linear infinite;
+      z-index: -1;
+    }
+    @keyframes spin {
+      from {transform: rotate(0deg);}
+      to {transform: rotate(360deg);}
+    }
+
+    /* Adventure Ocean with animated, playful waves */
+    .ocean {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      height: 35vh;
+      background: linear-gradient(to top, #0077be 60%, #00aaff 90%, transparent 100%);
+      overflow: hidden;
+      z-index: 0;
+    }
+    .ocean .wave {
+      position: absolute;
+      bottom: 0;
+      width: 200%;
+      height: 100px;
+      background: rgba(255,255,255,0.4);
+      border-radius: 50%;
+      animation: waveMove 6s linear infinite;
+    }
+    .ocean .wave1 {
+      left: -50%;
+      animation-delay: 0s;
+      opacity: 0.6;
+      height: 120px;
+    }
+    .ocean .wave2 {
+      left: -25%;
+      animation-delay: 3s;
+      opacity: 0.4;
+      height: 100px;
+    }
+    @keyframes waveMove {
+      0% {transform: translateX(0);}
+      100% {transform: translateX(-50%);}
+    }
+
+    .island {
+      position: fixed;
+      /* Lower the island further down */
+      bottom: 5vh; /* Less than default, so it stays low */
+      left: 50%;
+      width: 400px;
+      height: 140px;
+      background: radial-gradient(ellipse at center, #f7e08e 60%, #c2a960 100%);
+      border-radius: 60% 40% 70% 30% / 60% 70% 30% 40%;
+      box-shadow: inset 0 10px 20px #d4c06a, 0 10px 30px 5px #bcb17c80;
+      transform: translateX(-50%);
+      z-index: 0;  /* Ensures it's always under main content */
+      pointer-events: none; /* Keeps buttons clickable */
+    }
+
+    /* Main orange info box stays bright and above background */
+    .info-box {
+      background-color: #ff8c00;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff8c0055;
+      font-weight: bold;
+      z-index: 10;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+  <div class="sun"></div>
+  <div class="island"></div>
+  <div class="ocean">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+  </div>
+  <div class="main-container">
+    <h1>🦜 Level 3: Input Island - Part 3!</h1>
+    <div class="example-box">
+      <p>💡 Hopefully you now understand how to change the type of value from an <code>input()</code> statement! You know what? You can also change the type to a float!</p>
+    </div>
+    <pre>
+# 🔢 You do this by using the word float! No goofy nicknames here, just float!
+var = float(input("Enter your name!:"))</pre>
+    <div class="fun-fact-box">
+     Yep, the only difference is the word <code>float!</code> Also, the same thing about the parenthesis applies here too, so don't forget it!
+    </div>
+    <div class="info-box">
+      <p>📝 ALRIGHT! Now I know that this level was harder than the other ones, and they are only going to get harder! So we'll do a summary to make sure you understand everything!</p>
+    </div>
+    <div class="fun-fact-box">
+      🎯 The first thing we went over is what an input is! An input statement is a statement that asks the user a question! Your program will actually <b>stop</b> and wait for the user to answer!
+    </div>
+    <div class="challenge-box">
+      <p>The next thing is all about the type! Remember, unless you  use one of the things we talked about, the result will always be a string!</p>
+    </div>
+    <pre>
+ans = input("what is 1 + 5?:")
+      print(ans)
+
+# if the user enters 6, then it'll show up as "6"!
+    </pre>
+    <div class="fun-fact-box">
+      And then we talked about how to change that! Because we don't want to have boring old strings all the time right?
+    </div>
+    <pre>
+ans = int(input("what is 1 + 5?:"))
+
+# This time, if the user enters 6, (which they should) then it'll show up as 6!
+    </pre>
+    <div class="fun-fact-box">
+      So, as you can see, even if you think 7 and "7" are the same number, the computer thinks they're different!
+    </div>
+    <div class="info-box">
+    And finally, we talked about how you can change the data type of an input statement from a string to an integer and float!
+    </div>
+    <pre>
+      var = int(input("Hello, enter whatever u want!:"))
+
+      var = float(input("Hello, enter whatever u want!:"))
+    </pre>
+    <div class="challenge-box">
+      🌟 <b>A Final Mini Quest:</b> Use an input statement that has a 
+    </div>
+    <a href="lvl3pg3.html" class="button special">Let's continue!!</a>
+    <a href="lvl3pg2.html" class="button">⬅️ Back to Input Island</a>
+    <a href="index.html" class="button">🏠 Back to Home</a>
+  </div>
+</body>
+</html>

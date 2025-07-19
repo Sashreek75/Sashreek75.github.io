@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Level 5: Fun with Functions!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+ <style>
+body.function-fortress-bg {
+  min-height: 100vh; margin: 0; padding: 0;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  overflow-x: hidden; position: relative;
+  background:
+    radial-gradient(circle at 80% 15%, #ffd6f0 0%, #f9e5ff 30%, #ffe7b1 65%, #fff4bc 80%) no-repeat,
+    linear-gradient(135deg, #ffe7bd 0%, #e7e4ff 68%, #c4a0fd 100%);
+}
+body.function-fortress-bg::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 70vw 8vh, #f7e4fd77 0 120px, transparent 200px),
+    radial-gradient(circle at 15vw 48vh, #fff6df99 0 160px, transparent 380px),
+    radial-gradient(circle at 50vw 90vh, #ffebded5 0 120px, transparent 240px);
+}
+.fortress-bg-art {
+  pointer-events: none;
+  position: fixed;
+  z-index: 2;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+.tower, .castle-wall, .tower-top, .magic-circle { position: absolute; pointer-events: none; }
+.tower {
+  width: 60px; height: 190px; bottom: 0;
+  background: linear-gradient(180deg, #ffe48d 0%, #f9c331 70%, #c3a145 100%);
+  border-radius: 21px 21px 18px 18px / 18px 18px 28px 26px;
+  box-shadow: 0 8px 32px 0 #ffeca680;
+}
+.tower1 { left: 9vw;}
+.tower2 { left: 87vw; height: 170px;}
+.tower3 { left: 47vw; width: 85px; height: 230px; background: linear-gradient(180deg, #fff1b8 0%, #e8bf61 85%);}
+.tower-top { top: -29px; left: 8px; width: 44px; height: 32px; background: #fffbe3; border-radius: 16px 16px 11px 11px; border-bottom: 3.5px solid #cab98b;}
+.tower3 .tower-top { left:24px;width:52px; }
+.castle-wall {left:17vw;bottom:0;width:66vw;height:95px;background:linear-gradient(180deg,#ffedae 80%,#f1d373 100%);border-radius:33px 33px 0 0/30px 30px 0 0;box-shadow:0 6px 32px #ffde5b25;}
+.magic-circle {
+  border-radius: 50%;
+  border: 5px solid #ffe38277;
+  background: radial-gradient(ellipse at 50% 60%,#fdffea44 0 60%,#fff0 100%);
+  opacity: 0.63;
+  animation: magicPulse 4.5s infinite alternate, magicMove 7s infinite alternate;
+  z-index: 2;
+}
+.magic-circle1 { left: 6vw; top: 14vh; width: 110px; height: 110px; border-color: #fffde6cc; animation-delay: 0.1s;}
+.magic-circle2 { left: 80vw; top: 21vh; width: 95px; height: 95px; border-color: #ffef88bb; animation-delay: 0.2s;}
+.magic-circle3 { left: 31vw; top: 9vh; width: 70px; height: 70px; border-color: #ffd46c88; animation-delay: 1.1s;}
+.magic-circle4 { left: 68vw; top: 26vh; width: 48px; height: 48px; border-color: #ffe795bb; animation-delay: 2.2s;}
+.magic-circle5 { left: 44vw; top: 64vh; width: 98px; height: 98px; border-color: #ffef88aa; animation-delay: 1.4s;}
+.magic-circle6 { left: 18vw; top: 61vh; width: 67px; height: 67px; border-color: #f6e985aa; animation-delay: 2.1s;}
+@keyframes magicPulse {0% { opacity: 0.23;} 50% { opacity: 0.75;} 100% { opacity: 0.60;}}
+@keyframes magicMove {0% { transform: scale(1) translateY(0);} 100% { transform: scale(1.15) translateY(-14px);}}
+.main-container { position: relative; z-index: 4; }
+  </style>
+</head>
+<body class="function-fortress-bg">
+  <div class="fortress-bg-art">
+    <div class="magic-circle magic-circle1"></div>
+    <div class="magic-circle magic-circle2"></div>
+    <div class="magic-circle magic-circle3"></div>
+    <div class="magic-circle magic-circle4"></div>
+    <div class="magic-circle magic-circle5"></div>
+    <div class="magic-circle magic-circle6"></div>
+    <div class="castle-wall"></div>
+    <div class="tower tower1"><div class="tower-top"></div></div>
+    <div class="tower tower2"><div class="tower-top"></div></div>
+    <div class="tower tower3"><div class="tower-top"></div></div>
+  </div>
+  <div class="main-container">
+    <h1>Fun With Functions! 🎩✨</h1>
+    <div class="info-box">
+      <b>Functions can do ANYTHING! Let’s get silly:</b>
+    </div>
+    <div class="info-box example-box">
+      <b>A function that prints a joke:</b>
+      <pre>
+def tell_joke():
+    print("Why was 6 afraid of 7?")
+    print("Because 7 8 9!")
+      </pre>
+      <p>Every time you use <code>tell_joke()</code>, your computer tells the joke again!</p>
+    </div>
+    <div class="info-box example-box">
+      <b>You can even make a secret code printer!</b>
+      <pre>
+def secret_message():
+    print("🪄 Ssshh... You found the castle's secret! 🏰")
+      </pre>
+      <p>
+        <code>secret_message()</code> prints a secret code!
+      </p>
+    </div>
+    <div class="info-box">
+      <b>Functions can call other functions:</b>
+      <pre>
+def jump():
+    print("Jump!")
+
+def skip():
+    print("Skip!")
+
+def dance():
+    jump()
+    skip()
+    print("Spin!")
+      </pre>
+      <p>When you call <code>dance()</code>, it makes you jump, skip, and spin—magic teamwork!</p>
+    </div>
+    <div class="challenge-box">
+      <b>Challenge:</b> Make two functions: <code>wave()</code> that prints "👋", and <code>wave_twice()</code> that uses <code>wave()</code> two times!
+    </div>
+    <div class="fun-fact-box">
+      <b>Pro Fact:</b> Programmers make their own “secret” helper functions all the time. Games, apps, and robots use THOUSANDS of functions!
+    </div>
+    <a href="lvl5pg3.html" class="button">⬅️ Back</a>
+    <a href="index.html" class="button">🏠 Home</a>
+    <a href="lvl5pg5.html" class="button special">You are Ready!</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PyQuest: Learn Python Concepts</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <style>
+body {
+min-height: 100vh;
+margin: 0;
+padding: 0;
+background: linear-gradient(to bottom, #87ceeb 0%, #b0e0e6 60%, #f0e68c 100%);
+position: relative;
+overflow-x: hidden;
+font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+/* Clouds — Fluffy, playful using pseudo-elements */
+body::before, body::after {
+content: '';
+position: fixed;
+background: #fff;
+border-radius: 50%;
+box-shadow: 60px 20px 0 0 #fff, 100px 30px 0 0 #fff, 140px 20px 0 0 #fff,
+180px 40px 0 0 #fff, 220px 30px 0 0 #fff;
+opacity: 0.85;
+z-index: 0;
+}
+body::before {
+width: 120px;
+height: 60px;
+top: 10vh;
+left: 10vw;
+}
+body::after {
+width: 150px;
+height: 70px;
+top: 15vh;
+left: 60vw;
+}
+
+/* Sun with soft glow */
+.sun {
+position: fixed;
+top: 5vh;
+right: 10vw;
+width: 120px;
+height: 120px;
+background: radial-gradient(circle at center, #ffdd55 60%, #ffbb00 100%);
+border-radius: 50%;
+box-shadow: 0 0 30px 10px #ffdd55aa;
+z-index: 0;
+}
+.sun::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+width: 140px;
+height: 140px;
+margin-left: -70px;
+margin-top: -70px;
+border-radius: 50%;
+box-shadow: 0 0 40px 20px #ffdd5599;
+animation: spin 20s linear infinite;
+z-index: -1;
+}
+@keyframes spin {
+from {transform: rotate(0deg);}
+to {transform: rotate(360deg);}
+}
+
+/* Adventure Ocean with animated, playful waves */
+.ocean {
+position: fixed;
+bottom: 0;
+left: 0;
+width: 100vw;
+height: 35vh;
+background: linear-gradient(to top, #0077be 60%, #00aaff 90%, transparent 100%);
+overflow: hidden;
+z-index: 0;
+}
+.ocean .wave {
+position: absolute;
+bottom: 0;
+width: 200%;
+height: 100px;
+background: rgba(255,255,255,0.4);
+border-radius: 50%;
+animation: waveMove 6s linear infinite;
+}
+.ocean .wave1 {
+left: -50%;
+animation-delay: 0s;
+opacity: 0.6;
+height: 120px;
+}
+.ocean .wave2 {
+left: -25%;
+animation-delay: 3s;
+opacity: 0.4;
+height: 100px;
+}
+@keyframes waveMove {
+0% {transform: translateX(0);}
+100% {transform: translateX(-50%);}
+}
+
+.island {
+position: fixed;
+/* Lower the island further down */
+bottom: 5vh; /* Less than default, so it stays low */
+left: 50%;
+width: 400px;
+height: 140px;
+background: radial-gradient(ellipse at center, #f7e08e 60%, #c2a960 100%);
+border-radius: 60% 40% 70% 30% / 60% 70% 30% 40%;
+box-shadow: inset 0 10px 20px #d4c06a, 0 10px 30px 5px #bcb17c80;
+transform: translateX(-50%);
+z-index: 0; /* Ensures it's always under main content */
+pointer-events: none; /* Keeps buttons clickable */
+}
+
+/* Main orange info box stays bright and above background */
+.info-box {
+background-color: #ff8c00;
+color: white;
+padding: 15px 20px;
+border-radius: 10px;
+box-shadow: 0 0 10px #ff8c0055;
+font-weight: bold;
+z-index: 10;
+position: relative;
+}
+
+</style>
+</head>
+<body>
+<!-- Sun -->
+<div class="sun"></div>
+
+<!-- Fluffy clouds are CSS -->
+<!-- More Detailed Cartoon Island -->
+<div class="island"></div>
+
+<!-- Animated Ocean/Waves -->
+<div class="ocean">
+  <div class="wave wave1"></div>
+  <div class="wave wave2"></div>
+</div>
+
+<div class="main-container">
+  <h1>🦜 Level 3: Input Island!</h1>
+  <div class="info-box">
+    <p>🎉 So, I've see you've finished level 2! Congratulations!<br>
+    But I have some bad news, you've been stranded onto an island with nowhere to go! 🏝️ To get to the nearest boat and return, you'll have to learn how to ask me for information using <code>input()</code>!</p>
+  </div>
+  <pre>
+var = input("Enter your name:")
+print(var)
+  </pre>
+  <div class="example-box">
+    <span style="font-size:1.2em">📝</span> See the example up above?  
+    It may look a little weird but let's break down the <code>input()</code> code one step at a time!
+  </div>
+  <pre>var = input</pre>
+  <div class="info-box">
+    <p>🤔 You might be a pro at variable basics, but did you know that you can store a user's <b>input</b> too? You do that with the code above (up arrow icon) Remember, <code>var</code> is the variable name, and the word <code>input</code> tells the computer that we are asking the user a question!</p>
+  </div> 
+  <pre>("enter your name:")</pre>
+  <div class='challenge-box'>
+    <span style="font-size:1.2em">❓</span>
+    This tells the computer what to ask! Do you remember what data type it is? Yes, its a string! When you use the word input, the result is always a string!
+  </div>
+  <pre>
+exa = input("enter whatever you want")
+print(exa)
+  </pre>
+  <div class="example-box">
+    <span style="font-size:1.2em">🔎</span> Now that you know that, can you try to figure out what the result is for the code above if the user enters 7? You got it! "7"!
+  </div>
+  <div class="challenge-box">
+    <span style="font-size:1.5em; vertical-align:middle;">🌟</span>
+    📝 <b>Challenge:</b> Go to our try it yourself feature and ask the user for their name and print a greeting!
+  </div>
+  <a href="lvl3pg2.html" class="button special">Next: More About Input ➡️</a>
+  <a href="index.html" class="button">Back to Home</a>
+</div>
+</body>
+</html>
