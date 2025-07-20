@@ -4,7 +4,7 @@ body {
   padding: 0;
   margin: 0;
   text-align: center;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
   min-height: 100vh;
 }
 
@@ -58,7 +58,7 @@ p {
   text-decoration: none;
   font-size: 1.3em;
   margin: 10px;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
   cursor: pointer;
   background: linear-gradient(90deg, #088F8F 80%, #357a6b 100%);
   box-shadow: 2px 4px 16px #0003;
@@ -264,7 +264,7 @@ pre {
   margin: 40px auto 0 auto;
   padding: 28px 24px 22px 24px;
   text-align: left;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
 }
 
 .quiz-container h2 {
@@ -297,7 +297,7 @@ pre {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
   box-shadow: 0 2px 8px #ff980033;
   transition: background 0.2s, transform 0.2s;
 }
@@ -367,7 +367,7 @@ pre {
   text-align: center;
   color: white;
   box-shadow: 0 8px 32px rgba(255, 94, 98, 0.8);
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
 }
 .close {
   color: white;
@@ -411,3 +411,4 @@ pre {
   box-sizing: border-box;
   display: block;
 }
+
