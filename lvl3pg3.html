@@ -4,6 +4,7 @@
   <title>Level 1: Print Power!</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       min-height: 100vh;
@@ -12,9 +13,8 @@
       background: linear-gradient(to bottom, #87ceeb 0%, #b0e0e6 60%, #f0e68c 100%);
       position: relative;
       overflow-x: hidden;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
     }
-
     /* Clouds — Fluffy, playful using pseudo-elements */
     body::before, body::after {
       content: '';
@@ -38,7 +38,6 @@
       top: 15vh;
       left: 60vw;
     }
-
     /* Sun with soft glow */
     .sun {
       position: fixed;
@@ -69,7 +68,6 @@
       from {transform: rotate(0deg);}
       to {transform: rotate(360deg);}
     }
-
     /* Adventure Ocean with animated, playful waves */
     .ocean {
       position: fixed;
@@ -106,11 +104,10 @@
       0% {transform: translateX(0);}
       100% {transform: translateX(-50%);}
     }
-
     .island {
       position: fixed;
       /* Lower the island further down */
-      bottom: 5vh; /* Less than default, so it stays low */
+      bottom: 5vh;
       left: 50%;
       width: 400px;
       height: 140px;
@@ -118,10 +115,9 @@
       border-radius: 60% 40% 70% 30% / 60% 70% 30% 40%;
       box-shadow: inset 0 10px 20px #d4c06a, 0 10px 30px 5px #bcb17c80;
       transform: translateX(-50%);
-      z-index: 0;  /* Ensures it's always under main content */
-      pointer-events: none; /* Keeps buttons clickable */
+      z-index: 0;
+      pointer-events: none;
     }
-
     /* Main orange info box stays bright and above background */
     .info-box {
       background-color: #ff8c00;
@@ -132,6 +128,11 @@
       font-weight: bold;
       z-index: 10;
       position: relative;
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+    }
+    /* Ensures all text including .example-box and .fun-fact-box gets the right font (you can add similar lines to their selectors if missing) */
+    .example-box, .fun-fact-box, .challenge-box {
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
     }
   </style>
 </head>
@@ -190,7 +191,7 @@ ans = int(input("what is 1 + 5?:"))
     <div class="challenge-box">
       🌟 <b>A Final Mini Quest:</b> Use an input statement that has a 
     </div>
-    <a href="lvl3pg3.html" class="button special">Let's continue!!</a>
+    <a href="input-quiz.html" class="button special">Ready for the quiz?</a>
     <a href="lvl3pg2.html" class="button">⬅️ Back to Input Island</a>
     <a href="index.html" class="button">🏠 Back to Home</a>
   </div>
