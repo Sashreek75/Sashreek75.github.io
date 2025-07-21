@@ -7,9 +7,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <style>
 body.variable-vault-bg {
-  min-height: 100vh; margin: 0; padding: 0;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
   font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
-  overflow-x: hidden; position: relative;
+  overflow-x: hidden;
+  position: relative;
   background:
     radial-gradient(circle farthest-side at 50% 78%, #ffa 20%, #ffd700ee 80%, #fff9ed 120%),
     linear-gradient(120deg, #fff8d5 0%, #fffbe6 40%, #ffeaa0 90%);
@@ -29,21 +32,19 @@ body.variable-vault-bg {
 .gem3 { left: 92vw; top: 10vh; width: 27px; height: 21px; background: linear-gradient(120deg, #fdedaa 0 60%, #e1b5fc 99%);  border-radius: 61% 64% 54% 55% / 52% 57% 51% 68%;}
 .gem4 { left: 9vw; top: 16vh; width: 33px; height: 21px; background: linear-gradient(142deg, #f7cdfd 17%, #ffe900 99%); border-radius: 65% 56% 63% 48% / 57% 66% 56% 59%;}
 .gem5 { left: 49vw; top: 7vh; width: 38px; height: 28px; background: linear-gradient(137deg, #ffd282 24%, #ffb3ef 89%); border-radius: 61% 62% 53% 62% / 50% 51% 66% 59%;}
-.vault-sparkle,
-.vault-sparkle.s2,
-.vault-sparkle.s3 {
-  position: absolute; z-index: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle at 60% 33%, #fff9 0 63%, #fff0 100%);
-  opacity: .19;
-  pointer-events: none;
-  animation: sparkPulse 4.1s infinite alternate;
+.vault-sparkle, .vault-sparkle.s2, .vault-sparkle.s3 {
+  position: absolute; z-index: 1; border-radius: 50%; background: radial-gradient(circle at 60% 33%, #fff9 0 63%, #fff0 100%);
+  opacity: .19; pointer-events: none; animation: sparkPulse 4.1s infinite alternate;
 }
 .vault-sparkle { left: 22vw; top:16vh; width:30px; height:30px;}
 .vault-sparkle.s2 {left: 68vw; top:22vh; width:23px; height:18px; animation-delay:1.09s;}
 .vault-sparkle.s3 {left: 56vw; top:92vh; width:29px; height:23px; animation-delay:2s;}
 @keyframes sparkPulse {0%{opacity:.08;}50%{opacity:.21;}100%{opacity:.19;}}
-#geekedbox.challengebox{ font-weight: normal;}
+.challenge-box textarea {
+  width: 98%; min-height: 48px; font-size: 1.1em; border-radius: 9px; border: 2px solid #4CAF50; margin-top: 10px; font-family: inherit; padding: 8px 12px;
+}
+.challenge-box .challenge-feedback { min-height: 1.9em; color: #2d881a; margin: 3px 0 6px 0; font-weight: bold; }
+.button.special[disabled] {opacity:0.57;pointer-events:none;}
   </style>
   <script>
     function isMobileDevice() {
@@ -78,16 +79,18 @@ body.variable-vault-bg {
  score = 5
 print(score)   # shows 5
 
-
  score = 10
 print(score)   # now shows 10!
     </pre>  
     <div class="info-box example-box">
       <p>See? You can update a variable anytime. It's like swapping out the toy inside your box for a new one! 🎁</p>
     </div>
-    <div class="challenge-box">
+    <form class="challenge-box" autocomplete="off" onsubmit="return false;">
       🔄 Mini Quest: Make a variable for your favorite color, then change it to another color. What happens if you print it before and after?
-    </div>
+      <textarea id="challengeInput" placeholder='e.g. color = "red"\nprint(color)\ncolor = "blue"\nprint(color)' spellcheck="false"></textarea>
+      <div class="challenge-feedback" id="challengeFeedback"></div>
+      <button class="button special" id="nextBtn" disabled>Let's Keep Going! ➡️</button>
+    </form>
     <div class="fun-fact-box">
       💡 <b>Need Help?</b> You might have noticed some errors in your variable names! That's because Variable names can't have spaces, and they can't start with a number. Try names like <code>my_pet</code> or <code>age2</code>! 🐾
     </div>
@@ -103,8 +106,33 @@ print("Hello,", name)
     </div>
     <a href="level2.html" class="button">⬅️ Back to First Variables Lesson</a>
     <a href="index.html" class="button">🏠 Back to Home</a>
-    <a href="lvl2pg3.html" class="button special">Let's Keep Going! ➡️</a>
   </div>
+  <script>
+    const challengeInput = document.getElementById('challengeInput');
+    const challengeFeedback = document.getElementById('challengeFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+    function validate(s) {
+      s = s.trim();
+      // Require color = ..., print(color), then color = ..., and print(color) again
+      return (
+        /color *=[^=]/i.test(s) &&
+        /print\s*\(\s*color\s*\)/i.test(s) &&
+        (s.match(/color *=[^=]/gi) || []).length >= 2
+      );
+    }
+    challengeInput.addEventListener('input', function() {
+      let val = challengeInput.value;
+      if (validate(val)) {
+        challengeFeedback.textContent = "Great work! You changed and printed the color variable!";
+        nextBtn.disabled = false;
+      } else {
+        challengeFeedback.textContent = "You must create a variable, print it, then change it and print again. Be sure to use print(color) twice.";
+        nextBtn.disabled = true;
+      }
+    });
+    nextBtn.onclick = function() { window.location.href = "lvl2pg3.html"; };
+  </script>
 </body>
 </html>
+
 
