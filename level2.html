@@ -8,25 +8,48 @@
   <style>
 body.variable-vault-bg {
   min-height: 100vh; margin: 0; padding: 0;
-  font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
   overflow-x: hidden; position: relative;
   background:
     radial-gradient(circle farthest-side at 50% 78%, #ffa 20%, #ffd700ee 80%, #fff9ed 120%),
     linear-gradient(120deg, #fff8d5 0%, #fffbe6 40%, #ffeaa0 90%);
 }
-/* ... rest unchanged ... */
+.challenge-box textarea {
+  width: 95%;
+  min-height: 48px;
+  font-size: 1.1em;
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin: 16px 0 10px 0;
+  resize: vertical;
+  border: 2px solid #fbb03b;
+  font-family: inherit;
+  background: #ffeeee33;
+  box-sizing: border-box;
+  display: block;
+}
+.challenge-box .challenge-feedback {
+  min-height: 30px;
+  color: #c62828;
+  font-weight: bold;
+  padding-top: 3px;
+}
+.button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  transform: none !important;
+}
 .variable-vault-bg-art {
   pointer-events: none;
   z-index: 1; position: fixed; inset: 0;
   width: 100vw; height: 100vh; overflow: hidden;
-  /* No main content is ever covered; everything stays at the edges/deep background! */
 }
 .vault-gem {
   position: absolute; z-index: 1;
   opacity: 0.8;
   filter: blur(0.1px) drop-shadow(0 2px 11px #fff9);
 }
-/* (rest unchanged) */
 .gem1 { left: 5vw; top: 86vh; width: 38px; height: 32px; background: linear-gradient(135deg, #fff393 30%, #ffe700 94%); border-radius: 42% 58% 55% 41% / 58% 46% 62% 57%;}
 .gem2 { left: 86vw; top: 85vh; width: 32px; height: 29px; background: linear-gradient(110deg, #f5f3fe 13%, #aeeaff 83%); border-radius: 60% 52% 47% 53% / 47% 67% 47% 50%;}
 .gem3 { left: 92vw; top: 10vh; width: 27px; height: 21px; background: linear-gradient(120deg, #fdedaa 0 60%, #e1b5fc 99%);  border-radius: 61% 64% 54% 55% / 52% 57% 51% 68%;}
@@ -47,6 +70,18 @@ body.variable-vault-bg {
 .vault-sparkle.s3 {left: 56vw; top:92vh; width:29px; height:23px; animation-delay:2s;}
 @keyframes sparkPulse {0%{opacity:.08;}50%{opacity:.21;}100%{opacity:.19;}}
   </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body class="variable-vault-bg">
   <div class="variable-vault-bg-art">
@@ -74,12 +109,49 @@ name = Sam
     <div class="example-box">
       <p>Alright, lets get into it! You see the box above? 📦 Variables are just like boxes that store stuff! In this case, the words <code>age</code> and <code>name</code> represent the cardboard box on the outside, and the values represent your toy car inside the box!</p>
     </div>
-    <div class="info-box challenge-box">
+
+    <form class="challenge-box" id="challengeForm" autocomplete="off" onsubmit="return false;">
       💡 <b>Challenge:</b> Can you make your own variable? Try using a string, a number, or even a float!
-    </div>
-    <a href="lvl2pg2.html" class="button special">Learn More About Variables ➡️</a>
+      <br><small>Type a line of code like <code>fruit = "banana"</code> or <code>score = 2.5</code></small>
+      <textarea id="challengeInput" required spellcheck="false" placeholder='e.g. name = "Sam"'></textarea>
+      <div class="challenge-feedback" id="challengeFeedback"></div>
+      <button id="nextBtn" class="button special" disabled>Learn More About Variables ➡️</button>
+    </form>
+    <a href="lvl2pg2.html" class="button special" id="hiddenLink" style="display:none;">Next page</a>
     <a href="try-python.html" class="button special">Try It Yourself</a>
     <a href="index.html" class="button">Back to Home</a>
   </div>
+  <script>
+    const challengeInput = document.getElementById('challengeInput');
+    const challengeFeedback = document.getElementById('challengeFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+    challengeInput.addEventListener('input', function() {
+      const val = challengeInput.value.trim();
+      if (val.length === 0) {
+        challengeFeedback.textContent = "";
+        nextBtn.disabled = true;
+        return;
+      }
+      // crude variable assignment validator:
+      const assignment = val.match(/^([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*(.+)$/);
+      if (!assignment) {
+        challengeFeedback.textContent = "Use the format: variable = value";
+        nextBtn.disabled = true;
+        return;
+      }
+      let value = assignment[2].trim();
+      // Check type: number, string, or float
+      if (/^["'].*["']$/.test(value) || /^-?\d+(\.\d+)?$/.test(value)) {
+        challengeFeedback.textContent = "Looks good!";
+        nextBtn.disabled = false;
+      } else {
+        challengeFeedback.textContent = "Value should be a string (quotes) or a number.";
+        nextBtn.disabled = true;
+      }
+    });
+    nextBtn.onclick = function(){
+      window.location.href = 'lvl2pg2.html';
+    };
+  </script>
 </body>
 </html>
