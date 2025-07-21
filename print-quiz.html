@@ -6,7 +6,7 @@
   <link href="style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Modal Styles */
+    body { font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif; }
     #hellomrcro{
       display: block;
       margin: 0 auto;
@@ -56,6 +56,18 @@
       background: linear-gradient(90deg, #088F8F 80%, #357a6b 100%);
     }
   </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="quiz-container">
@@ -75,11 +87,9 @@
     </form>
     <div id="quizResult1" class="fun-fact"></div>
     <div class="button-group2">
-  <a id="hellomrcro" href="index.html" class="button" style="margin-top:20px;">🏠 Back to Home</a>
-</div>
+      <a id="hellomrcro" href="index.html" class="button" style="margin-top:20px;">🏠 Back to Home</a>
+    </div>
   </div>
-
-  <!-- Congratulations Modal -->
   <div id="congratsModal" class="modal">
     <div class="modal-content">
       <span id="closeModal" class="close">&times;</span>
@@ -88,7 +98,6 @@
       <button id="closeButton" class="button special">Close</button>
     </div>
   </div>
-
   <script>
     document.getElementById('quizLevel1').onsubmit = function(e) {
       e.preventDefault();
@@ -104,8 +113,6 @@
         resultMsg = "Keep practicing and try again!";
       }
       document.getElementById('quizResult1').textContent = resultMsg + " (" + score + "/2)";
-
-      // Show congratulations modal for perfect or good scores
       if (score >= 1) {
         const modal = document.getElementById('congratsModal');
         const modalMessage = document.getElementById('modalMessage');
@@ -115,8 +122,6 @@
           modalMessage.textContent = "Nice job! Try again to get a perfect score!";
         }
         modal.style.display = 'block';
-
-        // Close modal handlers
         document.getElementById('closeModal').onclick = () => modal.style.display = 'none';
         document.getElementById('closeButton').onclick = () => modal.style.display = 'none';
         window.onclick = function(event) {
@@ -129,4 +134,3 @@
   </script>
 </body>
 </html>
-
