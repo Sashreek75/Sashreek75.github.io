@@ -4,15 +4,15 @@
   <title>Level 4: Loop Lagoon - While Loops!</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       min-height: 100vh;
       margin: 0; padding: 0;
       background: linear-gradient(135deg, #e2f9b7 0%, #faffd1 65%, #ffe082 100%);
       position: relative; overflow-x: hidden;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
     }
-    /* Animated circles for the "loop lagoon" look */
     .loop-lagoon-circles {
       position: fixed; inset: 0; z-index: 0;
       pointer-events: none; overflow: hidden;
@@ -24,16 +24,8 @@
       animation: loopTumble 7.5s infinite alternate ease-in-out, fadeFloat 9s infinite alternate;
       opacity: 0.48;
     }
-    @keyframes loopTumble {
-      0% { transform: scale(1) rotate(0deg);}
-      100% { transform: scale(1.17) rotate(25deg);}
-    }
-    @keyframes fadeFloat {
-      0%{ opacity: 0.17;}
-      20%{ opacity: 0.53;}
-      60%{ opacity: 0.38;}
-      100%{ opacity: 0.48;}
-    }
+    @keyframes loopTumble { 0% { transform: scale(1) rotate(0deg);} 100% { transform: scale(1.17) rotate(25deg);}}
+    @keyframes fadeFloat {0%{ opacity: 0.17;} 20%{ opacity: 0.53;} 60%{ opacity: 0.38;} 100%{ opacity: 0.48;}}
     .loop-circle1 { left: 2vw; top: 9vh; width: 210px; height: 210px; border-color: #ffe382cc; animation-delay: 0s, 1s;}
     .loop-circle2 { left: 77vw; top: 14vh; width: 154px; height: 154px; border-color: #fff6b999; animation-delay: 1.5s, 0s;}
     .loop-circle3 { left: 43vw; top: 67vh; width: 110px; height: 110px; border-color: #ffd18099; animation-delay: 0.5s, 2.3s;}
@@ -46,7 +38,26 @@
     .loop-circle10 { left: 82vw; top: 49vh; width: 88px; height: 88px; border-color: #ffb347a9; animation-delay: 1.6s, 3.6s;}
     .loop-circle11 { left: 5vw; top: 85vh; width: 38px; height: 38px; border-color: #fff4d2; animation-delay:2.5s,0.5s;}
     .loop-circle12 { left: 85vw; top: 82vh; width: 200px; height: 200px; border-color: #b0e15755; animation-delay:0.8s,6.2s;}
+    .challenge-box textarea {
+      width: 98%; min-height: 44px; font-size: 1.1em; border-radius: 9px; border: 2px solid #388e3c; margin-top: 10px; font-family: inherit; padding: 8px 12px;
+    }
+    .challenge-box .challenge-feedback {
+      min-height: 1.9em; color: #388e3c; margin: 3px 0 6px 0; font-weight: bold;
+    }
+    .button.special[disabled] { opacity:0.57; pointer-events:none; }
   </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="loop-lagoon-circles">
@@ -142,15 +153,50 @@ print("Blast off!")
         This is a fun one! This loop counts down: 3, 2, 1, Blast off!
       </p>
     </div>
-    <div class="challenge-box">
+    <form class="challenge-box" autocomplete="off" onsubmit="return false;">
       🔁 <b>Challenge:</b> Can you make a while loop that prints your name 4 times?
-    </div>
+      <textarea id="challengeInput" placeholder='e.g.\ncount = 0\nwhile count < 4:\n    print("Alex")\n    count = count + 1' spellcheck="false"></textarea>
+      <div class="challenge-feedback" id="challengeFeedback"></div>
+      <button class="button special" id="nextBtn" disabled>Take the Level 4 Quiz! ➡️</button>
+    </form>
     <div class="fun-fact-box">
       Some games and robots use while loops to keep checking, moving, or waiting until they're done!
     </div>
-    <a href="loops-quiz.html" class="button special">Take the Level 4 Quiz!</a>
+    <a href="loops-quiz.html" class="button special" id="fakeNextBtn" disabled>Take the Level 4 Quiz!</a>
     <a href="lvl4pg3.html" class="button">⬅️ Back</a>
     <a href="index.html" class="button">🏠 Home</a>
   </div>
+  <script>
+    const challengeInput = document.getElementById('challengeInput');
+    const challengeFeedback = document.getElementById('challengeFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+    function isValidWhileLoop(str) {
+      // Must initialize count to 0, while count < 4: print("NAME") and count = count + 1 inside
+      if (!/count\s*=\s*0/i.test(str)) return false;
+      if (!/while\s+count\s*<\s*4\s*:/.test(str)) return false;
+      if (!/print\s*\(\s*["'`][^"'`]+["'`]\s*\)/i.test(str)) return false;
+      if (!/count\s*=\s*count\s*\+\s*1/.test(str)) return false;
+      return true;
+    }
+    challengeInput.addEventListener('input', function() {
+      if (isValidWhileLoop(challengeInput.value)) {
+        challengeFeedback.textContent = "Awesome! A working 'while' loop that prints your name 4 times!";
+        nextBtn.disabled = false;
+        document.getElementById('fakeNextBtn').disabled = false;
+      } else {
+        challengeFeedback.textContent = "Initialize count to 0, use 'while count < 4:', print your name, and increase count by 1 in the loop.";
+        nextBtn.disabled = true;
+        document.getElementById('fakeNextBtn').disabled = true;
+      }
+    });
+    nextBtn.onclick = function() {
+      window.location.href = "loops-quiz.html";
+    };
+    document.getElementById('fakeNextBtn').addEventListener('click', function(e){
+      if (nextBtn.disabled) e.preventDefault();
+      else window.location.href = "loops-quiz.html";
+    });
+  </script>
 </body>
 </html>
+
