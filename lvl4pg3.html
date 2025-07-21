@@ -4,13 +4,14 @@
   <title>Level 4: Loop Lagoon - Looping Through Lists!</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       min-height: 100vh;
       margin: 0; padding: 0;
       background: linear-gradient(135deg, #e2f9b7 0%, #faffd1 65%, #ffe082 100%);
       position: relative; overflow-x: hidden;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
     }
     .loop-lagoon-circles {
       position: fixed; inset: 0; z-index: 0;
@@ -33,62 +34,26 @@
     .loop-circle10 { left: 82vw; top: 49vh; width: 88px; height: 88px; border-color: #ffb347a9; animation-delay: 1.6s, 3.6s;}
     .loop-circle11 { left: 5vw; top: 85vh; width: 38px; height: 38px; border-color: #fff4d2; animation-delay:2.5s,0.5s;}
     .loop-circle12 { left: 85vw; top: 82vh; width: 200px; height: 200px; border-color: #b0e15755; animation-delay:0.8s,6.2s;}
-    .list-pic {
-      font-size: 1.6em;
-      text-align: center;
-      margin-bottom: 10px;
-      letter-spacing: 0.25em;
-      color: #388e3c;
-      padding: 0 0 17px 0;
-      user-select: none;
+    .challenge-box textarea {
+      width: 98%; min-height: 44px; font-size: 1.1em; border-radius: 9px; border: 2px solid #388e3c; margin-top: 10px; font-family: inherit; padding: 8px 12px;
     }
-    .arrow { font-size:1.4em; color: #ff8c00; padding: 0 4px;}
-    .biglist {
-      background: #fffbe6;
-      padding: 17px 17px 12px 37px;
-      border-radius: 12px;
-      margin: 17px 0 23px 0;
-      box-shadow: 0 0 7px #b5cf5475;
-      font-size: 1.18em;
-      color: #444;
-      display: inline-block;
-      text-align: left;
+    .challenge-box .challenge-feedback {
+      min-height: 1.9em; color: #388e3c; margin: 3px 0 6px 0; font-weight: bold;
     }
-    .step-list {
-      background: #fcfff0;
-      border-left: 7px solid #e5e23b;
-      border-radius: 9px;
-      font-size:1.08em;
-      color:#839700;
-      margin:14px 0 24px 0;
-      padding:11px 21px;
-      font-weight: bold;
-    }
-    .hero-ex {
-      background: #fbffce;
-      padding: 11px 25px 10px 20px;
-      border-left: 7px solid #63b107;
-      border-radius: 14px;
-      font-size:1.18em;
-      margin:13px 0 19px 0;
-      color:#5c8300;
-      font-weight: bold;
-    }
-    .long-list-table {
-      border-collapse: collapse;
-      width: 95%;
-      margin: 18px auto 14px auto;
-      background: #f7ffd9;
-      font-size: 1.03em;
-      color: #567700;
-    }
-    .long-list-table th, .long-list-table td {
-      border: 1px solid #d7eba5;
-      padding: 7px 13px;
-      background: #f6ffec;
-    }
-    .long-list-table th { background: #e9fbbd; color: #333;}
+    .button.special[disabled] { opacity: 0.57; pointer-events: none; }
   </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="loop-lagoon-circles">
@@ -198,11 +163,14 @@ for face in faces:
       </pre>
     </div>
 
-    <div class="challenge-box">
+    <form class="challenge-box" autocomplete="off" onsubmit="return false;">
       🐾 <b>Challenge:</b> Make a list of your favorite animals, colors, or foods.<br>
       Then make a for loop to print each one!<br><br>
       <b>Can you make it print something silly for each?</b>
-    </div>
+      <textarea id="challengeInput" placeholder='e.g.\nthings = ["cat","dog","bird","pig","owl"]\nfor t in things:\n    print(t)' spellcheck="false"></textarea>
+      <div class="challenge-feedback" id="challengeFeedback"></div>
+      <button class="button special" id="nextBtn" disabled>Next: While Loops! ➡️</button>
+    </form>
 
     <div class="fun-fact-box">
       <b>Need help?</b><br>
@@ -247,9 +215,54 @@ for i in range(len(items)):
       🌟 <b>Challenge:</b> Can you make a list with 5 silly words and print them backwards?
     </div>
 
-    <a href="lvl4pg4.html" class="button special">Next: While Loops! ➡️</a>
+    <a href="lvl4pg4.html" class="button special" id="fakeNextBtn" disabled>Next: While Loops! ➡️</a>
     <a href="lvl4pg2.html" class="button">⬅️ Back</a>
     <a href="index.html" class="button">🏠 Home</a>
   </div>
+  <script>
+    // Mobile font detector/family handled in head
+    const challengeInput = document.getElementById('challengeInput');
+    const challengeFeedback = document.getElementById('challengeFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+    function isValidListLoop(val) {
+      // This is a loose check: must assign a list (with [ and ,), then for ... in ... with print reversed or [::-1], or reversed( var )
+      // Accepts: for t in things[::-1]: / for t in reversed(things):
+      // List assignment (first line): var = [ ... ]
+      const s = val.trim();
+      if (!/^\s*\w+\s*=\s*\[([^\[\]]|(\[[^\[\]]*\]))+\]\s*$/m.test(s)) return false;
+      // Must have a for loop and print in body
+      if (!/for +\w+ +in +(reversed\()?\w+(\[\:\:\-?1?\])?\)? *:/i.test(s)) return false;
+      // Must have print in body
+      if (!/print\s*\(/i.test(s)) return false;
+      // Some actual list items, comma separated in the brackets
+      const match = s.match(/\[\s*([^\]]+)\]/);
+      if (!match) return false;
+      const listItems = match[1].split(',');
+      if (listItems.length < 5) return false;
+      // Must use backwards loop: [::-1] or reversed(var)
+      if (!/reversed\(\w+\)|\[\:\:\-1\]/i.test(s)) return false;
+      return true;
+    }
+    challengeInput.addEventListener('input', function() {
+      if (isValidListLoop(challengeInput.value)) {
+        challengeFeedback.textContent = "Awesome! That's a backwards list loop with 5 silly items!";
+        nextBtn.disabled = false;
+        document.getElementById('fakeNextBtn').disabled = false;
+      } else {
+        challengeFeedback.textContent = "You need: assign a list with at least 5 items, loop backwards (use [::-1] or reversed()), and print each item.";
+        nextBtn.disabled = true;
+        document.getElementById('fakeNextBtn').disabled = true;
+      }
+    });
+    nextBtn.onclick = function() {
+      window.location.href = "lvl4pg4.html";
+    };
+    // To visually keep the UI consistent and challenge enforced, the real "Next" is the button, the fake one is above for looks only.
+    document.getElementById('fakeNextBtn').addEventListener('click', function(e){
+      if (nextBtn.disabled) e.preventDefault();
+      else window.location.href = "lvl4pg4.html";
+    });
+  </script>
 </body>
 </html>
+
