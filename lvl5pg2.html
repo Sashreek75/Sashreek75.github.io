@@ -4,10 +4,11 @@
   <title>Level 5: Function Fortress – Magic Ingredients!</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <style>
 body.function-fortress-bg {
   min-height: 100vh; margin: 0; padding: 0;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
   overflow-x: hidden; position: relative;
   background:
     radial-gradient(circle at 80% 15%, #ffd6f0 0%, #f9e5ff 30%, #ffe7b1 65%, #fff4bc 80%) no-repeat,
@@ -32,12 +33,7 @@ body.function-fortress-bg::before {
   overflow: hidden;
 }
 .tower, .castle-wall, .tower-top, .magic-circle { position: absolute; pointer-events: none; }
-.tower {
-  width: 60px; height: 190px; bottom: 0;
-  background: linear-gradient(180deg, #ffe48d 0%, #f9c331 70%, #c3a145 100%);
-  border-radius: 21px 21px 18px 18px / 18px 18px 28px 26px;
-  box-shadow: 0 8px 32px 0 #ffeca680;
-}
+.tower { width: 60px; height: 190px; bottom: 0; background: linear-gradient(180deg, #ffe48d 0%, #f9c331 70%, #c3a145 100%); border-radius: 21px 21px 18px 18px / 18px 18px 28px 26px; box-shadow: 0 8px 32px 0 #ffeca680;}
 .tower1 { left: 9vw;}
 .tower2 { left: 87vw; height: 170px;}
 .tower3 { left: 47vw; width: 85px; height: 230px; background: linear-gradient(180deg, #fff1b8 0%, #e8bf61 85%);}
@@ -66,7 +62,24 @@ body.function-fortress-bg::before {
 }
 .example-table th, .example-table td { border: 1px solid #e6e4d3; padding: 8px 12px; }
 .example-table th { background: #f1eefb; color: #6a4ba7; }
+.challenge-box textarea {
+  width:98%; min-height:44px; font-size:1.1em; border-radius:9px; border:2px solid #884aba; margin-top:10px; font-family: inherit; padding:8px 12px;
+}
+.challenge-box .challenge-feedback { min-height:1.9em; color:#703b9b;margin:3px 0 6px 0;font-weight:bold;}
+.button.special[disabled] { opacity:.57; pointer-events:none;}
   </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body class="function-fortress-bg">
   <div class="fortress-bg-art">
@@ -204,18 +217,51 @@ def secret_spell():
       </pre>
     </div>
 
-    <div class="challenge-box">
+    <form class="challenge-box" autocomplete="off" onsubmit="return false;">
       🔮 <b>Try it:</b> Make a function called <code>triple</code> that returns a number times 3!
-    </div>
+      <textarea id="challengeInput" placeholder='def triple(x):\n    return x * 3' spellcheck="false"></textarea>
+      <div class="challenge-feedback" id="challengeFeedback"></div>
+      <button class="button special" id="nextBtn" disabled>Next: When to Use Functions ➡️</button>
+    </form>
 
     <div class="fun-fact-box">
-      <b>Fun Fact:</b> Every function gives something back—even if you don't use <code>return</code>, it sends back <code>None</code>![5]
-      <br><b>Pro tip:</b> Functions can return as many things as you want in a tuple, list, or dictionary![1][4]
+      <b>Fun Fact:</b> Every function gives something back—even if you don't use <code>return</code>, it sends back <code>None</code>!
+      <br><b>Pro tip:</b> Functions can return as many things as you want in a tuple, list, or dictionary!
     </div>
 
-    <a href="lvl5pg3.html" class="button special">Next: When to Use Functions ➡️</a>
+    <a href="lvl5pg3.html" class="button special" id="fakeNextBtn" disabled>Next: When to Use Functions ➡️</a>
     <a href="level5.html" class="button">⬅️ Back to Function Fortress</a>
     <a href="index.html" class="button">🏠 Back to Home</a>
   </div>
+  <script>
+    const challengeInput = document.getElementById('challengeInput');
+    const challengeFeedback = document.getElementById('challengeFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+    function isValidTriple(str) {
+      // Accept: def triple(x):\n    return x*3
+      if (!/def\s+triple\s*\(\s*x\s*\)\s*:/i.test(str)) return false;
+      if (!/return\s+x\s*\*\s*3/i.test(str)) return false;
+      return true;
+    }
+    challengeInput.addEventListener('input', function() {
+      if (isValidTriple(challengeInput.value)) {
+        challengeFeedback.textContent = "Magic! That's a valid triple(x) function!";
+        nextBtn.disabled = false;
+        document.getElementById('fakeNextBtn').disabled = false;
+      } else {
+        challengeFeedback.textContent = "Write def triple(x): and a return that multiplies x by 3!";
+        nextBtn.disabled = true;
+        document.getElementById('fakeNextBtn').disabled = true;
+      }
+    });
+    nextBtn.onclick = function() {
+      window.location.href = "lvl5pg3.html";
+    };
+    document.getElementById('fakeNextBtn').addEventListener('click', function(e){
+      if (nextBtn.disabled) e.preventDefault();
+      else window.location.href = "lvl5pg3.html";
+    });
+  </script>
 </body>
 </html>
+
