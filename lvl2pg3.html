@@ -8,7 +8,7 @@
   <style>
 body.variable-vault-bg {
   min-height: 100vh; margin: 0; padding: 0;
-  font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
   overflow-x: hidden; position: relative;
   background:
     radial-gradient(circle farthest-side at 50% 78%, #ffa 20%, #ffd700ee 80%, #fff9ed 120%),
@@ -47,6 +47,18 @@ body.variable-vault-bg {
   color: blue;
 }
   </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body class="variable-vault-bg">
   <div class="variable-vault-bg-art">
@@ -137,4 +149,5 @@ print(type(pi))  # &lt;class 'float'&gt;
   </div>
 </body>
 </html>
+
 
