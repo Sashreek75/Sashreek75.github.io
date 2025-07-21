@@ -4,10 +4,11 @@
   <title>Level 5: Fun with Functions!</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="style.css" rel="stylesheet">
- <style>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <style>
 body.function-fortress-bg {
   min-height: 100vh; margin: 0; padding: 0;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
   overflow-x: hidden; position: relative;
   background:
     radial-gradient(circle at 80% 15%, #ffd6f0 0%, #f9e5ff 30%, #ffe7b1 65%, #fff4bc 80%) no-repeat,
@@ -61,7 +62,24 @@ body.function-fortress-bg::before {
 @keyframes magicPulse {0% { opacity: 0.23;} 50% { opacity: 0.75;} 100% { opacity: 0.60;}}
 @keyframes magicMove {0% { transform: scale(1) translateY(0);} 100% { transform: scale(1.15) translateY(-14px);}}
 .main-container { position: relative; z-index: 4; }
+.challenge-box textarea {
+  width:98%; min-height:44px; font-size:1.1em; border-radius:9px; border:2px solid #884aba; margin-top:10px; font-family: inherit; padding:8px 12px;
+}
+.challenge-box .challenge-feedback { min-height:1.9em; color:#703b9b;margin:3px 0 6px 0;font-weight:bold;}
+.button.special[disabled] { opacity:.57; pointer-events:none;}
   </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body class="function-fortress-bg">
   <div class="fortress-bg-art">
@@ -116,15 +134,52 @@ def dance():
       </pre>
       <p>When you call <code>dance()</code>, it makes you jump, skip, and spin—magic teamwork!</p>
     </div>
-    <div class="challenge-box">
+    <form class="challenge-box" autocomplete="off" onsubmit="return false;">
       <b>Challenge:</b> Make two functions: <code>wave()</code> that prints "👋", and <code>wave_twice()</code> that uses <code>wave()</code> two times!
-    </div>
+      <textarea id="challengeInput" placeholder='def wave():\n    print("👋")\ndef wave_twice():\n    wave()\n    wave()' spellcheck="false"></textarea>
+      <div class="challenge-feedback" id="challengeFeedback"></div>
+      <button class="button special" id="nextBtn" disabled>You are Ready! ➡️</button>
+    </form>
     <div class="fun-fact-box">
       <b>Pro Fact:</b> Programmers make their own “secret” helper functions all the time. Games, apps, and robots use THOUSANDS of functions!
     </div>
     <a href="lvl5pg3.html" class="button">⬅️ Back</a>
     <a href="index.html" class="button">🏠 Home</a>
-    <a href="lvl5pg5.html" class="button special">You are Ready!</a>
+    <a href="lvl5pg5.html" class="button special" id="fakeNextBtn" disabled>You are Ready!</a>
   </div>
+  <script>
+    const challengeInput = document.getElementById('challengeInput');
+    const challengeFeedback = document.getElementById('challengeFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+    function isValidWave(str) {
+      // Must define wave() that prints and wave_twice() that calls wave() two times
+      if (!/def\s+wave\s*\(\s*\)\s*:/.test(str)) return false;
+      if (!/def\s+wave_twice\s*\(\s*\)\s*:/.test(str)) return false;
+      // 'wave()' must be called twice in wave_twice
+      const match = str.match(/def\s+wave_twice\s*\(\s*\)\s*:\s*([\s\S]+)/);
+      if (!match) return false;
+      const body = match[1];
+      if ((body.match(/wave\s*\(\s*\)/g)||[]).length < 2) return false;
+      // wave() must print something (should see emoji or text)
+      return /print\s*\(\s*["'`].*["'`]\s*\)/.test(str);
+    }
+    challengeInput.addEventListener('input', function() {
+      if (isValidWave(challengeInput.value)) {
+        challengeFeedback.textContent = "Perfect! You can wave and wave_twice!";
+        nextBtn.disabled = false;
+        document.getElementById('fakeNextBtn').disabled = false;
+      } else {
+        challengeFeedback.textContent = "Make sure you define wave() (with a print), and wave_twice() that calls wave() two times.";
+        nextBtn.disabled = true;
+        document.getElementById('fakeNextBtn').disabled = true;
+      }
+    });
+    nextBtn.onclick = function() { window.location.href = "lvl5pg5.html"; };
+    document.getElementById('fakeNextBtn').addEventListener('click', function(e){
+      if (nextBtn.disabled) e.preventDefault();
+      else window.location.href = "lvl5pg5.html";
+    });
+  </script>
 </body>
 </html>
+
