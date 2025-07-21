@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
-<style>
-    /* Fixed complex background, always behind */
+  <style>
+    body { font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;}
     .print-bg-scene {
       position: fixed;
       z-index: -1;
@@ -15,151 +15,39 @@
       height: 100vh;
       overflow: hidden;
       pointer-events: none;
-      /* Main wall: soft paper yellow-pink-orange gradient */
-      background:
-        linear-gradient(115deg, #ffe6bb 0%, #ffb5e6 70%, #ffd183 100%);
+      background: linear-gradient(115deg, #ffe6bb 0%, #ffb5e6 70%, #ffd183 100%);
     }
-    /* "Desk" - light orange foreground base */
-    .desk-bg {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100vw;
-      height: 22vh;
-      background: linear-gradient(to top, #ffd183 40%, #fbeaca 100%);
-      border-top-left-radius: 60px;
-      border-top-right-radius: 60px;
-      box-shadow: 0 -8px 62px 24px #ffca557a;
-      z-index: 1;
-    }
-    /* Comic printer */
-    .printer {
-      position: absolute;
-      right: 8vw;
-      bottom: 15vh;
-      width: 115px;
-      height: 80px;
-      background: linear-gradient(120deg, #e1e4ed 65%, #bcc2c6 98%);
-      border-radius: 24px 28px 16px 16px/ 20px 25px 24px 30px;
-      box-shadow: 0 5px 14px #d1b98988;
-    }
-    .printer::before {
-      content: "";
-      position: absolute;
-      top: -24px;
-      left: 38px;
-      width: 38px;
-      height: 34px;
-      background: #fff;
-      border-radius: 5px 5px 12px 12px;
-      box-shadow: 0 10px 12px #f9e9a3cc;
-      z-index: 3;
-      animation: paper-slide 2.8s cubic-bezier(.51,0,.68,1.29) infinite alternate;
-    }
-    @keyframes paper-slide {
-      0% { top: -28px; opacity: 0.3; }
-      40% { top: -18px; opacity: 1; }
-      70% { top: -8px; opacity: 1; }
-      100% { top: -16px; opacity: 0.5; }
-    }
-    .printer::after {
-      content: "";
-      position: absolute;
-      bottom: 15px;
-      left: 47px;
-      width: 16px;
-      height: 10px;
-      border-radius: 10px;
-      background: #7ed957;
-      box-shadow: 0 1px 2px #558e34c1;
-    }
-    /* Flying print sheets (animated) */
-    .flying-paper {
-      position: absolute;
-      top: 10vh;
-      left: 10vw;
-      width: 48px;
-      height: 30px;
-      background: #fff;
-      border-radius: 4px 8px 10px 10px;
-      box-shadow: 0 2px 8px #ffc1d8aa;
-      opacity: 0.82;
-      animation: paper-fly1 7s linear infinite;
-      transform: rotate(3deg);
-      z-index: 4;
-    }
-    .flying-paper2 {
-      top: 19vh; left: 26vw;
-      width: 42px; height: 24px;
-      opacity: 0.7;
-      animation: paper-fly2 8s linear infinite;
-      background: #fffffa;
-      filter: blur(0.3px);
-      transform: rotate(-10deg);
-    }
-    .flying-paper3 {
-      top: 11vh; left: 70vw;
-      animation: paper-fly3 12s linear infinite 2.9s;
-      width: 36px; height: 18px;
-      opacity: 0.54;
-      background: #fffde1;
-      filter: blur(1px);
-      transform: rotate(18deg);
-    }
-    @keyframes paper-fly1 {
-      0% { top:10vh; left:11vw; transform:rotate(3deg);}
-      35% {top:18vh; left: 40vw; transform: rotate(-24deg);}
-      65% {top: 44vh; left: 34vw; transform: rotate(-11deg);}
-      100% {top:56vh; left: 71vw; transform: rotate(38deg);}
-    }
-    @keyframes paper-fly2 {
-      0% { top:19vh; left:26vw;}
-      70% {top:64vh; left:81vw;}
-      100% {top:71vh; left:92vw;}
-    }
-    @keyframes paper-fly3 {
-      0% { top:11vh; left:70vw;}
-      66% {top:51vh; left:20vw;}
-      100% {top:61vh; left:3vw;}
-    }
-    /* Comic clouds */
-    .cloud {
-      position: absolute;
-      background: #fff;
-      border-radius: 50%;
-      opacity: 0.82;
-      box-shadow: 60px 22px 0 0 #fff, 120px 31px 0 0 #fff, 170px 21px 0 0 #fff,
-                  235px 55px 0 0 #fff, 268px 38px 0 0 #fff;
-      width: 120px; height: 61px;
-      top: 10vh; left: 12vw;
-      filter: blur(0.4px);
-    }
+    .desk-bg { position: absolute; bottom: 0; left: 0; width: 100vw; height: 22vh; background: linear-gradient(to top, #ffd183 40%, #fbeaca 100%); border-top-left-radius: 60px; border-top-right-radius: 60px; box-shadow: 0 -8px 62px 24px #ffca557a; z-index: 1; }
+    .printer { position: absolute; right: 8vw; bottom: 15vh; width: 115px; height: 80px; background: linear-gradient(120deg, #e1e4ed 65%, #bcc2c6 98%); border-radius: 24px 28px 16px 16px/ 20px 25px 24px 30px; box-shadow: 0 5px 14px #d1b98988; }
+    .printer::before { content: ""; position: absolute; top: -24px; left: 38px; width: 38px; height: 34px; background: #fff; border-radius: 5px 5px 12px 12px; box-shadow: 0 10px 12px #f9e9a3cc; z-index: 3; animation: paper-slide 2.8s cubic-bezier(.51,0,.68,1.29) infinite alternate; }
+    @keyframes paper-slide { 0% { top: -28px; opacity: 0.3; } 40% { top: -18px; opacity: 1; } 70% { top: -8px; opacity: 1; } 100% { top: -16px; opacity: 0.5; } }
+    .printer::after { content: ""; position: absolute; bottom: 15px; left: 47px; width: 16px; height: 10px; border-radius: 10px; background: #7ed957; box-shadow: 0 1px 2px #558e34c1; }
+    .flying-paper { position: absolute; top: 10vh; left: 10vw; width: 48px; height: 30px; background: #fff; border-radius: 4px 8px 10px 10px; box-shadow: 0 2px 8px #ffc1d8aa; opacity: 0.82; animation: paper-fly1 7s linear infinite; transform: rotate(3deg); z-index: 4; }
+    .flying-paper2 { top: 19vh; left: 26vw; width: 42px; height: 24px; opacity: 0.7; animation: paper-fly2 8s linear infinite; background: #fffffa; filter: blur(0.3px); transform: rotate(-10deg); }
+    .flying-paper3 { top: 11vh; left: 70vw; animation: paper-fly3 12s linear infinite 2.9s; width: 36px; height: 18px; opacity: 0.54; background: #fffde1; filter: blur(1px); transform: rotate(18deg); }
+    @keyframes paper-fly1 { 0% { top:10vh; left:11vw; transform:rotate(3deg);} 35% {top:18vh; left: 40vw; transform: rotate(-24deg);} 65% {top: 44vh; left: 34vw; transform: rotate(-11deg);} 100% {top:56vh; left: 71vw; transform: rotate(38deg);} }
+    @keyframes paper-fly2 { 0% { top:19vh; left:26vw;} 70% {top:64vh; left:81vw;} 100% {top:71vh; left:92vw;} }
+    @keyframes paper-fly3 { 0% { top:11vh; left:70vw;} 66% {top:51vh; left:20vw;} 100% {top:61vh; left:3vw;} }
+    .cloud { position: absolute; background: #fff; border-radius: 50%; opacity: 0.82; box-shadow: 60px 22px 0 0 #fff, 120px 31px 0 0 #fff, 170px 21px 0 0 #fff, 235px 55px 0 0 #fff, 268px 38px 0 0 #fff; width: 120px; height: 61px; top: 10vh; left: 12vw; filter: blur(0.4px);}
     .cloud2 { width: 140px; height: 74px; top: 18vh; left: 62vw;}
-    /* Some extra sparkle dots (subtle) */
-    .sparkle {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, #fff9 55%, #fff0 100%);
-      width: 22px; height:22px; top: 33vh; left: 44vw;
-      filter: blur(2.5px);
-      opacity: 0.6;
-      animation: sparkle1 4.1s infinite alternate;
-    }
-    @keyframes sparkle1 {
-      0%,100%{ opacity:0.4;}
-      60%{ opacity:0.8;}
-    }
-    .sparkle2 {
-      width: 12px; height:12px; left:25vw; top:60vh; animation:sparkle1 3s 1.2s infinite alternate;
-    }
-    .sparkle3 {
-      width: 16px; height:16px; left:77vw; top:21vh; animation:sparkle1 2.4s 0.4s infinite alternate;
-      opacity: 0.35;
-      filter: blur(1px);
-    }
-    /* Content always above background */
-    body { position: relative; background: none !important; font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;}
+    .sparkle { position: absolute; border-radius: 50%; background: radial-gradient(circle, #fff9 55%, #fff0 100%); width: 22px; height:22px; top: 33vh; left: 44vw; filter: blur(2.5px); opacity: 0.6; animation: sparkle1 4.1s infinite alternate;}
+    @keyframes sparkle1 { 0%,100%{ opacity:0.4;} 60%{ opacity:0.8;} }
+    .sparkle2 { width: 12px; height:12px; left:25vw; top:60vh; animation:sparkle1 3s 1.2s infinite alternate;}
+    .sparkle3 { width: 16px; height:16px; left:77vw; top:21vh; animation:sparkle1 2.4s 0.4s infinite alternate; opacity: 0.35; filter: blur(1px);}
+    body { position: relative; background: none !important;}
   </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="print-bg-scene">
@@ -175,39 +63,39 @@
     <div class="flying-paper flying-paper3"></div>
   </div>
   <div class="main-container">
-  <h1>Level 1: More Print Power! 💥</h1>
-  <div class="info-box">
-    <p>You're gonna use the print function in our next few levels too! So its really important! 🖨️</p>
-  </div>
-  <pre>
+    <h1>Level 1: More Print Power! 💥</h1>
+    <div class="info-box">
+      <p>You're gonna use the print function in our next few levels too! So its really important! 🖨️</p>
+    </div>
+    <pre>
   print(5 * 3) 
   print(10 / 2)
-  </pre>
-  <div class="example-box">
-    <p id="hellocro">See the example above?☝️ Notice that to print something you have to use the word <code>print</code> and then type what you want to appear inside a parenthesis()</p>
-  </div>
-  <pre>
+    </pre>
+    <div class="example-box">
+      <p id="hellocro">See the example above?☝️ Notice that to print something you have to use the word <code>print</code> and then type what you want to appear inside a parenthesis()</p>
+    </div>
+    <pre>
  # You can also print more than one type of value in a print function! All you have to do  is enter one type, seperate by a comma and enter your other type!
 
 var = Silly
 print("Hello", var)
 # this says Hello Silly!
-  </pre>
-  <div class="fun-fact-box">
-    ℹ️ If you're wondering, the hashtag (#) before the words tells the computer it's something called a comment! The computer ignores this, but it's helpful when we want to remember how our code works! 
+    </pre>
+    <div class="fun-fact-box">
+      ℹ️ If you're wondering, the hashtag (#) before the words tells the computer it's something called a comment! The computer ignores this, but it's helpful when we want to remember how our code works! 
+    </div>
+    <div class="challenge-box">
+      💡 <b>Challenge:</b>
+      Print your name and your favorite number together!
+      Example: <code>print("Sam", 10)</code>
+    </div>
+    <div class="fun-fact-box">
+      🧠 <b> Did you see it? </b>To use multiplication in Python, you have to use an asterisk or * and for division you use a backslash / !
+    </div>
+    <a href="print-quiz.html" class="button special">Take the Level 1 Quiz!</a>
+    <a href="level1.html" class="button">⬅️ Back to Introduction</a>
+    <a href="try-python.html" class="button special">Try it Yourself!</a>
   </div>
-  <div class="challenge-box">
-    💡 <b>Challenge:</b>
-    Print your name and your favorite number together!
-    Example: <code>print("Sam", 10)</code>
-</div>
-<div class="fun-fact-box">
- 🧠 <b> Did you see it? </b>To use multiplication in Python, you have to use an asterisk or * and for division you use a backslash / !
-</div>
-
-  <a href="print-quiz.html" class="button special">Take the Level 1 Quiz!</a>
-  <a href="level1.html" class="button">⬅️ Back to Introduction</a>
-  <a href="try-python.html" class="button special">Try it Yourself!</a>
-</div>
 </body>
 </html>
+
