@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <title>Level 1: Print Power!</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link href="style.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="style.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       min-height: 100vh;
@@ -13,17 +14,20 @@
       background: linear-gradient(to bottom, #87ceeb 0%, #b0e0e6 60%, #f0e68c 100%);
       position: relative;
       overflow-x: hidden;
-      font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+      font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
     }
-
-    /* Clouds — Fluffy, playful using pseudo-elements */
-    body::before, body::after {
+    body::before,
+    body::after {
       content: '';
       position: fixed;
       background: #fff;
       border-radius: 50%;
-      box-shadow: 60px 20px 0 0 #fff, 100px 30px 0 0 #fff, 140px 20px 0 0 #fff,
-                  180px 40px 0 0 #fff, 220px 30px 0 0 #fff;
+      box-shadow:
+        60px 20px 0 0 #fff,
+        100px 30px 0 0 #fff,
+        140px 20px 0 0 #fff,
+        180px 40px 0 0 #fff,
+        220px 30px 0 0 #fff;
       opacity: 0.85;
       z-index: 0;
     }
@@ -39,8 +43,6 @@
       top: 15vh;
       left: 60vw;
     }
-
-    /* Sun with soft glow */
     .sun {
       position: fixed;
       top: 5vh;
@@ -67,11 +69,13 @@
       z-index: -1;
     }
     @keyframes spin {
-      from {transform: rotate(0deg);}
-      to {transform: rotate(360deg);}
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
-
-    /* Adventure Ocean with animated, playful waves */
     .ocean {
       position: fixed;
       bottom: 0;
@@ -87,7 +91,7 @@
       bottom: 0;
       width: 200%;
       height: 100px;
-      background: rgba(255,255,255,0.4);
+      background: rgba(255, 255, 255, 0.4);
       border-radius: 50%;
       animation: waveMove 6s linear infinite;
     }
@@ -104,14 +108,16 @@
       height: 100px;
     }
     @keyframes waveMove {
-      0% {transform: translateX(0);}
-      100% {transform: translateX(-50%);}
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
-
     .island {
       position: fixed;
-      /* Lower the island further down */
-      bottom: 5vh; /* Less than default, so it stays low */
+      bottom: 5vh;
       left: 50%;
       width: 400px;
       height: 140px;
@@ -119,11 +125,9 @@
       border-radius: 60% 40% 70% 30% / 60% 70% 30% 40%;
       box-shadow: inset 0 10px 20px #d4c06a, 0 10px 30px 5px #bcb17c80;
       transform: translateX(-50%);
-      z-index: 0;  /* Ensures it's always under main content */
-      pointer-events: none; /* Keeps buttons clickable */
+      z-index: 0;
+      pointer-events: none;
     }
-
-    /* Main orange info box stays bright and above background */
     .info-box {
       background-color: #ff8c00;
       color: white;
@@ -134,7 +138,39 @@
       z-index: 10;
       position: relative;
     }
+    .challenge-box textarea {
+      width: 98%;
+      min-height: 48px;
+      font-size: 1.1em;
+      border-radius: 9px;
+      border: 2px solid #2266cc;
+      margin-top: 10px;
+      font-family: inherit;
+      padding: 8px 12px;
+    }
+    .challenge-box .challenge-feedback {
+      min-height: 1.9em;
+      color: #224cb3;
+      margin: 3px 0 6px 0;
+      font-weight: bold;
+    }
+    button.button.special[disabled] {
+      opacity: 0.57;
+      pointer-events: none;
+    }
   </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="sun"></div>
@@ -170,13 +206,37 @@ int(input("enter your name:"))
     <div class="fun-fact-box">
       ⚠️ Or else it won't work!
     </div>
-    <div class="challenge-box">
+    <form class="challenge-box" autocomplete="off" onsubmit="return false;">
       🌟 <b>Mini Quest:</b> Ask for a number, not a string, and print that number!
-    </div>
-    <a href="lvl3pg3.html" class="button special">Let's continue!!</a>
+      <textarea id="challengeInput" placeholder='e.g.\nnum = int(input("Enter a number:"))\nprint(num)' spellcheck="false"></textarea>
+      <div class="challenge-feedback" id="challengeFeedback"></div>
+      <button id="nextBtn" class="button special" disabled>Let's continue!! ➡️</button>
+    </form>
     <a href="level3.html" class="button">⬅️ Back to Input Island</a>
     <a href="index.html" class="button">🏠 Back to Home</a>
   </div>
+  <script>
+    const challengeInput = document.getElementById('challengeInput');
+    const challengeFeedback = document.getElementById('challengeFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+    function isValid(input) {
+      const val = input.trim();
+      return /int\s*\(\s*input\s*\(.*\)\s*\)/.test(val) && /print\s*\(\s*\w+\s*\)/.test(val);
+    }
+    challengeInput.addEventListener('input', () => {
+      if (isValid(challengeInput.value)) {
+        challengeFeedback.textContent = "Great job! You’re ready to move on!";
+        nextBtn.disabled = false;
+      } else {
+        challengeFeedback.textContent = "Remember to use int(input()) and print().";
+        nextBtn.disabled = true;
+      }
+    });
+    nextBtn.onclick = () => {
+      window.location.href = 'lvl3pg3.html';
+    };
+  </script>
 </body>
 </html>
+
 
