@@ -6,7 +6,7 @@
   <link href="style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* Modal Styles – reuse from Level 1 */
+    body { font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif; }
     .modal {
       display: none;
       position: fixed;
@@ -51,6 +51,18 @@
       background: linear-gradient(90deg, #088F8F 80%, #357a6b 100%);
     }
   </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="quiz-container">
@@ -89,8 +101,6 @@
     <a href="lvl4pg2.html" class="button" style="margin-top:20px; display:inline-block;">⬅️ Back to More Loops</a>
     <a href="index.html" class="button" style="margin-top:20px; display:inline-block;">🏠 Back to Home</a>
   </div>
-
-  <!-- Modal Popup -->
   <div id="congratsModal" class="modal">
     <div class="modal-content">
       <span id="closeModal" class="close">&times;</span>
@@ -99,7 +109,6 @@
       <button id="closeButton" class="button special">Close</button>
     </div>
   </div>
-
   <script>
     document.getElementById('quizLoops').onsubmit = function(e) {
       e.preventDefault();
@@ -120,7 +129,6 @@
       }
       document.getElementById('quizLoopsResult').textContent = resultMsg + " (" + score + "/5)";
 
-      // Show congratulations modal for good or great scores
       if (score >= 3) {
         const modal = document.getElementById('congratsModal');
         const modalMessage = document.getElementById('modalMessage');
@@ -131,7 +139,6 @@
         }
         modal.style.display = 'block';
 
-        // Close modal handlers (same as level 1)
         document.getElementById('closeModal').onclick = () => modal.style.display = 'none';
         document.getElementById('closeButton').onclick = () => modal.style.display = 'none';
         window.onclick = function(event) {
@@ -144,4 +151,5 @@
   </script>
 </body>
 </html>
+
 
