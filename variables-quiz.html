@@ -4,6 +4,65 @@
   <title>Variables Quiz!</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;}
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0; width: 100%; height: 100%;
+      overflow: auto;
+      background: rgba(0,0,0,0.6);
+    }
+    .modal-content {
+      background: linear-gradient(90deg, #ff5e62 70%, #fbb03b 100%);
+      margin: 10% auto;
+      padding: 40px 30px;
+      border-radius: 20px;
+      width: 80%; max-width: 500px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 8px 32px rgba(255, 94, 98, 0.8);
+      font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+    }
+    .close {
+      color: white;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: -10px;
+    }
+    .close:hover { color: #333; }
+    #closeButton {
+      margin-top: 20px;
+      padding: 14px 36px;
+      font-size: 1.3em;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #357a6b 80%, #088F8F 100%);
+      color: white;
+      border: none;
+      cursor: pointer;
+      box-shadow: 2px 4px 16px #0003;
+      transition: background 0.3s;
+    }
+    #closeButton:hover {
+      background: linear-gradient(90deg, #088F8F 80%, #357a6b 100%);
+    }
+  </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="quiz-container">
@@ -47,58 +106,47 @@
     <a href="index.html" class="button" style="margin-top:20px; display:inline-block;">🏠 Back to Home</a>
   </div>
 
-<div id="congratsModal" class="modal">
-  <div class="modal-content">
-    <span id="closeModal" class="close">&times;</span>
-    <h1>🎉 Congratulations! 🎉</h1>
-    <p id="modalMessage"></p>
-    <button id="closeButton" class="button special">Close</button>
+  <div id="congratsModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModal" class="close">&times;</span>
+      <h1>🎉 Congratulations! 🎉</h1>
+      <p id="modalMessage"></p>
+      <button id="closeButton" class="button special">Close</button>
+    </div>
   </div>
-</div>
-
   <script>
     document.getElementById('variablesQuiz').onsubmit = function(e) {
-  e.preventDefault();
-  let score = 0;
-  if (document.querySelector('input[name="q1"]:checked')?.value === 'a') score++;
-  if (document.querySelector('input[name="q2"]:checked')?.value === 'b') score++;
-  if (document.querySelector('input[name="q3"]:checked')?.value === 'b') score++;
-  if (document.querySelector('input[name="q4"]:checked')?.value === 'a') score++;
-  if (document.querySelector('input[name="q5"]:checked')?.value === 'b') score++;
-
-  // Prepare result message
-  let resultMsg = "";
-  if (score === 5) {
-    resultMsg = "🌟 Amazing! You're a variable superstar!";
-  } else if (score >= 3) {
-    resultMsg = "👍 Great job! Try again to get a perfect score!";
-  } else {
-    resultMsg = "Keep practicing and you'll master variables in no time!";
-  }
-
-  // Show result text below quiz
-  document.getElementById('variablesQuizResult').textContent = resultMsg + " (" + score + "/5)";
-
-  // Show congratulations modal for good scores (3 or more)
-  if (score >= 3) {
-    const modal = document.getElementById('congratsModal');
-    const modalMessage = document.getElementById('modalMessage');
-    modalMessage.textContent = `You scored ${score} out of 5! Great job! 🎉 You've mastered level 2 and unlocked your variable treasure! Keep up the awesome work!`;
-    modal.style.display = 'block';
-
-    // Close modal handlers
-    document.getElementById('closeModal').onclick = () => modal.style.display = 'none';
-    document.getElementById('closeButton').onclick = () => modal.style.display = 'none';
-
-    // Close modal if user clicks outside the modal content
-    window.onclick = function(event) {
-      if (event.target === modal) {
-        modal.style.display = 'none';
+      e.preventDefault();
+      let score = 0;
+      if (document.querySelector('input[name="q1"]:checked')?.value === 'a') score++;
+      if (document.querySelector('input[name="q2"]:checked')?.value === 'b') score++;
+      if (document.querySelector('input[name="q3"]:checked')?.value === 'b') score++;
+      if (document.querySelector('input[name="q4"]:checked')?.value === 'a') score++;
+      if (document.querySelector('input[name="q5"]:checked')?.value === 'b') score++;
+      let resultMsg = "";
+      if (score === 5) {
+        resultMsg = "🌟 Amazing! You're a variable superstar!";
+      } else if (score >= 3) {
+        resultMsg = "👍 Great job! Try again to get a perfect score!";
+      } else {
+        resultMsg = "Keep practicing and you'll master variables in no time!";
+      }
+      document.getElementById('variablesQuizResult').textContent = resultMsg + " (" + score + "/5)";
+      if (score >= 3) {
+        const modal = document.getElementById('congratsModal');
+        const modalMessage = document.getElementById('modalMessage');
+        modalMessage.textContent = `You scored ${score} out of 5! Great job! 🎉 You've mastered level 2 and unlocked your variable treasure! Keep up the awesome work!`;
+        modal.style.display = 'block';
+        document.getElementById('closeModal').onclick = () => modal.style.display = 'none';
+        document.getElementById('closeButton').onclick = () => modal.style.display = 'none';
+        window.onclick = function(event) {
+          if (event.target === modal) {
+            modal.style.display = 'none';
+          }
+        };
       }
     };
-  }
-};
-
   </script>
 </body>
 </html>
+
