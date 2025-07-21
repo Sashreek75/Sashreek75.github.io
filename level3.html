@@ -13,7 +13,7 @@ body {
   background: linear-gradient(to bottom, #87ceeb 0%, #b0e0e6 60%, #f0e68c 100%);
   position: relative;
   overflow-x: hidden;
-  font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
 }
 .challenge-box textarea {
   width: 96%;
@@ -40,13 +40,23 @@ body {
   transform: none !important;
 }
 </style>
+<script>
+function isMobileDevice() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+document.addEventListener('DOMContentLoaded', function() {
+  if (isMobileDevice()) {
+    document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+  } else {
+    document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+  }
+});
+</script>
 </head>
 <body>
-<!-- Sun -->
 <div class="sun"></div>
 <div class="island"></div>
 <div class="ocean"><div class="wave wave1"></div><div class="wave wave2"></div></div>
-
 <div class="main-container">
   <h1>🦜 Level 3: Input Island!</h1>
   <div class="info-box">
@@ -112,3 +122,4 @@ print(var)
 </div>
 </body>
 </html>
+
