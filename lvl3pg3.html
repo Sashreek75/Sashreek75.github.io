@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <title>Level 1: Print Power!</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link href="style.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="style.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
       min-height: 100vh;
@@ -13,16 +14,20 @@
       background: linear-gradient(to bottom, #87ceeb 0%, #b0e0e6 60%, #f0e68c 100%);
       position: relative;
       overflow-x: hidden;
-      font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+      font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
     }
-    /* Clouds — Fluffy, playful using pseudo-elements */
-    body::before, body::after {
+    body::before,
+    body::after {
       content: '';
       position: fixed;
       background: #fff;
       border-radius: 50%;
-      box-shadow: 60px 20px 0 0 #fff, 100px 30px 0 0 #fff, 140px 20px 0 0 #fff,
-                  180px 40px 0 0 #fff, 220px 30px 0 0 #fff;
+      box-shadow:
+        60px 20px 0 0 #fff,
+        100px 30px 0 0 #fff,
+        140px 20px 0 0 #fff,
+        180px 40px 0 0 #fff,
+        220px 30px 0 0 #fff;
       opacity: 0.85;
       z-index: 0;
     }
@@ -38,7 +43,6 @@
       top: 15vh;
       left: 60vw;
     }
-    /* Sun with soft glow */
     .sun {
       position: fixed;
       top: 5vh;
@@ -65,10 +69,13 @@
       z-index: -1;
     }
     @keyframes spin {
-      from {transform: rotate(0deg);}
-      to {transform: rotate(360deg);}
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
-    /* Adventure Ocean with animated, playful waves */
     .ocean {
       position: fixed;
       bottom: 0;
@@ -84,7 +91,7 @@
       bottom: 0;
       width: 200%;
       height: 100px;
-      background: rgba(255,255,255,0.4);
+      background: rgba(255, 255, 255, 0.4);
       border-radius: 50%;
       animation: waveMove 6s linear infinite;
     }
@@ -101,12 +108,15 @@
       height: 100px;
     }
     @keyframes waveMove {
-      0% {transform: translateX(0);}
-      100% {transform: translateX(-50%);}
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
     .island {
       position: fixed;
-      /* Lower the island further down */
       bottom: 5vh;
       left: 50%;
       width: 400px;
@@ -118,7 +128,6 @@
       z-index: 0;
       pointer-events: none;
     }
-    /* Main orange info box stays bright and above background */
     .info-box {
       background-color: #ff8c00;
       color: white;
@@ -128,13 +137,20 @@
       font-weight: bold;
       z-index: 10;
       position: relative;
-      font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
-    }
-    /* Ensures all text including .example-box and .fun-fact-box gets the right font (you can add similar lines to their selectors if missing) */
-    .example-box, .fun-fact-box, .challenge-box {
-      font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
     }
   </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="sun"></div>
@@ -152,7 +168,7 @@
 # 🔢 You do this by using the word float! No goofy nicknames here, just float!
 var = float(input("Enter your name!:"))</pre>
     <div class="fun-fact-box">
-     Yep, the only difference is the word <code>float!</code> Also, the same thing about the parenthesis applies here too, so don't forget it!
+      Yep, the only difference is the word <code>float!</code> Also, the same thing about the parenthesis applies here too, so don't forget it!
     </div>
     <div class="info-box">
       <p>📝 ALRIGHT! Now I know that this level was harder than the other ones, and they are only going to get harder! So we'll do a summary to make sure you understand everything!</p>
@@ -181,19 +197,46 @@ ans = int(input("what is 1 + 5?:"))
       So, as you can see, even if you think 7 and "7" are the same number, the computer thinks they're different!
     </div>
     <div class="info-box">
-    And finally, we talked about how you can change the data type of an input statement from a string to an integer and float!
+      And finally, we talked about how you can change the data type of an input statement from a string to an integer and float!
     </div>
     <pre>
       var = int(input("Hello, enter whatever u want!:"))
 
       var = float(input("Hello, enter whatever u want!:"))
     </pre>
-    <div class="challenge-box">
-      🌟 <b>A Final Mini Quest:</b> Use an input statement that has a 
-    </div>
+    <form class="challenge-box" autocomplete="off" onsubmit="return false;">
+      🌟 <b>A Final Mini Quest:</b> Use an input statement that has a validated data type change!
+      <textarea id="challengeInput" placeholder='e.g.\nvar = int(input("..."))\nprint(var)' spellcheck="false"></textarea>
+      <div class="challenge-feedback" id="challengeFeedback"></div>
+      <button id="nextBtn" class="button special" disabled>Ready for the quiz? ➡️</button>
+    </form>
     <a href="input-quiz.html" class="button special">Ready for the quiz?</a>
     <a href="lvl3pg2.html" class="button">⬅️ Back to Input Island</a>
     <a href="index.html" class="button">🏠 Back to Home</a>
   </div>
+  <script>
+    const challengeInput = document.getElementById('challengeInput');
+    const challengeFeedback = document.getElementById('challengeFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+    function isValid(str) {
+      const val = str.trim();
+      const hasIntInput = /int\s*\(\s*input\s*\(.*\)\s*\)/i.test(val);
+      const hasFloatInput = /float\s*\(\s*input\s*\(.*\)\s*\)/i.test(val);
+      const hasPrint = /print\s*\(\s*\w+\s*\)/i.test(val);
+      return ( (hasIntInput || hasFloatInput) && hasPrint );
+    }
+    challengeInput.addEventListener('input', () => {
+      if (isValid(challengeInput.value)) {
+        challengeFeedback.textContent = "Awesome! Valid input with type conversion and print detected!";
+        nextBtn.disabled = false;
+      } else {
+        challengeFeedback.textContent = "Make sure you use int(input()) or float(input()) and print() your variable.";
+        nextBtn.disabled = true;
+      }
+    });
+    nextBtn.onclick = () => {
+      window.location.href = 'input-quiz.html';
+    };
+  </script>
 </body>
 </html>
