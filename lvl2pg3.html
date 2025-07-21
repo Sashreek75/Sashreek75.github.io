@@ -29,21 +29,20 @@ body.variable-vault-bg {
 .gem3 { left: 92vw; top: 10vh; width: 27px; height: 21px; background: linear-gradient(120deg, #fdedaa 0 60%, #e1b5fc 99%);  border-radius: 61% 64% 54% 55% / 52% 57% 51% 68%;}
 .gem4 { left: 9vw; top: 16vh; width: 33px; height: 21px; background: linear-gradient(142deg, #f7cdfd 17%, #ffe900 99%); border-radius: 65% 56% 63% 48% / 57% 66% 56% 59%;}
 .gem5 { left: 49vw; top: 7vh; width: 38px; height: 28px; background: linear-gradient(137deg, #ffd282 24%, #ffb3ef 89%); border-radius: 61% 62% 53% 62% / 50% 51% 66% 59%;}
-.vault-sparkle,
-.vault-sparkle.s2,
-.vault-sparkle.s3 {
-  position: absolute; z-index: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle at 60% 33%, #fff9 0 63%, #fff0 100%);
-  opacity: .19;
-  pointer-events: none;
-  animation: sparkPulse 4.1s infinite alternate;
+.vault-sparkle, .vault-sparkle.s2, .vault-sparkle.s3 {
+  position: absolute; z-index: 1; border-radius: 50%; background: radial-gradient(circle at 60% 33%, #fff9 0 63%, #fff0 100%);
+  opacity: .19; pointer-events: none; animation: sparkPulse 4.1s infinite alternate;
 }
 .vault-sparkle { left: 22vw; top:16vh; width:30px; height:30px;}
 .vault-sparkle.s2 {left: 68vw; top:22vh; width:23px; height:18px; animation-delay:1.09s;}
 .vault-sparkle.s3 {left: 56vw; top:92vh; width:29px; height:23px; animation-delay:2s;}
 @keyframes sparkPulse {0%{opacity:.08;}50%{opacity:.21;}100%{opacity:.19;}}
- h2, h3, h4, h5, h6 {
+.challenge-box textarea {
+  width: 98%; min-height: 48px; font-size: 1.1em; border-radius: 9px; border: 2px solid #1a77e6; margin-top: 10px; font-family: inherit; padding: 8px 12px;
+}
+.challenge-box .challenge-feedback { min-height: 1.9em; color: #227be6; margin: 3px 0 6px 0; font-weight: bold; }
+.button.special[disabled] {opacity:0.57;pointer-events:none;}
+h2, h3, h4, h5, h6 {
   color: blue;
 }
   </style>
@@ -92,9 +91,12 @@ body.variable-vault-bg {
     </div>
     <pre><code>"Hello, world!"
 'Python is fun'</code></pre>
-    <div class="challenge-box">
+    <form class="challenge-box" autocomplete="off" onsubmit="return false;">
       Ok, so you've seen the first two data types in the first level, but now, lets look at something new! Booleans! <span style="font-size:1.3em;">🎯</span>
-    </div>
+      <textarea id="challengeInput" placeholder='e.g. flag = True\nprint(flag)' spellcheck="false"></textarea>
+      <div class="challenge-feedback" id="challengeFeedback"></div>
+      <button class="button special" id="nextBtn" disabled>Ready to Take the Quiz? ➡️</button>
+    </form>
     <h2>3. Boolean (<code>bool</code>) <span style="font-size:1.2em;">✅❌</span></h2>
     <div class="example-box">
       <p>Booleans are pretty cool because the only values a boolean has are true and false! <span style="font-size:1.2em;">😉</span></p>
@@ -144,10 +146,36 @@ print(type(pi))  # &lt;class 'float'&gt;
       <p>The example above may seem overwhelming, but don't worry! It's all stuff that you know so far! I want you to take a moment to try and figure out what this code does! Test it out with our Try it Yourself feature to see if you're right! <span style="font-size:1.2em;">🎉</span></p>
     </div>
     <a href="lvl2pg2.html" class="button">⬅️ Back to Variables</a>
-    <a href="variables-quiz.html" class="button special">Ready to Take the Quiz? ➡️</a>
+    <a href="variables-quiz.html" class="button special" id="hiddenNextBtn" style="display:none;">Ready to Take the Quiz? ➡️</a>
     <a href="index.html" class="button">Back to Home</a>
   </div>
+  <script>
+    const challengeInput = document.getElementById('challengeInput');
+    const challengeFeedback = document.getElementById('challengeFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+    function validate(s) {
+      s = s.trim();
+      // Accept flexible: define a variable (any name), assign True or False, print the variable
+      return (
+        /(true|false)/i.test(s) &&
+        /print\s*\(/i.test(s) &&
+        /=/.test(s)
+      );
+    }
+    challengeInput.addEventListener('input', function() {
+      let val = challengeInput.value;
+      if (validate(val)) {
+        challengeFeedback.textContent = "Awesome! You've written and printed a boolean variable!";
+        nextBtn.disabled = false;
+      } else {
+        challengeFeedback.textContent = "Define a variable as True or False and print it. Example: flag = True\\nprint(flag)";
+        nextBtn.disabled = true;
+      }
+    });
+    nextBtn.onclick = function() { window.location.href = "variables-quiz.html"; };
+  </script>
 </body>
 </html>
+
 
 
