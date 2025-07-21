@@ -4,10 +4,11 @@
   <title>PyQuest Mastery: You Did It!</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <style>
 body.function-fortress-bg {
   min-height: 100vh; margin: 0; padding: 0;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
   overflow-x: hidden; position: relative;
   background:
     radial-gradient(circle at 80% 15%, #ffd6f0 0%, #f9e5ff 30%, #ffe7b1 65%, #fff4bc 80%) no-repeat,
@@ -70,6 +71,18 @@ body.function-fortress-bg::before {
 .final-table th, .final-table td { padding:15px 10px; border:1.5px solid #dccbec; font-size:1.09em;}
 .final-table th { background: #f0e6ff; color: #6635b2; }
   </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body class="function-fortress-bg">
 
@@ -146,4 +159,5 @@ body.function-fortress-bg::before {
   </div>
 </body>
 </html>
+
 
