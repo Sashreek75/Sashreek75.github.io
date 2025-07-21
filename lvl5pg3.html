@@ -4,10 +4,11 @@
   <title>Level 5: When Do I Use a Function?</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
   <style>
 body.function-fortress-bg {
   min-height: 100vh; margin: 0; padding: 0;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
   overflow-x: hidden; position: relative;
   background:
     radial-gradient(circle at 80% 15%, #ffd6f0 0%, #f9e5ff 30%, #ffe7b1 65%, #fff4bc 80%) no-repeat,
@@ -32,26 +33,16 @@ body.function-fortress-bg::before {
   overflow: hidden;
 }
 .tower, .castle-wall, .tower-top, .magic-circle { position: absolute; pointer-events: none; }
-.tower {
-  width: 60px; height: 190px; bottom: 0;
-  background: linear-gradient(180deg, #ffe48d 0%, #f9c331 70%, #c3a145 100%);
-  border-radius: 21px 21px 18px 18px / 18px 18px 28px 26px;
-  box-shadow: 0 8px 32px 0 #ffeca680;
-}
+.tower { width: 60px; height: 190px; bottom: 0; background: linear-gradient(180deg, #ffe48d 0%, #f9c331 70%, #c3a145 100%); border-radius: 21px 21px 18px 18px / 18px 18px 28px 26px; box-shadow: 0 8px 32px 0 #ffeca680;}
 .tower1 { left: 9vw;}
 .tower2 { left: 87vw; height: 170px;}
 .tower3 { left: 47vw; width: 85px; height: 230px; background: linear-gradient(180deg, #fff1b8 0%, #e8bf61 85%);}
 .tower-top { top: -29px; left: 8px; width: 44px; height: 32px; background: #fffbe3; border-radius: 16px 16px 11px 11px; border-bottom: 3.5px solid #cab98b;}
 .tower3 .tower-top { left:24px;width:52px; }
 .castle-wall {left:17vw;bottom:0;width:66vw;height:95px;background:linear-gradient(180deg,#ffedae 80%,#f1d373 100%);border-radius:33px 33px 0 0/30px 30px 0 0;box-shadow:0 6px 32px #ffde5b25;}
-.magic-circle {
-  border-radius: 50%;
-  border: 5px solid #ffe38277;
+.magic-circle { border-radius: 50%; border: 5px solid #ffe38277;
   background: radial-gradient(ellipse at 50% 60%,#fdffea44 0 60%,#fff0 100%);
-  opacity: 0.63;
-  animation: magicPulse 4.5s infinite alternate, magicMove 7s infinite alternate;
-  z-index: 2;
-}
+  opacity: 0.63; animation: magicPulse 4.5s infinite alternate, magicMove 7s infinite alternate; z-index: 2;}
 .magic-circle1 { left: 6vw; top: 14vh; width: 110px; height: 110px; border-color: #fffde6cc; animation-delay: 0.1s;}
 .magic-circle2 { left: 80vw; top: 21vh; width: 95px; height: 95px; border-color: #ffef88bb; animation-delay: 0.2s;}
 .magic-circle3 { left: 31vw; top: 9vh; width: 70px; height: 70px; border-color: #ffd46c88; animation-delay: 1.1s;}
@@ -61,7 +52,24 @@ body.function-fortress-bg::before {
 @keyframes magicPulse {0% { opacity: 0.23;} 50% { opacity: 0.75;} 100% { opacity: 0.60;}}
 @keyframes magicMove {0% { transform: scale(1) translateY(0);} 100% { transform: scale(1.15) translateY(-14px);}}
 .main-container { position: relative; z-index: 4; }
+.challenge-box textarea {
+  width:98%; min-height:44px; font-size:1.1em; border-radius:9px; border:2px solid #884aba; margin-top:10px; font-family: inherit; padding:8px 12px;
+}
+.challenge-box .challenge-feedback { min-height:1.9em; color:#703b9b;margin:3px 0 6px 0;font-weight:bold;}
+.button.special[disabled] { opacity:.57; pointer-events:none;}
   </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
 </head>
 <body class="function-fortress-bg">
   <div class="fortress-bg-art">
@@ -111,15 +119,45 @@ wash()
         <li>Share your code magic with friends and teammates</li>
       </ul>
     </div>
-    <div class="challenge-box">
+    <form class="challenge-box" autocomplete="off" onsubmit="return false;">
       <b>Challenge:</b> Make a function called <code>greet</code> that prints “Hi!” three times when you call it.
-    </div>
+      <textarea id="challengeInput" placeholder='def greet():\n    print("Hi!")\n    print("Hi!")\n    print("Hi!")' spellcheck="false"></textarea>
+      <div class="challenge-feedback" id="challengeFeedback"></div>
+      <button class="button special" id="nextBtn" disabled>Next: Fun Functions ➡️</button>
+    </form>
     <div class="fun-fact-box">
       <b>Did you know?</b> Even video games use hundreds of functions to make characters move, score points, and more!
     </div>
-    <a href="lvl5pg4.html" class="button special">Next: Fun Functions ➡️</a>
+    <a href="lvl5pg4.html" class="button special" id="fakeNextBtn" disabled>Next: Fun Functions ➡️</a>
     <a href="lvl5pg2.html" class="button">⬅️ Back</a>
     <a href="index.html" class="button">🏠 Home</a>
   </div>
+  <script>
+    const challengeInput = document.getElementById('challengeInput');
+    const challengeFeedback = document.getElementById('challengeFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+    function isValidGreet(str) {
+      // Must define greet, then print "Hi!" 3 times in body
+      if (!/def\s+greet\s*\(\s*\)\s*:/i.test(str)) return false;
+      const printMatches = str.match(/print\s*\(\s*["'`]hi[!'"]*\s*["'`]\s*\)/gi);
+      return printMatches && printMatches.length >= 3;
+    }
+    challengeInput.addEventListener('input', function() {
+      if (isValidGreet(challengeInput.value)) {
+        challengeFeedback.textContent = "Excellent! That's a working greet() function!";
+        nextBtn.disabled = false;
+        document.getElementById('fakeNextBtn').disabled = false;
+      } else {
+        challengeFeedback.textContent = "Write def greet():, and print Hi! three times inside the function.";
+        nextBtn.disabled = true;
+        document.getElementById('fakeNextBtn').disabled = true;
+      }
+    });
+    nextBtn.onclick = function() { window.location.href = "lvl5pg4.html"; };
+    document.getElementById('fakeNextBtn').addEventListener('click', function(e){
+      if (nextBtn.disabled) e.preventDefault();
+      else window.location.href = "lvl5pg4.html";
+    });
+  </script>
 </body>
 </html>
