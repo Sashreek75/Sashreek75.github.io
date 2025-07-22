@@ -33,7 +33,6 @@
       pointer-events: none;
       transform: none !important;
     }
-    /* Original styles for backgrounds, etc. unchanged */
     .print-bg-scene {
       position: fixed;
       z-index: -1;
@@ -226,23 +225,22 @@
 
     <form class="challenge-box" id="challengeForm" autocomplete="off" onsubmit="return false;">
       <span>🌟 Mini Quest:</span>
-      Print your name and your favorite emoji together!
-      <br><small>Type your code below. It must start with <code>print(</code> and include at least one emoji.</small>
-      <textarea id="challengeInput" required spellcheck="false" placeholder='e.g. print("YourName 😸")'></textarea>
+      Print your name with the print statement!
+      <br><small>Type your code below. It must start with <code>print(</code> and include your name!</small>
+      <textarea id="challengeInput" required spellcheck="false" placeholder='e.g. print("Sashreek")'></textarea>
       <div class="challenge-feedback" id="challengeFeedback"></div>
       <button id="nextBtn" class="button special" disabled>Next: More About Printing ➡️</button>
     </form>
 
     <div class="fun-fact-box">
-      💡 <b>Did you know?</b> You can print numbers and do math too! Try <code>print(7 * 3)</code>! Remember this too: every challenge you see, you should use the <b>Try it Yourself feature!</b>
+      💡 <b>Did you know?</b> You can print numbers and do math too! Try <code>print(7 * 3)</code>! Remember this too: everytime you're curious about some code, you should use the <b>Try it Yourself feature!</b>
     </div>
     <a href="index.html" class="button">Back to Home</a>
     <a href="try-python.html" class="button special">Try it Yourself!</a>
   </div>
   <script>
-    function containsEmoji(str) {
-      return /[\u231A-\u231B\u23E9-\u23EC\u23F0-\u23F4\u23F8-\u23FA\u24C2\u25AA-\u25AB\u25B6\u25C0\u25FB-\u25FE\u2600-\u27BF\u2934-\u2935\u2B05-\u2B07\u2B1B-\u2B1C\u2B50\u2B55\u3030\u303D\u3297\u3299\uD83C\uDC04\uD83C\uDCCF\uD83C\uDD70-\uD83C\uDD71\uD83C\uDD7E-\uD83C\uDD7F\uD83C\uDD8E\uD83C\uDD91-\uD83C\uDD9A\uD83C\uDE01-\uD83C\uDE02\uD83C\uDE1A\uD83C\uDE2F\uD83C\uDE32-\uD83C\uDE3A\uD83C\uDE50-\uD83C\uDE51\uD83C\uDF00-\uD83D\uDDFF\uD83E\uDD00-\uD83E\uDDFF\uD83D\uDE00-\uD83D\uDE4F\uD83D\uDE80-\uD83D\uDEF6\uD83C\uDF08-\uD83D\uDE0B\uD83D\uDEC0-\uD83E\uDD20]/.test(str);
-    }
+    // Replace "Sashreek" below with whatever target name you want!
+    const requiredName = "sashreek";
     const challengeInput = document.getElementById('challengeInput');
     const challengeFeedback = document.getElementById('challengeFeedback');
     const nextBtn = document.getElementById('nextBtn');
@@ -253,13 +251,15 @@
         nextBtn.disabled = true;
         return;
       }
-      if (!val.startsWith('print(')) {
+      // Accept any whitespace, any case before or after, then "print("
+      if (!/^\s*print\s*\(/i.test(val)) {
         challengeFeedback.textContent = "Make sure your answer starts with print( ...";
         nextBtn.disabled = true;
         return;
       }
-      if (!containsEmoji(val)) {
-        challengeFeedback.textContent = "Don't forget an emoji!";
+      // name must appear, case-insensitive, anywhere in the line
+      if (!val.toLowerCase().includes(requiredName)) {
+        challengeFeedback.textContent = "Make sure your name is included in the print statement!";
         nextBtn.disabled = true;
         return;
       }
@@ -272,5 +272,3 @@
   </script>
 </body>
 </html>
-
-
