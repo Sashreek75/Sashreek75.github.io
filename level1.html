@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Level 1: Print Power!</title>
+  <title>Level 1: Print Power! 🖨️</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link href="style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
@@ -238,12 +238,18 @@
     <a href="index.html" class="button">Back to Home</a>
     <a href="try-python.html" class="button special">Try it Yourself!</a>
   </div>
+
   <script>
-    // Replace "Sashreek" below with whatever target name you want!
-    const requiredName = "sashreek";
     const challengeInput = document.getElementById('challengeInput');
     const challengeFeedback = document.getElementById('challengeFeedback');
     const nextBtn = document.getElementById('nextBtn');
+
+    // Validates print statement with a quoted string inside: print("anything") or print('anything')
+    function validPrintName(line) {
+      const regex = /^\s*print\s*\(\s*(['"])[^'"]+\1\s*\)\s*$/i;
+      return regex.test(line.trim());
+    }
+
     challengeInput.addEventListener('input', function() {
       const val = challengeInput.value.trim();
       if (val.length === 0) {
@@ -251,24 +257,24 @@
         nextBtn.disabled = true;
         return;
       }
-      // Accept any whitespace, any case before or after, then "print("
       if (!/^\s*print\s*\(/i.test(val)) {
         challengeFeedback.textContent = "Make sure your answer starts with print( ...";
         nextBtn.disabled = true;
         return;
       }
-      // name must appear, case-insensitive, anywhere in the line
-      if (!val.toLowerCase().includes(requiredName)) {
-        challengeFeedback.textContent = "Make sure your name is included in the print statement!";
+      if (!validPrintName(val)) {
+        challengeFeedback.textContent = "Make sure you put your name inside quotes! Example: print(\"Alex\")";
         nextBtn.disabled = true;
         return;
       }
       challengeFeedback.textContent = "Great job! You're ready for the next part!";
       nextBtn.disabled = false;
     });
+
     nextBtn.onclick = function(){
       window.location.href = 'lvl1pg2.html';
     };
   </script>
 </body>
 </html>
+
