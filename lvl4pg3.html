@@ -17,9 +17,14 @@
       position: fixed; inset: 0; z-index: 0;
       pointer-events: none; overflow: hidden;
     }
-    .loop-circle { position: absolute; border-radius: 50%;
-      border: 6px solid #b0e15777; background: none;
-      animation: loopTumble 7.5s infinite alternate ease-in-out, fadeFloat 9s infinite alternate; opacity: 0.48;}
+    .loop-circle { 
+      position: absolute; 
+      border-radius: 50%;
+      border: 6px solid #b0e15777; 
+      background: none;
+      animation: loopTumble 7.5s infinite alternate ease-in-out, fadeFloat 9s infinite alternate; 
+      opacity: 0.48;
+    }
     @keyframes loopTumble { 0% { transform: scale(1) rotate(0deg);} 100% { transform: scale(1.17) rotate(25deg);}}
     @keyframes fadeFloat {0%{ opacity: 0.17;} 20%{ opacity: 0.53;} 60%{ opacity: 0.38;} 100%{ opacity: 0.48;}}
     .loop-circle1 { left: 2vw; top: 9vh; width: 210px; height: 210px; border-color: #ffe382cc; animation-delay: 0s, 1s;}
@@ -36,6 +41,8 @@
     .loop-circle12 { left: 85vw; top: 82vh; width: 200px; height: 200px; border-color: #b0e15755; animation-delay:0.8s,6.2s;}
     .challenge-box textarea {
       width: 98%; min-height: 44px; font-size: 1.1em; border-radius: 9px; border: 2px solid #388e3c; margin-top: 10px; font-family: inherit; padding: 8px 12px;
+      display: block;
+      resize: vertical;
     }
     .challenge-box .challenge-feedback {
       min-height: 1.9em; color: #388e3c; margin: 3px 0 6px 0; font-weight: bold;
@@ -163,15 +170,6 @@ for face in faces:
       </pre>
     </div>
 
-    <form class="challenge-box" autocomplete="off" onsubmit="return false;">
-      🐾 <b>Challenge:</b> Make a list of your favorite animals, colors, or foods.<br>
-      Then make a for loop to print each one!<br><br>
-      <b>Can you make it print something silly for each?</b>
-      <textarea id="challengeInput" placeholder='e.g.\nthings = ["cat","dog","bird","pig","owl"]\nfor t in things:\n    print(t)' spellcheck="false"></textarea>
-      <div class="challenge-feedback" id="challengeFeedback"></div>
-      <button class="button special" id="nextBtn" disabled>Next: While Loops! ➡️</button>
-    </form>
-
     <div class="fun-fact-box">
       <b>Need help?</b><br>
       <ul style="margin:0 0 0 18px;padding:0;">
@@ -211,58 +209,104 @@ for i in range(len(items)):
       </div>
     </div>
 
-    <div class="challenge-box">
-      🌟 <b>Challenge:</b> Can you make a list with 5 silly words and print them backwards?
-    </div>
+    <!-- Challenge 1: Backwards list of 5 silly words -->
+    <form class="challenge-box" id="challenge1" autocomplete="off" onsubmit="return false;">
+      🌟 <b>Challenge 1:</b> Can you make a list with 5 silly words and print them backwards?
+      <br>
+      <textarea id="challengeInput1" placeholder='e.g.\nthings = ["cat","dog","bird","pig","owl"]\nfor t in things[::-1]:\n    print(t)' spellcheck="false"></textarea>
+      <div class="challenge-feedback" id="challengeFeedback1"></div>
+      <button class="button special" id="nextBtn1" disabled>Next: Continue ➡️</button>
+    </form>
 
-    <a href="lvl4pg4.html" class="button special" id="fakeNextBtn" disabled>Next: While Loops! ➡️</a>
+    <!-- Challenge 2: List of favorite animals/colors/foods and print something silly -->
+    <form class="challenge-box" id="challenge2" autocomplete="off" onsubmit="return false;" style="margin-top:20px;">
+      🐾 <b>Challenge 2:</b> Make a list of your favorite animals, colors, or foods.<br>
+      Then make a for loop to print each one!<br><br>
+      <b>Can you make it print something silly for each?</b>
+      <textarea id="challengeInput2" placeholder='e.g.\nthings = ["cat","dog","bird","pig","owl"]\nfor t in things:\n    print("Silly " + t)' spellcheck="false"></textarea>
+      <div class="challenge-feedback" id="challengeFeedback2"></div>
+      <button class="button special" id="nextBtn2" disabled>Next: While Loops! ➡️</button>
+    </form>
+
     <a href="lvl4pg2.html" class="button">⬅️ Back</a>
     <a href="index.html" class="button">🏠 Home</a>
   </div>
+
   <script>
-    // Mobile font detector/family handled in head
-    const challengeInput = document.getElementById('challengeInput');
-    const challengeFeedback = document.getElementById('challengeFeedback');
-    const nextBtn = document.getElementById('nextBtn');
-    function isValidListLoop(val) {
-      // This is a loose check: must assign a list (with [ and ,), then for ... in ... with print reversed or [::-1], or reversed( var )
-      // Accepts: for t in things[::-1]: / for t in reversed(things):
-      // List assignment (first line): var = [ ... ]
-      const s = val.trim();
-      if (!/^\s*\w+\s*=\s*\[([^\[\]]|(\[[^\[\]]*\]))+\]\s*$/m.test(s)) return false;
-      // Must have a for loop and print in body
-      if (!/for +\w+ +in +(reversed\()?\w+(\[\:\:\-?1?\])?\)? *:/i.test(s)) return false;
-      // Must have print in body
+    // Challenge 1 validation logic
+    const challengeInput1 = document.getElementById('challengeInput1');
+    const challengeFeedback1 = document.getElementById('challengeFeedback1');
+    const nextBtn1 = document.getElementById('nextBtn1');
+
+    function isValidBackwardListLoop(code) {
+      const s = code.trim();
+      // Must assign to a variable a list with at least 5 items (simple check)
+      if (!/^\s*\w+\s*=\s*\[((?:[^\[\]]+|\[[^\[\]]*\])*)\]\s*$/m.test(s)) return false;
+      // Must have a for loop with reversed iteration using [::-1] or reversed()
+      if (!/for +\w+ +in +(reversed\()?(\w+)(\[\:\:\-1\])?\)? *:/i.test(s)) return false;
+      // Must have print call inside
       if (!/print\s*\(/i.test(s)) return false;
-      // Some actual list items, comma separated in the brackets
-      const match = s.match(/\[\s*([^\]]+)\]/);
+      // Check number of list items at least 5
+      let match = s.match(/\[\s*([^\]]+)\]/);
       if (!match) return false;
-      const listItems = match[1].split(',');
-      if (listItems.length < 5) return false;
-      // Must use backwards loop: [::-1] or reversed(var)
+      let items = match[1].split(',').filter(item => item.trim().length > 0);
+      if (items.length < 5) return false;
+      // Must use reversed or [::-1] somewhere
       if (!/reversed\(\w+\)|\[\:\:\-1\]/i.test(s)) return false;
       return true;
     }
-    challengeInput.addEventListener('input', function() {
-      if (isValidListLoop(challengeInput.value)) {
-        challengeFeedback.textContent = "Awesome! That's a backwards list loop with 5 silly items!";
-        nextBtn.disabled = false;
-        document.getElementById('fakeNextBtn').disabled = false;
+
+    challengeInput1.addEventListener('input', function() {
+      if (isValidBackwardListLoop(challengeInput1.value)) {
+        challengeFeedback1.textContent = "Awesome! That's a backwards list loop with 5 silly items!";
+        nextBtn1.disabled = false;
       } else {
-        challengeFeedback.textContent = "You need: assign a list with at least 5 items, loop backwards (use [::-1] or reversed()), and print each item.";
-        nextBtn.disabled = true;
-        document.getElementById('fakeNextBtn').disabled = true;
+        challengeFeedback1.textContent = "You need: assign a list with at least 5 items, loop backwards (use [::-1] or reversed()), and print each item.";
+        nextBtn1.disabled = true;
       }
     });
-    nextBtn.onclick = function() {
+    nextBtn1.onclick = function() {
+      alert("Great job on challenge 1! Now, complete challenge 2 to proceed.");
+      // Optionally do not redirect here since next challenge awaits
+    };
+
+    // Challenge 2 validation logic
+    const challengeInput2 = document.getElementById('challengeInput2');
+    const challengeFeedback2 = document.getElementById('challengeFeedback2');
+    const nextBtn2 = document.getElementById('nextBtn2');
+
+    function isValidSillyPrintLoop(code) {
+      const s = code.trim();
+      // Must assign a list (variable = [ ... ])
+      if (!/^\s*\w+\s*=\s*\[([^\[\]]*|(\[[^\[\]]*\]))+\]\s*$/m.test(s)) return false;
+      // For loop with variable in list
+      if (!/for +\w+ +in +\w+ *:/i.test(s)) return false;
+      // Print with string concatenation or simple print call inside loop
+      // Let's check for print() inside for loop (simplified)
+      if (!/print\s*\(/i.test(s)) return false;
+      // List with at least one item
+      let match = s.match(/\[\s*([^\]]+)\]/);
+      if (!match) return false;
+      let items = match[1].split(',').filter(item => item.trim().length > 0);
+      if (items.length < 1) return false;
+      return true;
+    }
+
+    challengeInput2.addEventListener('input', function() {
+      if (isValidSillyPrintLoop(challengeInput2.value)) {
+        challengeFeedback2.textContent = "Nice! That's a list and a print loop!";
+        nextBtn2.disabled = false;
+      } else {
+        challengeFeedback2.textContent = "Please assign a list then loop through it printing something silly for each item.";
+        nextBtn2.disabled = true;
+      }
+    });
+
+    nextBtn2.onclick = function() {
       window.location.href = "lvl4pg4.html";
     };
-    // To visually keep the UI consistent and challenge enforced, the real "Next" is the button, the fake one is above for looks only.
-    document.getElementById('fakeNextBtn').addEventListener('click', function(e){
-      if (nextBtn.disabled) e.preventDefault();
-      else window.location.href = "lvl4pg4.html";
-    });
   </script>
 </body>
 </html>
+
 
