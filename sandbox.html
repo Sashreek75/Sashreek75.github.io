@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Endless Creative Sandbox</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;}
+    .editor-area {
+      width: 100%;
+      min-height: 120px;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      font-size: 1.1em;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 16px;
+      background: #fffbe7;
+      color: #222;
+      border: 2px solid #ffb300;
+      box-sizing: border-box;
+    }
+    .output-area {
+      background: #e3f2fd;
+      color: #333;
+      border-radius: 10px;
+      padding: 12px;
+      min-height: 40px;
+      border: 2px solid #0288d1;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      margin-top: 12px;
+      margin-bottom: 20px;
+    }
+    .prompt-box {
+      background: #ffe082;
+      border: 2px solid #ffa000;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 18px;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <h1>🎲 Endless Creative Sandbox</h1>
+    <div class="example-box">
+      Welcome! And congratulations for finishing the PyQuest course! But that's not the only feature we have! It's time to put your new skills to the test! Try out these prompts and have fun with it! You've earned your creativity!
+    </div>
+    <div class="prompt-box" id="prompt">
+      <!-- Random prompt appears here -->
+    </div>
+    <textarea id="code" class="editor-area" rows="7" placeholder="Type your creative Python code here..."># Start your response here!</textarea>
+    <br>
+    <button class="button special" onclick="runCode()">Run Code ▶️</button>
+    <div id="output" class="output-area"></div>
+    <button class="button" onclick="window.location.reload();">New Prompt</button>
+    <a href="index.html" class="button">Back to Home</a>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+  <script>
+    // List of fun, creative Python prompts for kids
+    const prompts = [
+      "Animate your name using print statements!",
+      "Create a guessing game where the computer thinks of a number.",
+      "Make a digital pet that reacts to feeding.",
+      "Write a program to tell a silly joke.",
+      "Ask the user for their favorite animal and print a fun fact.",
+      "Draw a pattern using only print statements.",
+      "Create an interactive story where the user makes choices.",
+      "Make a quiz that tests basic math skills.",
+      "Build a random compliment generator.",
+      "Simulate a virtual pet’s daily routine using functions."
+    ];
+    // Pick a random prompt and display it
+    document.getElementById("prompt").textContent = prompts[Math.floor(Math.random() * prompts.length)];
+    function outf(text) {
+      document.getElementById("output").textContent += text;
+    }
+    function runCode() {
+      const prog = document.getElementById("code").value;
+      document.getElementById("output").textContent = ""; // Clear previous output
+      Sk.configure({output:outf, read:builtinRead});
+      (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'output';
+      Sk.misceval.asyncToPromise(function() {
+        return Sk.importMainWithBody("<stdin>", false, prog, true);
+      }).catch(function(err) {
+        document.getElementById("output").textContent = err.toString();
+      });
+    }
+    function builtinRead(x) {
+      if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+        throw "File not found: '" + x + "'";
+      return Sk.builtinFiles["files"][x];
+    }
+  </script>
+</body>
+</html>
