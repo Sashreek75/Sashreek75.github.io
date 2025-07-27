@@ -177,6 +177,26 @@
       opacity: 0.35;
       filter: blur(1px);
     }
+    /* Updated style for editable example textareas with bigger font and centered text */
+    .editable-example {
+      width: 95%;
+      font-family: inherit;
+      font-size: 1.6em;          /* Bigger font */
+      border-radius: 10px;
+      padding: 16px 10px;
+      margin: 20px 0 30px 0;
+      box-sizing: border-box;
+      border: 2px solid #fbb03b;
+      resize: vertical;
+      background: #fff;
+      display: block;
+
+      text-align: center;        /* Horizontal center */
+
+      height: 80px;              /* Fixed height */
+      line-height: 80px;         /* Vertically centers single-line text */
+      overflow-y: auto;
+    }
     body { position: relative; background: none !important; }
   </style>
   <script>
@@ -212,16 +232,22 @@
       In this level, you'll learn how to make your computer talk to you using the <code>print()</code> function.<br>
       It's like giving your computer a voice!</p>
     </div>
-    <pre>print("Hello, world!")</pre>
+
+    <!-- Editable example print statements -->
+    <textarea class="editable-example" rows="1">print("Hello, world!")</textarea>
+
     <div class="example-box">
       <p>This line tells Python to show the words <b>Hello, world!</b> on the screen.
       <br>Try changing the message inside the quotes with our <b>Try it Yourself</b> feature! 📝</p>
     </div>
-    <pre>print("My favorite animal is a cat!")</pre>
+
+    <textarea class="editable-example" rows="1">print("My favorite animal is a cat!")</textarea>
+
     <div class="example-box green">
       <p>You can print anything you want—your name, your favorite animal, or even your favorite emoji! 😀</p>
     </div>
-    <pre>print("🐍 PyQuest is fun!")</pre>
+
+    <textarea class="editable-example" rows="1">print("🐍 PyQuest is fun!")</textarea>
 
     <form class="challenge-box" id="challengeForm" autocomplete="off" onsubmit="return false;">
       <span>🌟 Mini Quest:</span>
@@ -277,4 +303,3 @@
   </script>
 </body>
 </html>
-
