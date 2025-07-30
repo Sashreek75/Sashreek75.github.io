@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Level 1: More Print Power! 🎉</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;}
+    .print-bg-scene {
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      pointer-events: none;
+      background: linear-gradient(115deg, #ffe6bb 0%, #ffb5e6 70%, #ffd183 100%);
+    }
+    .desk-bg { position: absolute; bottom: 0; left: 0; width: 100vw; height: 22vh; background: linear-gradient(to top, #ffd183 40%, #fbeaca 100%); border-top-left-radius: 60px; border-top-right-radius: 60px; box-shadow: 0 -8px 62px 24px #ffca557a; z-index: 1; }
+    .printer { position: absolute; right: 8vw; bottom: 15vh; width: 115px; height: 80px; background: linear-gradient(120deg, #e1e4ed 65%, #bcc2c6 98%); border-radius: 24px 28px 16px 16px/ 20px 25px 24px 30px; box-shadow: 0 5px 14px #d1b98988; }
+    .printer::before { content: ""; position: absolute; top: -24px; left: 38px; width: 38px; height: 34px; background: #fff; border-radius: 5px 5px 12px 12px; box-shadow: 0 10px 12px #f9e9a3cc; z-index: 3; animation: paper-slide 2.8s cubic-bezier(.51,0,.68,1.29) infinite alternate; }
+    @keyframes paper-slide { 0% { top: -28px; opacity: 0.3; } 40% { top: -18px; opacity: 1; } 70% { top: -8px; opacity: 1; } 100% { top: -16px; opacity: 0.5; } }
+    .printer::after { content: ""; position: absolute; bottom: 15px; left: 47px; width: 16px; height: 10px; border-radius: 10px; background: #7ed957; box-shadow: 0 1px 2px #558e34c1; }
+    .flying-paper { position: absolute; top: 10vh; left: 10vw; width: 48px; height: 30px; background: #fff; border-radius: 4px 8px 10px 10px; box-shadow: 0 2px 8px #ffc1d8aa; opacity: 0.82; animation: paper-fly1 7s linear infinite; transform: rotate(3deg); z-index: 4; }
+    .flying-paper2 { top: 19vh; left: 26vw; width: 42px; height: 24px; opacity: 0.7; animation: paper-fly2 8s linear infinite; background: #fffffa; filter: blur(0.3px); transform: rotate(-10deg); }
+    .flying-paper3 { top: 11vh; left: 70vw; animation: paper-fly3 12s linear infinite 2.9s; width: 36px; height: 18px; opacity: 0.54; background: #fffde1; filter: blur(1px); transform: rotate(18deg); }
+    @keyframes paper-fly1 { 0% { top:10vh; left:11vw; transform:rotate(3deg);} 35% {top:18vh; left: 40vw; transform: rotate(-24deg);} 65% {top: 44vh; left: 34vw; transform: rotate(-11deg);} 100% {top:56vh; left: 71vw; transform: rotate(38deg);} }
+    @keyframes paper-fly2 { 0% { top:19vh; left:26vw;} 70% {top:64vh; left:81vw;} 100% {top:71vh; left:92vw;} }
+    @keyframes paper-fly3 { 0% { top:11vh; left:70vw;} 66% {top:51vh; left:20vw;} 100% {top:61vh; left:3vw;} }
+    .cloud { position: absolute; background: #fff; border-radius: 50%; opacity: 0.82; box-shadow: 60px 22px 0 0 #fff, 120px 31px 0 0 #fff, 170px 21px 0 0 #fff, 235px 55px 0 0 #fff, 268px 38px 0 0 #fff; width: 120px; height: 61px; top: 10vh; left: 12vw; filter: blur(0.4px);}
+    .cloud2 { width: 140px; height: 74px; top: 18vh; left: 62vw;}
+    .sparkle { position: absolute; border-radius: 50%; background: radial-gradient(circle, #fff9 55%, #fff0 100%); width: 22px; height:22px; top: 33vh; left: 44vw; filter: blur(2.5px); opacity: 0.6; animation: sparkle1 4.1s infinite alternate;}
+    @keyframes sparkle1 { 0%,100%{ opacity:0.4;} 60%{ opacity:0.8;} }
+    .sparkle2 { width: 12px; height:12px; left:25vw; top:60vh; animation:sparkle1 3s 1.2s infinite alternate;}
+    .sparkle3 { width: 16px; height:16px; left:77vw; top:21vh; animation:sparkle1 2.4s 0.4s infinite alternate; opacity: 0.35; filter: blur(1px);}
+    body { position: relative; background: none !important;}
+    .editable-example {
+      width: 95%;
+      font-family: inherit;
+      font-size: 1.6em;
+      border-radius: 10px;
+      padding: 16px 10px;
+      margin: 20px 0 30px 0;
+      box-sizing: border-box;
+      border: 2px solid #fbb03b;
+      resize: vertical;
+      background: #fff;
+      display: block;
+      text-align: center;
+      height: 80px;
+      line-height: 80px;
+      overflow-y: auto;
+    }
+    .challenge-box textarea {
+        width: 95%; min-height: 48px; font-size: 1.1em; border-radius: 10px; border: 2px solid #1a77e6; margin-top: 10px; font-family: inherit; padding: 8px 12px;
+    }
+    .challenge-feedback { min-height: 1.5em; color: #227be6; margin: 3px 0 6px 0; font-weight: bold; }
+    .button.special[disabled] { opacity:0.57; pointer-events:none;}
+  </style>
+  <script>
+    function isMobileDevice() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      if (isMobileDevice()) {
+        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
+      } else {
+        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="print-bg-scene">
+    <div class="cloud"></div>
+    <div class="cloud cloud2"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle sparkle2"></div>
+    <div class="sparkle sparkle3"></div>
+    <div class="desk-bg"></div>
+    <div class="printer"></div>
+    <div class="flying-paper"></div>
+    <div class="flying-paper flying-paper2"></div>
+    <div class="flying-paper flying-paper3"></div>
+  </div>
+
+  <div class="main-container">
+    <h1>Level 1: Hidden Print Powers! 🎉</h1>
+
+    <div class="info-box">
+      <p>Let’s learn some more cool ways to use <code>print()</code> to make your computer show messages!</p>
+    </div>
+
+    <textarea class="editable-example" rows="1">print("Hello", "Friend!")</textarea>
+    <div class="example-box">
+      <p>This prints two words with a space between them. You can print many things separated by commas!</p>
+    </div>
+
+    <textarea class="editable-example" rows="1">print("I have", 3, "pets")</textarea>
+    <div class="example-box green">
+      <p>Look! You can print words and numbers together. The computer adds spaces for you.</p>
+    </div>
+
+    <textarea class="editable-example" rows="1">print("He said, \"Python is fun!\"")</textarea>
+    <div class="example-box">
+      <p>If you want to print quotation marks inside words, you use a backslash <code>\</code> before the quote.</p>
+    </div>
+
+    <textarea class="editable-example" rows="1">print("Line 1\nLine 2\nLine 3")</textarea>
+    <div class="example-box green">
+      <p>The code <code>\n</code> means "start a new line" so the computer will print your words on different lines.</p>
+    </div>
+
+    <form class="challenge-box" autocomplete="off" onsubmit="return false;">
+      💡 <b>Challenge:</b><br>
+      Try printing a message that has more than one line.<br>
+      For example:<br>
+      <code>print("First line\nSecond line")</code><br>
+      <textarea id="challengeInput" placeholder='Try: print("Hi\nThere")' spellcheck="false"></textarea>
+      <div class="challenge-feedback" id="challengeFeedback"></div>
+      <button id="nextBtn" class="button special" disabled>Next: Print Quiz ➡️</button>
+    </form>
+
+    <div class="fun-fact-box">
+      💡 <b>Fun fact:</b> You can also use <code>\t</code> to make a little space, like a tab! Try it out!
+    </div>
+
+    <a href="lvl1pg2.html" class="button">⬅️ Back to More Print Power!</a>
+    <a href="try-python.html" class="button special">Try it Yourself!</a>
+  </div>
+
+  <script>
+    const challengeInput = document.getElementById('challengeInput');
+    const challengeFeedback = document.getElementById('challengeFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+
+    // Check if code has print with a \n inside quotes
+    function validPrintMultiLine(code) {
+      code = code.trim();
+      const regex = /^\s*print\s*\(\s*(['"]).*\\n.*\1\s*\)\s*$/;
+      return regex.test(code);
+    }
+
+    challengeInput.addEventListener('input', function() {
+      const val = challengeInput.value.trim();
+      if (val.length === 0) {
+        challengeFeedback.textContent = '';
+        nextBtn.disabled = true;
+        return;
+      }
+      if (!/^\s*print\s*\(/.test(val)) {
+        challengeFeedback.textContent = "Make sure your code starts with print(";
+        nextBtn.disabled = true;
+        return;
+      }
+      if (!validPrintMultiLine(val)) {
+        challengeFeedback.textContent = "Remember to include a line break \\n inside your quotes!";
+        nextBtn.disabled = true;
+        return;
+      }
+      challengeFeedback.textContent = "Great job! You made a message with more than one line!";
+      nextBtn.disabled = false;
+    });
+
+    nextBtn.onclick = function() {
+      window.location.href = "print-quiz.html";
+    };
+  </script>
+</body>
+</html>
