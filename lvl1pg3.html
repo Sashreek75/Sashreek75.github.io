@@ -86,7 +86,7 @@
   </div>
 
   <div class="main-container">
-    <h1>Level 1: Hidden Print Powers! 🎉</h1>
+    <h1>Level 1: More Print Power! 🎉</h1>
 
     <div class="info-box">
       <p>Let’s learn some more cool ways to use <code>print()</code> to make your computer show messages!</p>
@@ -94,7 +94,7 @@
 
     <textarea class="editable-example" rows="1">print("Hello", "Friend!")</textarea>
     <div class="example-box">
-      <p>This prints two words with a space between them. You can print many things separated by commas!</p>
+      <p>This prints two words with a space between them. You can print many things separated by commas! We're gonna learn how to seperate things without spaces too!</p>
     </div>
 
     <textarea class="editable-example" rows="1">print("I have", 3, "pets")</textarea>
@@ -119,7 +119,7 @@
       <code>print("First line\nSecond line")</code><br>
       <textarea id="challengeInput" placeholder='Try: print("Hi\nThere")' spellcheck="false"></textarea>
       <div class="challenge-feedback" id="challengeFeedback"></div>
-      <button id="nextBtn" class="button special" disabled>Next: Print Quiz ➡️</button>
+      <!-- Removed Next: Print Quiz button as requested -->
     </form>
 
     <div class="fun-fact-box">
@@ -127,13 +127,12 @@
     </div>
 
     <a href="lvl1pg2.html" class="button">⬅️ Back to More Print Power!</a>
-    <a href="try-python.html" class="button special">Try it Yourself!</a>
+    <a href="lvl1pg4.html" class="button special">Next: Super Printing! 🌟</a>
   </div>
 
   <script>
     const challengeInput = document.getElementById('challengeInput');
     const challengeFeedback = document.getElementById('challengeFeedback');
-    const nextBtn = document.getElementById('nextBtn');
 
     // Check if code has print with a \n inside quotes
     function validPrintMultiLine(code) {
@@ -146,26 +145,19 @@
       const val = challengeInput.value.trim();
       if (val.length === 0) {
         challengeFeedback.textContent = '';
-        nextBtn.disabled = true;
         return;
       }
       if (!/^\s*print\s*\(/.test(val)) {
         challengeFeedback.textContent = "Make sure your code starts with print(";
-        nextBtn.disabled = true;
         return;
       }
       if (!validPrintMultiLine(val)) {
         challengeFeedback.textContent = "Remember to include a line break \\n inside your quotes!";
-        nextBtn.disabled = true;
         return;
       }
       challengeFeedback.textContent = "Great job! You made a message with more than one line!";
-      nextBtn.disabled = false;
     });
-
-    nextBtn.onclick = function() {
-      window.location.href = "print-quiz.html";
-    };
   </script>
 </body>
 </html>
+
