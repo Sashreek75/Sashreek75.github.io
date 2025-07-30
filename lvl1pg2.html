@@ -40,6 +40,26 @@
     }
     .challenge-feedback { min-height: 1.5em; color: #227be6; margin: 3px 0 6px 0; font-weight: bold; }
     .button.special[disabled] { opacity:0.57; pointer-events:none;}
+    /* Editable example style matching level1.html's bigger font and center alignment */
+    .editable-example {
+      width: 95%;
+      font-family: inherit;
+      font-size: 1.6em;          /* Bigger font */
+      border-radius: 10px;
+      padding: 16px 10px;
+      margin: 20px 0 30px 0;
+      box-sizing: border-box;
+      border: 2px solid #fbb03b;
+      resize: vertical;
+      background: #fff;
+      display: block;
+
+      text-align: center;        /* Horizontal center */
+
+      height: 80px;              /* Fixed height */
+      line-height: 80px;         /* Vertically centers single-line text */
+      overflow-y: auto;
+    }
   </style>
   <script>
     function isMobileDevice() {
@@ -70,25 +90,28 @@
   <div class="main-container">
     <h1>Level 1: More Print Power! 💥</h1>
     <div class="info-box">
-      <p>You're gonna use the print function in our next few levels too! So its really important! 🖨️</p>
+      <p>You're gonna use the print function in our next few levels too! So it's really important! 🖨️</p>
     </div>
-    <pre>
-  print(5 * 3) 
-  print(10 / 2)
-    </pre>
-    <div class="example-box">
-      <p id="hellocro">See the example above?☝️ Notice that to print something you have to use the word <code>print</code> and then type what you want to appear inside a parenthesis()</p>
-    </div>
-    <pre>
- # You can also print more than one type of value in a print function! All you have to do  is enter one type, seperate by a comma and enter your other type!
 
-var = Silly
+    <!-- Editable print examples -->
+    <textarea class="editable-example" rows="1">print(5 * 3)</textarea>
+    <textarea class="editable-example" rows="1">print(10 / 2)</textarea>
+
+    <div class="example-box">
+      <p id="hellocro">See the example above?☝️ Notice that to print something you have to use the word <code>print</code> and then type what you want to appear inside parentheses <code>()</code>.</p>
+    </div>
+
+    <textarea class="editable-example" rows="4"># You can also print more than one type of value in a print function! All you have to do is enter one type, separate by a comma, and enter your other type!
+
+var = "Silly"
 print("Hello", var)
 # this says Hello Silly!
-    </pre>
+</textarea>
+
     <div class="fun-fact-box">
       ℹ️ If you're wondering, the hashtag (#) before the words tells the computer it's something called a comment! The computer ignores this, but it's helpful when we want to remember how our code works! 
     </div>
+
     <form class="challenge-box" autocomplete="off" onsubmit="return false;">
       💡 <b>Challenge:</b>
       Print your name and your favorite number together!<br>
@@ -97,24 +120,20 @@ print("Hello", var)
       <div class="challenge-feedback" id="lvl1Feedback"></div>
       <button class="button special" id="lvl1NextBtn" disabled>Take the Level 1 Quiz!</button>
     </form>
+
     <div class="fun-fact-box">
-      🧠 <b> Did you see it? </b>To use multiplication in Python, you have to use an asterisk or * and for division you use a backslash / !
+      🧠 <b> Did you see it? </b>To use multiplication in Python, you have to use an asterisk or <code>*</code> and for division you use a forward slash <code>/</code>!
     </div>
+
     <a href="level1.html" class="button">⬅️ Back to Introduction</a>
     <a href="try-python.html" class="button special">Try it Yourself!</a>
   </div>
 
-  <!-- CHALLENGE COMPLETION LOGIC -->
   <script>
     // Allow "print("Name", 5)", "print('A', 47)", etc. Very flexible.
     function validPrintChallenge(code) {
       code = code.trim();
-      // Any print() with at least two comma-separated items (so print("any", anyNumber)) 
-      // Will also allow numbers in the name spot so users can type print(5, "mike"), that's OK
-      // Must start with print, accept any spacing, and two values separated by a comma (either string or number)
       const regex = /^print\s*\(\s*(['"].+['"]|[A-Za-z_][A-Za-z_0-9]*)\s*,\s*([0-9]+|['"].+['"]|[A-Za-z_][A-Za-z_0-9]*)\s*\)$/;
-      // Also allow print(X, Y) as an extra hint/flexibility for users trying in shell style
-      // new: don't allow empty lines, must have print and two things separated by a comma!
       return regex.test(code);
     }
     const lvl1Challenge = document.getElementById('lvl1Challenge');
@@ -134,5 +153,6 @@ print("Hello", var)
   </script>
 </body>
 </html>
+
 
 
