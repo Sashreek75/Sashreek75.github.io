@@ -2,36 +2,19 @@
 <html lang="en">
 <head>
   <title>Level 1: Print Power! 🖨️</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link href="style.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="style.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    body { font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif; }
-    .challenge-box textarea {
-      width: 95%;
-      min-height: 48px;
-      font-size: 1.1em;
-      border-radius: 10px;
-      padding: 8px 10px;
-      margin: 16px 0 10px 0;
-      resize: vertical;
-      border: 2px solid #fbb03b;
-      font-family: inherit;
-      background: #ffeeee33;
-      box-sizing: border-box;
-      display: block;
-    }
-    .challenge-box .challenge-feedback {
-      min-height: 30px;
-      color: #c62828;
-      font-weight: bold;
-      padding-top: 3px;
-    }
-    .button[disabled] {
-      opacity: 0.6;
-      cursor: not-allowed;
-      pointer-events: none;
-      transform: none !important;
+    body {
+      background: linear-gradient(135deg, orange 70%, gold 100%);
+      color: #fff;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      min-height: 100vh;
+      position: relative;
     }
     .print-bg-scene {
       position: fixed;
@@ -41,147 +24,133 @@
       height: 100vh;
       overflow: hidden;
       pointer-events: none;
-      background:
-        linear-gradient(115deg, #ffe6bb 0%, #ffb5e6 70%, #ffd183 100%);
+      background: linear-gradient(115deg, #ffe6bb 0%, #ffb5e6 70%, #ffd183 100%);
     }
-    .desk-bg {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100vw;
-      height: 22vh;
-      background: linear-gradient(to top, #ffd183 40%, #fbeaca 100%);
-      border-top-left-radius: 60px;
-      border-top-right-radius: 60px;
-      box-shadow: 0 -8px 62px 24px #ffca557a;
-      z-index: 1;
-    }
-    .printer {
-      position: absolute;
-      right: 8vw;
-      bottom: 15vh;
-      width: 115px;
-      height: 80px;
+    .desk-bg { position: absolute; bottom: 0; left: 0; width: 100vw; height: 22vh;
+      background: linear-gradient(to top, #ffd183 40%, #fbeaca 100%); border-top-left-radius: 60px;
+      border-top-right-radius: 60px; box-shadow: 0 -8px 62px 24px #ffca557a; z-index: 1;}
+    .printer { position: absolute; right: 8vw; bottom: 15vh; width: 115px; height: 80px;
       background: linear-gradient(120deg, #e1e4ed 65%, #bcc2c6 98%);
-      border-radius: 24px 28px 16px 16px/ 20px 25px 24px 30px;
-      box-shadow: 0 5px 14px #d1b98988;
-    }
-    .printer::before {
-      content: "";
-      position: absolute;
-      top: -24px;
-      left: 38px;
-      width: 38px;
-      height: 34px;
-      background: #fff;
-      border-radius: 5px 5px 12px 12px;
-      box-shadow: 0 10px 12px #f9e9a3cc;
-      z-index: 3;
-      animation: paper-slide 2.8s cubic-bezier(.51,0,.68,1.29) infinite alternate;
-    }
-    @keyframes paper-slide {
-      0% { top: -28px; opacity: 0.3; }
-      40% { top: -18px; opacity: 1; }
-      70% { top: -8px; opacity: 1; }
-      100% { top: -16px; opacity: 0.5; }
-    }
-    .printer::after {
-      content: "";
-      position: absolute;
-      bottom: 15px;
-      left: 47px;
-      width: 16px;
-      height: 10px;
-      border-radius: 10px;
-      background: #7ed957;
-      box-shadow: 0 1px 2px #558e34c1;
-    }
-    .flying-paper {
-      position: absolute;
-      top: 10vh;
-      left: 10vw;
-      width: 48px;
-      height: 30px;
-      background: #fff;
-      border-radius: 4px 8px 10px 10px;
-      box-shadow: 0 2px 8px #ffc1d8aa;
-      opacity: 0.82;
-      animation: paper-fly1 7s linear infinite;
-      transform: rotate(3deg);
-      z-index: 4;
-    }
-    .flying-paper2 {
-      top: 19vh; left: 26vw;
-      width: 42px; height: 24px;
-      opacity: 0.7;
-      animation: paper-fly2 8s linear infinite;
-      background: #fffffa;
-      filter: blur(0.3px);
-      transform: rotate(-10deg);
-    }
-    .flying-paper3 {
-      top: 11vh; left: 70vw;
-      animation: paper-fly3 12s linear infinite 2.9s;
-      width: 36px; height: 18px;
-      opacity: 0.54;
-      background: #fffde1;
-      filter: blur(1px);
-      transform: rotate(18deg);
-    }
-    @keyframes paper-fly1 {
-      0% { top:10vh; left:11vw; transform:rotate(3deg);}
-      35% {top:18vh; left: 40vw; transform: rotate(-24deg);}
-      65% {top: 44vh; left: 34vw; transform: rotate(-11deg);}
-      100% {top:56vh; left: 71vw; transform: rotate(38deg);}
-    }
-    @keyframes paper-fly2 {
-      0% { top:19vh; left:26vw;}
-      70% {top:64vh; left:81vw;}
-      100% {top:71vh; left:92vw;}
-    }
-    @keyframes paper-fly3 {
-      0% { top:11vh; left:70vw;}
-      66% {top:51vh; left:20vw;}
-      100% {top:61vh; left:3vw;}
-    }
-    .cloud {
-      position: absolute;
-      background: #fff;
-      border-radius: 50%;
-      opacity: 0.82;
+      border-radius: 24px 28px 16px 16px / 20px 25px 24px 30px; box-shadow: 0 5px 14px #d1b98988;
+      z-index: 2;}
+    .printer::before {content: ""; position: absolute; top: -24px; left: 38px; width: 38px; height: 34px;
+      background: #fff; border-radius: 5px 5px 12px 12px; box-shadow: 0 10px 12px #f9e9a3cc; z-index: 3;
+      animation: paper-slide 2.8s cubic-bezier(.51,0,.68,1.29) infinite alternate;}
+    @keyframes paper-slide {0% { top: -28px; opacity: 0.3; } 40% { top: -18px; opacity: 1; }
+      70% { top: -8px; opacity: 1; } 100% { top: -16px; opacity: 0.5; }}
+    .printer::after { content: ""; position: absolute; bottom: 15px; left: 47px; width: 16px; height: 10px;
+      border-radius: 10px; background: #7ed957; box-shadow: 0 1px 2px #558e34c1; }
+    .flying-paper { position: absolute; top: 10vh; left: 10vw; width: 48px; height: 30px; background: #fff;
+      border-radius: 4px 8px 10px 10px; box-shadow: 0 2px 8px #ffc1d8aa; opacity: 0.82; animation: paper-fly1 7s linear infinite;
+      transform: rotate(3deg); z-index: 4; }
+    .flying-paper2 { top: 19vh; left: 26vw; width: 42px; height: 24px; opacity: 0.7; animation: paper-fly2 8s linear infinite;
+      background: #fffffa; filter: blur(0.3px); transform: rotate(-10deg);}
+    .flying-paper3 { top: 11vh; left: 70vw; animation: paper-fly3 12s linear infinite 2.9s; width: 36px; height: 18px;
+      opacity: 0.54; background: #fffde1; filter: blur(1px); transform: rotate(18deg);}
+    @keyframes paper-fly1 { 0% { top:10vh; left:11vw; transform:rotate(3deg);} 35% {top:18vh; left: 40vw; transform: rotate(-24deg);}
+      65% {top: 44vh; left: 34vw; transform: rotate(-11deg);} 100% {top:56vh; left: 71vw; transform: rotate(38deg);}}
+    @keyframes paper-fly2 { 0% { top:19vh; left:26vw;} 70% {top:64vh; left:81vw;} 100% {top:71vh; left:92vw;}}
+    @keyframes paper-fly3 { 0% { top:11vh; left:70vw;} 66% {top:51vh; left:20vw;} 100% {top:61vh; left:3vw;}}
+    .cloud { position: absolute; background: #fff; border-radius: 50%; opacity: 0.82;
       box-shadow: 60px 22px 0 0 #fff, 120px 31px 0 0 #fff, 170px 21px 0 0 #fff,
-                    235px 55px 0 0 #fff, 268px 38px 0 0 #fff;
-      width: 120px; height: 61px;
-      top: 10vh; left: 12vw;
-      filter: blur(0.4px);
+                  235px 55px 0 0 #fff, 268px 38px 0 0 #fff;
+      width: 120px; height: 61px; top: 10vh; left: 12vw; filter: blur(0.4px); z-index: 3;}
+    .cloud2 { width: 140px; height: 74px; top: 18vh; left: 62vw; }
+    .sparkle { position: absolute; border-radius: 50%; background: radial-gradient(circle, #fff9 55%, #fff0 100%);
+      width: 22px; height: 22px; top: 33vh; left: 44vw; filter: blur(2.5px); opacity: 0.6; animation: sparkle1 4.1s infinite alternate; z-index: 3;}
+    .sparkle2 { width: 12px; height: 12px; left: 25vw; top: 60vh; animation: sparkle1 3s 1.2s infinite alternate; }
+    .sparkle3 { width: 16px; height: 16px; left: 77vw; top: 21vh; animation: sparkle1 2.4s 0.4s infinite alternate; opacity: 0.35; filter: blur(1px); }
+    @keyframes sparkle1 { 0%, 100% { opacity: 0.4; } 60% { opacity: 0.8; } }
+
+    .main-container {
+      max-width: 700px;
+      margin: 40px auto 60px auto;
+      background: rgba(255,255,255,0.09);
+      border-radius: 28px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      padding: 36px 24px 32px 24px;
+      position: relative;
+      z-index: 10;
+      color: white;
+      text-align: left;
     }
-    .cloud2 { width: 140px; height: 74px; top: 18vh; left: 62vw;}
-    .sparkle {
-      position: absolute;
-      border-radius: 50%;
-      background: radial-gradient(circle, #fff9 55%, #fff0 100%);
-      width: 22px; height:22px; top: 33vh; left: 44vw;
-      filter: blur(2.5px);
-      opacity: 0.6;
-      animation: sparkle1 4.1s infinite alternate;
+
+    h1 {
+      background: linear-gradient(90deg, DodgerBlue, #ff5e62);
+      display: inline-block;
+      padding: 10px 40px;
+      border-radius: 16px;
+      color: white;
+      font-size: 2.8em;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 6px #0008;
+      user-select: none;
+      text-align: center;
     }
-    @keyframes sparkle1 {
-      0%,100%{ opacity:0.4;}
-      60%{ opacity:0.8;}
+
+    #scoreDisplay {
+      font-weight: 900;
+      font-size: 1.7em;
+      margin-bottom: 20px;
+      color: #fff;
+      background-color: #3b82f6;
+      border-radius: 12px;
+      padding: 12px 25px;
+      box-shadow: 2px 4px 16px #0003;
+      text-align: center;
+      width: fit-content;
+      min-width: 160px;
+      margin-left: auto;
+      margin-right: auto;
+      font-family: 'Arial Black', Gadget, sans-serif;
+      user-select: none;
     }
-    .sparkle2 {
-      width: 12px; height:12px; left:25vw; top:60vh; animation:sparkle1 3s 1.2s infinite alternate;
+
+    .info-box {
+      background: linear-gradient(90deg, #ffe082 70%, #ffd54f 100%);
+      border: 2px solid #ffb300;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #ffecb3aa;
+      padding: 20px 24px;
+      margin: 28px 0;
+      color: #333;
+      font-size: 1.15em;
     }
-    .sparkle3 {
-      width: 16px; height:16px; left:77vw; top:21vh; animation:sparkle1 2.4s 0.4s infinite alternate;
-      opacity: 0.35;
-      filter: blur(1px);
+    .example-box {
+      background: linear-gradient(90deg, #b3e5fc 70%, #81d4fa 100%);
+      border-left: 8px solid #0288d1;
+      border-radius: 18px;
+      margin: 22px 0;
+      padding: 18px 22px;
+      font-size: 1.13em;
+      box-shadow: 0 2px 12px #b3e5fcaa;
+      color: red;
     }
-    /* Updated style for editable example textareas with bigger font and centered text */
+    .example-box.green {
+      background: linear-gradient(90deg, #c8e6c9 70%, #a5d6a7 100%);
+      border-left: 8px solid #388e3c;
+      color: #00695c;
+      box-shadow: 0 2px 12px #b2dfdb99;
+    }
+    .fun-fact-box {
+      background: #fff3cd;
+      border: 2px solid brown;
+      border-left: 6px solid #ffd54f;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #ffecb3aa;
+      padding: 18px 22px;
+      margin: 24px auto;
+      font-size: 1.1em;
+      color: #6f4e00;
+      font-style: italic;
+      text-align: left;
+    }
+
     .editable-example {
       width: 95%;
       font-family: inherit;
-      font-size: 1.6em;          /* Bigger font */
+      font-size: 1.6em;
       border-radius: 10px;
       padding: 16px 10px;
       margin: 20px 0 30px 0;
@@ -190,27 +159,136 @@
       resize: vertical;
       background: #fff;
       display: block;
-
-      text-align: center;        /* Horizontal center */
-
-      height: 80px;              /* Fixed height */
-      line-height: 80px;         /* Vertically centers single-line text */
+      text-align: center;
+      height: 80px;
+      line-height: 80px;
       overflow-y: auto;
+      color: #000;
     }
-    body { position: relative; background: none !important; }
+
+    .challenge-box textarea {
+      width: 95%;
+      min-height: 140px;
+      font-size: 1.2em;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin: 16px 0 10px;
+      resize: vertical;
+      border: 2px solid #388e3c;
+      font-family: inherit;
+      background: #fff;
+      box-sizing: border-box;
+      display: block;
+      color: #000;
+      line-height: 1.4;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    .challenge-box {
+      background: linear-gradient(90deg, #c8e6c9 70%, #a5d6a7 100%);
+      border: 2px solid #388e3c;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #b2dfdb99;
+      padding: 20px 24px;
+      margin: 28px 0;
+      color: #005e36;
+      font-size: 1.15em;
+      font-weight: bold;
+    }
+    .challenge-feedback {
+      min-height: 32px;
+      font-weight: bold;
+      padding-top: 3px;
+      font-size: 1.1em;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+    .challenge-feedback.success { color: #2e7d32; }
+    .challenge-feedback.error { color: #c62828; }
+    .button-group { margin: 20px 0; }
+    .button, .rainbow-btn {
+      display: inline-block;
+      color: white;
+      padding: 18px 36px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-size: 1.3em;
+      margin: 10px;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      cursor: pointer;
+      background: linear-gradient(90deg, #088F8F 80%, #357a6b 100%);
+      box-shadow: 2px 4px 16px #0003;
+      transition: background 0.3s, transform 0.2s;
+      border: none;
+      font-weight: bold;
+      text-align: center;
+    }
+    .button:hover, .rainbow-btn:hover, .button.special:hover {
+      background: linear-gradient(90deg, #357a6b 80%, #088F8F 100%);
+      transform: scale(1.05) rotate(-2deg);
+    }
+    .button.special, .rainbow-btn {
+      background: linear-gradient(90deg, #ff5e62 80%, #fbb03b 100%);
+      color: #fff;
+      font-weight: bold;
+    }
+    #storyContainer {
+      background: linear-gradient(90deg, #bbdefb 40%, #90caf9 80%);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin: 28px 0;
+      color: #0d47a1;
+      font-size: 1.15em;
+      user-select: none;
+      text-align: left;
+      box-shadow: 0 0 15px #90caf9aa;
+      position: relative;
+    }
+    #storyText { min-height: 5em; margin-bottom: 16px; font-weight: 600; color: #0d47a1;}
+    .story-button {
+      background-color: #1976d2;
+      color: white;
+      border-radius: 12px;
+      padding: 8px 16px;
+      margin: 6px 10px 6px 0;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 3px 8px rgba(25,118,210,0.7);
+      transition: background-color 0.25s ease;
+      font-size: 1.1em;
+      user-select: none;
+      min-width: 100px;
+      text-align: center;
+    }
+    .story-button:hover:not(:disabled) { background-color: #1565c0;}
+    .story-button:disabled { opacity: 0.5; cursor: not-allowed; }
+    #codeLensContainer { background: #1e1e1e; border-radius: 12px; padding: 15px 20px; color: #f8f8f2;
+      font-family: 'Consolas', monospace; font-size: 1.1em; margin-top: 30px; user-select: none;
+      box-shadow: 0 4px 20px #00000090; text-align: left; }
+    #codeLensLines { white-space: pre; line-height: 1.5em; border-radius: 10px; padding: 14px; background: #2d2d2d;
+      box-shadow: inset 0 0 6px #444; margin-bottom: 16px; font-size: 1.2em; color: #f8f8f2; }
+    #codeLensOutput { background: #272822; border-radius: 8px; padding: 10px 14px; box-shadow: inset 0 0 8px #555;
+      min-height: 40px; font-weight: bold; color: #50fa7b; white-space: pre-wrap;}
+    #runCodeLensBtn { background-color: #3b82f6; color: white; border-radius: 12px; padding: 10px 22px; font-weight: bold;
+      border: none; cursor: pointer; box-shadow: 0 4px 12px rgba(59,130,246,0.7); user-select: none;
+      transition: background-color 0.3s ease; margin-bottom: 12px; display: block; margin-left: auto;}
+    #runCodeLensBtn:hover { background-color: #1e40af;}
+    #codeQuestionUI { display: none; margin-top: 12px;}
+    #codeAnswerInput { width: 100%; font-family: monospace; font-size: 1.1em; padding: 8px; border-radius: 10px;
+      border: 2px solid #1976d2; resize: vertical; height: 80px; box-sizing: border-box; color: #000; }
+    #codeAnswerFeedback { margin-top: 8px; font-weight: bold; min-height: 24px; color: #d32f2f; }
+    #codeAnswerSubmitBtn, #codeAnswerContinueBtn { margin-top:10px; font-weight: bold; }
+    #codeAnswerSubmitBtn:disabled { opacity:0.5; cursor:not-allowed; }
+    .button-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;  /* space between buttons */
+  margin-top: 20px;
+}
+
   </style>
-  <script>
-    function isMobileDevice() {
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-      if (isMobileDevice()) {
-        document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
-      } else {
-        document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
-      }
-    });
-  </script>
 </head>
 <body>
   <div class="print-bg-scene">
@@ -227,79 +305,447 @@
   </div>
   <div class="main-container">
     <h1>Level 1: Print Power! 🖨️</h1>
+    <div id="scoreDisplay">🏆 Score: 0</div>
     <div class="info-box">
       <p>Welcome to your very first Python adventure! 🎉<br>
-      In this level, you'll learn how to make your computer talk to you using the <code>print()</code> function.<br>
-      It's like giving your computer a voice!</p>
+        In this level, you'll learn how to make your computer talk to you using the <code>print()</code> function.<br>
+        It's like giving your computer a voice!</p>
     </div>
-
-    <!-- Editable example print statements -->
     <textarea class="editable-example" rows="1">print("Hello, world!")</textarea>
-
     <div class="example-box">
-      <p>This line tells Python to show the words <b>Hello, world!</b> on the screen.
-      <br>Try changing the message inside the quotes with our <b>Try it Yourself</b> feature! 📝</p>
+      <p>This line tells Python to show the words <b>Hello, world!</b> on the screen.<br>
+        Try changing the message inside the quotes with our <b>Try it Yourself</b> feature! 📝</p>
     </div>
-
     <textarea class="editable-example" rows="1">print("My favorite animal is a cat!")</textarea>
-
     <div class="example-box green">
       <p>You can print anything you want—your name, your favorite animal, or even your favorite emoji! 😀</p>
     </div>
-
     <textarea class="editable-example" rows="1">print("🐍 PyQuest is fun!")</textarea>
-
     <form class="challenge-box" id="challengeForm" autocomplete="off" onsubmit="return false;">
-      <span>🌟 Mini Quest:</span>
-      Print your name with the print statement!
-      <br><small>Type your code below. It must start with <code>print(</code> and include your name!</small>
+      <span>🌟 Mini Quest:</span> Print your name with the print statement!<br>
+      <small>Type your code below. It must start with <code>print(</code> and include your name!</small>
       <textarea id="challengeInput" required spellcheck="false" placeholder='e.g. print("Sashreek")'></textarea>
       <div class="challenge-feedback" id="challengeFeedback"></div>
       <button id="nextBtn" class="button special" disabled>Next: More About Printing ➡️</button>
     </form>
-
     <div class="fun-fact-box">
-      💡 <b>Did you know?</b> You can print numbers and do math too! Try <code>print(7 * 3)</code>! Remember this too: everytime you're curious about some code, you should use the <b>Try it Yourself feature!</b>
+      💡 <b>Did you know?</b> You can print numbers and do math too! Try <code>print(7 * 3)</code>! Remember this too: every time you're curious about some code, you should use the <b>Try it Yourself feature!</b>
     </div>
-    <a href="index.html" class="button">Back to Home</a>
-    <a href="try-python.html" class="button special">Try it Yourself!</a>
+    <div class="button-row">
+  <a href="index.html" class="button">Back to Home</a>
+  <a href="try-python.html" class="button special">Try it Yourself!</a>
   </div>
 
-  <script>
-    const challengeInput = document.getElementById('challengeInput');
-    const challengeFeedback = document.getElementById('challengeFeedback');
-    const nextBtn = document.getElementById('nextBtn');
-
-    // Validates print statement with a quoted string inside: print("anything") or print('anything')
-    function validPrintName(line) {
-      const regex = /^\s*print\s*\(\s*(['"])[^'"]+\1\s*\)\s*$/i;
-      return regex.test(line.trim());
+    <div id="storyContainer" style="display:none;">
+      <h2>⚔️ Adventure Time!</h2>
+      <div id="storyText"></div>
+      <div id="storyChoices"></div>
+      <div id="codeQuestionUI">
+        <label for="codeAnswerInput"><b>Type your answer below (print statement):</b></label><br>
+        <textarea id="codeAnswerInput" rows="3" placeholder='Type your print statement here...'></textarea>
+        <div id="codeAnswerFeedback"></div>
+        <button id="codeAnswerSubmitBtn" class="button special" disabled>Submit Answer</button>
+        <button id="codeAnswerContinueBtn" class="button" style="display:none;">Continue</button>
+      </div>
+    </div>
+    <div id="codeLensContainer" style="display:none; text-align:left;">
+      <h2>🔍 Code Lens - See your code run step-by-step</h2>
+      <pre id="codeLensLines"></pre>
+      <button id="runCodeLensBtn">Run Code Step-by-Step ▶️</button>
+      <div id="codeLensOutput"></div>
+    </div>
+  </div>
+<script>
+  const scoreDisplay = document.getElementById('scoreDisplay');
+  let score = parseInt(localStorage.getItem('pyQuestScore')) || 0;
+  scoreDisplay.textContent = `🏆 Score: ${score}`;
+  function updateScore(points) {
+    score += points;
+    localStorage.setItem('pyQuestScore', score);
+    scoreDisplay.textContent = `🏆 Score: ${score}`;
+  }
+  const challengeInput = document.getElementById('challengeInput');
+  const challengeFeedback = document.getElementById('challengeFeedback');
+  const nextBtn = document.getElementById('nextBtn');
+  function validPrintName(line) {
+    const regex = /^\s*print\s*\(\s*(['"])[^'"]+\1\s*\)\s*$/i;
+    return regex.test(line.trim());
+  }
+  challengeInput.addEventListener('input', () => {
+    const val = challengeInput.value.trim();
+    if(val.length === 0){
+      challengeFeedback.textContent = '';
+      challengeFeedback.className = 'challenge-feedback';
+      nextBtn.disabled = true;
+      return;
     }
+    if(!/^\s*print\s*\(/i.test(val)){
+      challengeFeedback.textContent = "Make sure your answer starts with print( ...";
+      challengeFeedback.className = 'challenge-feedback error';
+      nextBtn.disabled = true;
+      return;
+    }
+    if(!validPrintName(val)){
+      challengeFeedback.textContent = "Make sure you put your name inside quotes! Example: print(\"Alex\")";
+      challengeFeedback.className = 'challenge-feedback error';
+      nextBtn.disabled = true;
+      return;
+    }
+    challengeFeedback.textContent = "Great job! You're ready for the next part! 🎉";
+    challengeFeedback.className = 'challenge-feedback success';
+    nextBtn.disabled = false;
+  });
+  nextBtn.onclick = async () => {
+    if(!nextBtn.disabled){
+      updateScore(10);
+      confettiEffect(3000);
+      nextBtn.disabled = true;
+      challengeInput.disabled = true;
+      await new Promise(r => setTimeout(r, 1600));
+      document.getElementById('storyContainer').style.display = 'block';
+      document.getElementById('codeLensContainer').style.display = 'block';
+      nextBtn.style.display = 'none';
+      startAdventure(challengeInput.value.trim());
+      initCodeLens(challengeInput.value.trim());
+    }
+  };
+  const storyTextEl = document.getElementById('storyText');
+  const storyChoicesEl = document.getElementById('storyChoices');
+  const codeQuestionUI = document.getElementById('codeQuestionUI');
+  const codeAnswerInput = document.getElementById('codeAnswerInput');
+  const codeAnswerFeedback = document.getElementById('codeAnswerFeedback');
+  const codeAnswerSubmitBtn = document.getElementById('codeAnswerSubmitBtn');
+  const codeAnswerContinueBtn = document.getElementById('codeAnswerContinueBtn');
+  let attempts = 0;
+  const maxAttempts = 3;
 
-    challengeInput.addEventListener('input', function() {
-      const val = challengeInput.value.trim();
-      if (val.length === 0) {
-        challengeFeedback.textContent = '';
-        nextBtn.disabled = true;
-        return;
+  const storyNodes = {
+    start: {
+      text: `You wake up in a mysterious forest as sunlight dapples the leaves. There are two paths—a path leading north, or a narrower one winding east.`,
+      choices: [
+        { text: 'Go north', next: 'north1' },
+        { text: 'Go east', next: 'east1' }
+      ]
+    },
+    north1: {
+      text: `You head north and soon meet a friendly squirrel wearing glasses. "Hello! To pass, can you show me how to say hello in Python? Try printing a simple greeting like <code>print("Hello")</code>."`,
+      codeQuestion: true,
+      expectedPrint: 'print("Hello")',
+      nextCorrect: 'squirrelGift',
+      nextFail: 'squirrelFail',
+      explanation: `You needed to type <b>print("Hello")</b> exactly (case matters)!`
+    },
+    squirrelGift: {
+      text: `The squirrel beams and hands you a shimmering sword. "You'll need this. Good luck!" Brandishing your new sword, you walk on and spot an odd, twisting tree that seems to glow softly.`,
+      choices: [
+        { text: 'Check out the odd tree', next: 'tree1' },
+        { text: 'Ignore the tree and keep walking', next: 'keepWalking1' }
+      ]
+    },
+    squirrelFail: {
+      text: `You didn't get the riddle correct in time, but the squirrel lets you go anyway: "Give it another try next time. Good luck on your journey!"`,
+      choices: [
+        { text: 'Continue on', next: 'squirrelGift' }
+      ]
+    },
+    tree1: {
+      text: `You walk up to the tree. There's a symbol on the trunk: "Say the magic word to reveal my secret." Hint: It starts with "Abra..." — Try something like <code>print("Abracadabra")</code>!`,
+      codeQuestion: true,
+      expectedPrint: 'print("Abracadabra")',
+      nextCorrect: 'treeOpen',
+      nextFail: 'treeFail',
+      explanation: `You needed to type <b>print("Abracadabra")</b> exactly (case and spelling matter)!`
+    },
+    treeOpen: {
+      text: `Magically, the tree parts revealing a small, golden box inside its hollow. Do you open it?`,
+      choices: [
+        { text: "Open the box", next: "boxOpen" },
+        { text: "Leave the box alone", next: "boxIgnore" }
+      ]
+    },
+    treeFail: {
+      text: `Nothing happens! Maybe try saying the magic word exactly?`,
+      choices: [
+        { text: "Try again", next: "tree1" },
+        { text: "Walk away", next: "keepWalking1" }
+      ]
+    },
+    boxOpen: {
+      text: `Inside is a glowing portal, swirling with light! With courage, you step inside...`,
+      choices: [
+        { text: "Go to the next part of your journey!", next: "linkToNext" }
+      ]
+    },
+    boxIgnore: {
+      text: `You leave the box and walk on, but soon find yourself back at the start. Magic!`,
+      choices: [
+        { text: "Restart your adventure", next: "start" }
+      ]
+    },
+    keepWalking1: {
+      text: `You walk on, the sword in hand, but the woods grow denser and soon you circle back, ending up at your starting point.`,
+      choices: [
+        { text: "Restart your adventure", next: "start" }
+      ]
+    },
+    east1: {
+      text: `Heading east, you follow a sparkling stream. A blue bird caws, "If you want to pass, show me you care by printing <code>print('Birds rule!')</code> exactly!"`,
+      codeQuestion: true,
+      expectedPrint: "print('Birds rule!')",
+      nextCorrect: 'birdFriend',
+      nextFail: 'birdFail',
+      explanation: `You needed to type <b>print('Birds rule!')</b> exactly (case and punctuation matter)!`
+    },
+    birdFriend: {
+      text: `The bird flaps down and gives you a shiny blue feather. "At the fork, you may need it." The path splits: left (towards a hill) or right (towards a dark cave).`,
+      choices: [
+        { text: "Go left up the hill", next: "hillView" },
+        { text: "Go right into the cave", next: "caveStart" }
+      ]
+    },
+    birdFail: {
+      text: `The bird chirps disapprovingly but lets you go on. Maybe try matching the example exactly next time!`,
+      choices: [
+        { text: "Keep walking", next: "birdFriend" }
+      ]
+    },
+    hillView: {
+      text: `You hike uphill and reach a breathtaking vista. A cool breeze lifts the feather—which floats towards an old wooden door hidden in the grass.`,
+      choices: [
+        { text: "Follow the feather and open the door", next: "doorNext" }
+      ]
+    },
+    doorNext: {
+      text: `Behind the door is a glowing portal! This must be the way to your next adventure...`,
+      choices: [
+        { text: "Go to the next part of your journey!", next: "linkToNext" }
+      ]
+    },
+    caveStart: {
+      text: `With the blue feather as your torch, you step into the dark cave. To light up, type the exact print statement:<br><code>print("Let there be light!")</code>`,
+      codeQuestion: true,
+      expectedPrint: 'print("Let there be light!")',
+      nextCorrect: 'findPortal',
+      nextFail: 'caveFail',
+      explanation: `You needed to type <b>print("Let there be light!")</b> exactly (case, dash, exclamation)!`
+    },
+    findPortal: {
+      text: `The cave sparkles and opens up—revealing a swirling portal ahead.`,
+      choices: [
+        { text: "Step through the portal", next: "linkToNext" }
+      ]
+    },
+    caveFail: {
+      text: `It's too dark to proceed without light. Try typing the magic print statement exactly!`,
+      choices: [
+        { text: "Try again", next: "caveStart" },
+        { text: "Retreat", next: "birdFriend" }
+      ]
+    },
+    linkToNext: {
+      text: `Congratulations! Your adventure continues. Click below to journey onward!`,
+      choices: [
+        { text: "Continue to Level 1 Page 2", next: "goToPage2" }
+      ]
+    }
+  };
+
+  function displayNode(nodeId) {
+    const node = storyNodes[nodeId];
+    const isCodeQuestion = node.codeQuestion || false;
+    storyTextEl.innerHTML = node.text;
+    storyChoicesEl.innerHTML = '';
+    codeAnswerInput.value = '';
+    codeAnswerFeedback.textContent = '';
+    codeAnswerSubmitBtn.disabled = true;
+    codeAnswerContinueBtn.style.display = 'none';
+    attempts = 0;
+
+    if (isCodeQuestion) {
+      storyChoicesEl.style.display = 'none';
+      codeQuestionUI.style.display = 'block';
+      codeAnswerInput.focus();
+
+      function handleInput() {
+        codeAnswerSubmitBtn.disabled = codeAnswerInput.value.trim() === '';
       }
-      if (!/^\s*print\s*\(/i.test(val)) {
-        challengeFeedback.textContent = "Make sure your answer starts with print( ...";
-        nextBtn.disabled = true;
-        return;
+      codeAnswerInput.removeEventListener('input', handleInput);
+      codeAnswerInput.addEventListener('input', handleInput);
+
+      function handleSubmit() {
+        const userAnswer = codeAnswerInput.value.trim();
+        attempts++;
+        if(userAnswer === node.expectedPrint) {
+          codeAnswerFeedback.style.color = '#2e7d32';
+          codeAnswerFeedback.innerHTML = 'Correct! Well done! ✅';
+          codeAnswerSubmitBtn.disabled = true;
+          codeAnswerContinueBtn.style.display = 'inline-block';
+          updateScore(10);
+        } else {
+          if(attempts < maxAttempts) {
+            codeAnswerFeedback.style.color = '#d32f2f';
+            codeAnswerFeedback.innerHTML = `Not quite right. Try again! Attempts left: ${maxAttempts - attempts}`;
+          } else {
+            codeAnswerFeedback.style.color = '#d32f2f';
+            codeAnswerFeedback.innerHTML = `Sorry, you've used all attempts. ${node.explanation}`;
+            codeAnswerSubmitBtn.disabled = true;
+            codeAnswerContinueBtn.style.display = 'inline-block';
+          }
+        }
       }
-      if (!validPrintName(val)) {
-        challengeFeedback.textContent = "Make sure you put your name inside quotes! Example: print(\"Alex\")";
-        nextBtn.disabled = true;
-        return;
-      }
-      challengeFeedback.textContent = "Great job! You're ready for the next part!";
-      nextBtn.disabled = false;
+
+      codeAnswerSubmitBtn.onclick = handleSubmit;
+      codeAnswerContinueBtn.onclick = () => {
+        codeAnswerSubmitBtn.onclick = null;
+        codeAnswerContinueBtn.style.display = 'none';
+        codeAnswerFeedback.textContent = '';
+        codeAnswerInput.value = '';
+        codeQuestionUI.style.display = 'none';
+        storyChoicesEl.style.display = 'block';
+        if(attempts >= maxAttempts) {
+          displayNode(node.nextFail);
+        } else {
+          displayNode(node.nextCorrect);
+        }
+      };
+    } else {
+      codeQuestionUI.style.display = 'none';
+      storyChoicesEl.style.display = 'block';
+      if (!node.choices || node.choices.length === 0) return;
+      node.choices.forEach(choice => {
+        const btn = document.createElement('button');
+        btn.className = 'story-button';
+        btn.textContent = choice.text;
+        if (choice.next === "goToPage2") {
+          btn.onclick = () => window.location.href = "lvl1pg2.html";
+        } else {
+          btn.onclick = () => displayNode(choice.next);
+        }
+        storyChoicesEl.appendChild(btn);
+      });
+    }
+  }
+
+  function startAdventure(userCodeInput){
+    displayNode('start');
+  }
+
+  // Code Lens visualization functions
+  const codeLensLinesEl = document.getElementById('codeLensLines');
+  const codeLensOutputEl = document.getElementById('codeLensOutput');
+  const runCodeLensBtn = document.getElementById('runCodeLensBtn');
+  function initCodeLens(userCode) {
+    const lines = userCode.split('\n');
+    const numberedLines = lines.map((line,i) => (i+1)+'. '+line);
+    codeLensLinesEl.textContent = numberedLines.join('\n');
+    codeLensOutputEl.textContent = '';
+    codeLensOutputEl.style.color = '#f8f8f2';
+  }
+  function extractPrintStrings(code) {
+    const results = [];
+    const lines = code.split('\n');
+    lines.forEach(line => {
+      const m = line.trim().match(/^print\s*\(\s*(['"])([\s\S]*?)\1\s*\)$/);
+      if(m){ results.push(m[2]); }
     });
+    return results;
+  }
+  async function runCodeLens(userCode) {
+    const lines = userCode.split('\n');
+    codeLensOutputEl.textContent = '';
+    codeLensOutputEl.style.color = '#50fa7b';
+    runCodeLensBtn.disabled = true;
+    for(let i=0; i<lines.length; i++) {
+      highlightLine(i);
+      const line = lines[i].trim();
+      if(line.startsWith('print(')) {
+        const printed = extractPrintStrings(line)[0] || '';
+        codeLensOutputEl.textContent += printed + '\n';
+      } else {
+        codeLensOutputEl.textContent += '(Skipped non-print line)\n';
+      }
+      await sleep(1800);
+    }
+    clearHighlight();
+    runCodeLensBtn.disabled = false;
+  }
+  function highlightLine(lineIndex){
+    clearHighlight();
+    let fullText = codeLensLinesEl.textContent;
+    const textLines = fullText.split('\n');
+    textLines[lineIndex] = '%HL%' + textLines[lineIndex] + '%HL%';
+    const highlightedHTML = textLines.map(line => {
+      if(line.startsWith('%HL%') && line.endsWith('%HL%')){
+        return `<span style="background:#3b82f6;padding:0 4px;border-radius:4px;color:#fff;">${line.slice(4,-4)}</span>`;
+      }
+      return line;
+    }).join('\n');
+    codeLensLinesEl.innerHTML = highlightedHTML;
+  }
+  function clearHighlight(){
+    const text = codeLensLinesEl.textContent || '';
+    codeLensLinesEl.textContent = text.replace(/%HL%/g, '');
+  }
+  function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+  runCodeLensBtn.onclick = () => {
+    const code = challengeInput.value.trim();
+    if(code.length === 0) { alert('Please enter some code to run!'); return; }
+    runCodeLens(code);
+  };
 
-    nextBtn.onclick = function(){
-      window.location.href = 'lvl1pg2.html';
-    };
-  </script>
+  // Confetti effect
+  (function(){
+    const canvas = document.createElement('canvas');
+    canvas.id = 'confettiCanvas';
+    canvas.style.position = 'fixed';
+    canvas.style.pointerEvents = 'none';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
+    canvas.style.zIndex = '1000';
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
+    const confettiCount = 120;
+    const confetti = [];
+    function randomRange(min, max){return Math.random()*(max-min)+min;}
+    function Confetto(){
+      this.x = Math.random()*W; this.y = Math.random()*H-H;
+      this.r = randomRange(5, 10); this.d = (Math.random()*confettiCount)+10;
+      this.color = `hsl(${Math.floor(randomRange(0,360))},70%,60%)`;
+      this.tilt = randomRange(-10,10);
+      this.tiltAngle = 0; this.tiltAngleIncrement = randomRange(0.05,0.1);}
+    Confetto.prototype.draw = function(){
+      ctx.beginPath(); ctx.lineWidth = this.r/2; ctx.strokeStyle = this.color;
+      ctx.moveTo(this.x+this.tilt+this.r/4,this.y);
+      ctx.lineTo(this.x+this.tilt,this.y+this.tilt+this.r/4); ctx.stroke();};
+    function initConfetti(){
+      confetti.length = 0; for(let i=0; i<confettiCount; i++){ confetti.push(new Confetto());}}
+    function draw(){ ctx.clearRect(0,0,W,H); for(let i=0; i<confetti.length; i++){ confetti[i].draw();}
+      update();}
+    function update(){ for(let i=0; i<confetti.length; i++){
+      let c=confetti[i]; c.tiltAngle += c.tiltAngleIncrement;
+      c.y += (Math.cos(c.d)+3+c.r/2)/2; c.x += Math.sin(c.d);
+      c.tilt = Math.sin(c.tiltAngle)*15;
+      if(c.y>H){ c.x = Math.random()*W; c.y = -10; } } }
+    let animFrameId;
+    function startConfetti(){ if(!animFrameId) animFrameId = requestAnimationFrame(run);}
+    function stopConfetti(){
+      if(animFrameId){ cancelAnimationFrame(animFrameId); animFrameId=null; ctx.clearRect(0,0,W,H);}}
+    function run(){ draw(); animFrameId = requestAnimationFrame(run);}
+    window.confettiEffect = function(duration=3000){
+      initConfetti(); startConfetti(); setTimeout(()=>{ stopConfetti(); },duration);}
+    window.addEventListener('resize', ()=>{
+      W = window.innerWidth; H = window.innerHeight;
+      canvas.width = W; canvas.height = H;
+    });
+  })();
+</script>
 </body>
 </html>
+
+
