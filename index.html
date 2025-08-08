@@ -2,14 +2,11 @@
 <html lang="en">
 <head>
   <title>PyQuest: Learn Python Concepts</title>
-  <script>
-  // Redirect index.html to userinfo.html immediately
-  window.location.replace("userinfo.html");
-</script>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link href="style.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="style.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
   <style>
+    /* Base styles for all users */
     body {
       font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
       background: linear-gradient(135deg, orange 70%, gold 100%);
@@ -18,6 +15,7 @@
       margin: 0;
       text-align: center;
       min-height: 100vh;
+      transition: background 0.5s ease, color 0.5s ease;
     }
     .main-container {
       max-width: 700px;
@@ -27,6 +25,7 @@
       box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
       padding: 36px 24px 32px 24px;
       position: relative;
+      transition: background 0.5s ease;
     }
     #fukumean {
       font-size: 60px;
@@ -42,6 +41,7 @@
       margin-bottom: 20px;
       letter-spacing: 2px;
       text-shadow: 2px 2px 6px #0008;
+      transition: background 0.5s ease;
     }
     p {
       color: #fff;
@@ -51,8 +51,8 @@
       border-radius: 12px;
       margin-bottom: 30px;
       font-size: 1.3em;
+      transition: font-size 0.5s ease, border-color 0.5s ease;
     }
-
     .level-buttons-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(220px, 1fr));
@@ -90,7 +90,6 @@
       background: linear-gradient(90deg, #ff5e62 80%, #fbb03b 100%);
       color: #fff;
     }
-
     .level-buttons-grid .button.try-magic {
       background: linear-gradient(90deg, #088F8F 0%, #53c6fa 45%, #ff63d4 100%);
       color: #fff;
@@ -103,7 +102,6 @@
       background: linear-gradient(90deg, #357a6b 0%, #80deea 45%, #ff63d4 100%);
       transform: scale(1.05) rotate(-2deg);
     }
-
     .level-buttons-grid .button:hover,
     .level-buttons-grid .button.special:hover,
     .final-test-button:hover {
@@ -117,7 +115,7 @@
       width: 80%;
       min-width: 220px;
     }
-    #funFact.fun-fact{
+    #funFact.fun-fact {
       color: #fff;
       padding: 16px;
       border: 3px double #ff5e62;
@@ -126,6 +124,51 @@
       margin-bottom: 30px;
       font-size: 1.3em;
     }
+    /* Styles for older users (12 and up) */
+    body.older {
+      background: linear-gradient(135deg, #1f2937, #374151);
+      color: #e0e0e0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body.older .main-container {
+      background: #2d3748;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.7);
+    }
+    body.older h1 {
+      background: linear-gradient(90deg, #4ade80, #22c55e);
+      font-size: 3.2em;
+      padding: 12px 48px;
+      text-shadow: none;
+    }
+    body.older p {
+      font-size: 1.1em;
+      border-color: #22c55e;
+      background: rgba(34, 197, 94, 0.1);
+      color: #d1fae5;
+    }
+    body.older .level-buttons-grid .button,
+    body.older .level-buttons-grid .button.special,
+    body.older .final-test-button {
+      background: linear-gradient(90deg, #16a34a, #064e3b);
+      box-shadow: none;
+      font-weight: normal;
+      font-size: 1.25em;
+    }
+    body.older .level-buttons-grid .button:hover,
+    body.older .level-buttons-grid .button.special:hover,
+    body.older .final-test-button:hover {
+      background: linear-gradient(90deg, #22c55e, #286c3f);
+      transform: none;
+    }
+    body.older .level-buttons-grid .button.try-magic {
+      background: linear-gradient(90deg, #3b82f6, #2563eb);
+      box-shadow: none;
+    }
+    body.older .level-buttons-grid .button.try-magic:hover {
+      background: linear-gradient(90deg, #2563eb, #3b82f6);
+      transform: none;
+    }
+
     @media (max-width: 600px) {
       .level-buttons-grid {
         grid-template-columns: 1fr;
@@ -135,18 +178,55 @@
         width: 95%;
         min-width: 0;
       }
-      .level-buttons-grid .button { min-width: 0; }
+      .level-buttons-grid .button {
+        min-width: 0;
+      }
     }
   </style>
   <script>
+    // Detect if mobile device (kept your logic)
     function isMobileDevice() {
       return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
+
     document.addEventListener('DOMContentLoaded', function() {
+      // Apply the font family variant per device for base styles
       if (isMobileDevice()) {
         document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif";
       } else {
         document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif";
+      }
+
+      // Get the stored age from localStorage (from pyquest form)
+      let ageString = localStorage.getItem('pyq_age');
+      if (ageString) {
+        let age = parseInt(ageString, 10);
+
+        if (!isNaN(age)) {
+          // If age >= 12, apply "older user" style class
+          if (age >= 12) {
+            document.body.classList.add('older');
+
+            // Change heading text to be more mature
+            const heading = document.getElementById('fukumean');
+            if (heading) {
+              heading.textContent = 'Welcome to PyQuest — Level Up Your Python Skills!';
+            }
+
+            // Change paragraph to a more mature invitation
+            const p = document.querySelector('.main-container > p');
+            if (p) {
+              p.innerHTML = `
+                Ready to deepen your Python expertise? Solve challenges, build projects, and master coding concepts.<br>
+                Prefer hands-on coding? Check out "Try It Yourself" below.<br>
+                Choose a level to begin or continue your journey:
+              `;
+            }
+          } else {
+            // For younger users (<12), keep current styling and text.
+            // Optionally, you could add dynamic text here for kids.
+          }
+        }
       }
     });
   </script>
@@ -173,6 +253,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
