@@ -4,65 +4,218 @@
   <title>PyQuest: Learn Python Concepts</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
 
+  <!-- Redirect if user info missing -->
   <script>
-    // Early redirect: if user info not found, go to userinfo.html
     (function() {
       const name = localStorage.getItem('pyq_name');
       const age = localStorage.getItem('pyq_age');
-      // If either is missing, send them to userinfo.html
       if (!name || !age) {
         window.location.replace('userinfo.html');
       }
     })();
   </script>
 
-  <link href="style.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet" />
+
   <style>
-    /* --- styles unchanged --- */
+    /* --- Default Kid-Friendly Style --- */
     body {
       font-family: 'Comic Sans MS', 'Comic Neue', cursive, sans-serif;
       background: linear-gradient(135deg, orange 70%, gold 100%);
       color: #fff;
-      padding: 0;
-      margin: 0;
       text-align: center;
       min-height: 100vh;
-      transition: background 0.5s ease, color 0.5s ease;
+      margin: 0;
     }
-    .main-container { max-width: 700px; margin: 40px auto 60px auto; background: rgba(255,255,255,0.09); border-radius: 28px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); padding: 36px 24px 32px 24px; position: relative; transition: background 0.5s ease;}
-    #fukumean { font-size: 60px; padding: 10px; }
-    h1 { background: linear-gradient(90deg, DodgerBlue, #ff5e62); display: inline-block; padding: 10px 40px; border-radius: 16px; color: white; font-size: 2.8em; margin-bottom: 20px; letter-spacing: 2px; text-shadow: 2px 2px 6px #0008; transition: background 0.5s ease;}
-    p { color: #fff; padding: 16px; border: 3px double #ff5e62; background: rgba(0,0,0,0.08); border-radius: 12px; margin-bottom: 30px; font-size: 1.3em; transition: font-size 0.5s ease, border-color 0.5s ease;}
-    .level-buttons-grid { display: grid; grid-template-columns: repeat(2, minmax(220px, 1fr)); grid-template-rows: repeat(4, auto); gap: 20px 28px; max-width: 600px; margin: 40px auto 36px auto; }
-    .level-buttons-grid .button, .final-test-button { display: inline-block; color: white; background: linear-gradient(90deg, #088F8F 80%, #357a6b 100%); box-shadow: 2px 4px 16px #0003; padding: 18px 36px; border-radius: 16px; text-decoration: none; font-size: 1.35em; margin: 4px auto; font-family: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif; cursor: pointer; border: none; font-weight: bold; text-align: center; transition: background 0.3s, transform 0.2s; line-height: 1.2; letter-spacing: 0.03em; max-width: 95%; min-width: 160px; justify-self: center; word-break: normal; }
-    .level-buttons-grid .button.special, .final-test-button { background: linear-gradient(90deg, #ff5e62 80%, #fbb03b 100%); color: #fff; }
-    .level-buttons-grid .button.try-magic { background: linear-gradient(90deg, #088F8F 0%, #53c6fa 45%, #ff63d4 100%); color: #fff; box-shadow: 0 2px 24px #e25ad958, 2px 4px 16px #0003; position: relative; overflow: hidden; transition: background 0.3s, transform 0.2s; }
-    .level-buttons-grid .button.try-magic:hover { background: linear-gradient(90deg, #357a6b 0%, #80deea 45%, #ff63d4 100%); transform: scale(1.05) rotate(-2deg); }
-    .level-buttons-grid .button:hover, .level-buttons-grid .button.special:hover, .final-test-button:hover { background: linear-gradient(90deg, #357a6b 80%, #088F8F 100%); transform: scale(1.05) rotate(-2deg); }
-    .final-test-button { grid-column: span 2; margin-top: 18px; justify-self: center; width: 80%; min-width: 220px; }
-    #funFact.fun-fact { color: #fff; padding: 16px; border: 3px double #ff5e62; background: rgba(0,0,0,0.08); border-radius: 12px; margin-bottom: 30px; font-size: 1.3em; }
-    /* Older user styles ... (unchanged) */
-  </style>
-  <script>
-    function isMobileDevice() { return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent); }
-    document.addEventListener('DOMContentLoaded', function() {
-      if (isMobileDevice()) { document.body.style.fontFamily = "'Comic Neue', 'Comic Sans MS', cursive, sans-serif"; }
-      else { document.body.style.fontFamily = "'Comic Sans MS', 'Comic Neue', cursive, sans-serif"; }
+    .main-container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: rgba(255,255,255,0.09);
+      border-radius: 28px;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+      padding: 36px 24px;
+    }
+    h1 {
+      background: linear-gradient(90deg, DodgerBlue, #ff5e62);
+      display: inline-block;
+      padding: 10px 40px;
+      border-radius: 16px;
+      color: white;
+      font-size: 2.4em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 6px #0008;
+    }
+    p {
+      border: 3px double #ff5e62;
+      background: rgba(0,0,0,0.08);
+      border-radius: 12px;
+      padding: 16px;
+      font-size: 1.2em;
+    }
+    .level-buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(220px, 1fr));
+      gap: 20px 28px;
+      max-width: 600px;
+      margin: 40px auto;
+    }
+    .level-buttons-grid .button,
+    .final-test-button {
+      background: linear-gradient(90deg, #088F8F 80%, #357a6b 100%);
+      color: white;
+      padding: 18px 36px;
+      border-radius: 16px;
+      font-size: 1.2em;
+      font-family: 'Comic Neue', cursive;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .level-buttons-grid .button.special,
+    .final-test-button {
+      background: linear-gradient(90deg, #ff5e62 80%, #fbb03b 100%);
+    }
+    .level-buttons-grid .button.try-magic {
+      background: linear-gradient(90deg, #088F8F 0%, #53c6fa 45%, #ff63d4 100%);
+    }
+    .button:hover {
+      background: linear-gradient(90deg, #357a6b 80%, #088F8F 100%);
+      transform: scale(1.05) rotate(-2deg);
+    }
+    .final-test-button {
+      grid-column: span 2;
+      width: 80%;
+      justify-self: center;
+    }
+    #funFact.fun-fact {
+      color: #fff;
+      padding: 16px;
+      border: 3px double #ff5e62;
+      background: rgba(0,0,0,0.08);
+      border-radius: 12px;
+      margin-bottom: 30px;
+      font-size: 1.2em;
+    }
 
+    /* ------ Mature + Fun Style for Older Users ------ */
+    body.older {
+      font-family: 'Fira Code', monospace;
+      background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #000014 100%);
+      color: #e0e0f8;
+      min-height: 100vh;
+      position: relative;
+    }
+    body.older::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.03) 1px, transparent 1px),
+                        radial-gradient(circle at 80% 40%, rgba(255,255,255,0.02) 1px, transparent 1px),
+                        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 120px 120px;
+      z-index: 0;
+    }
+    body.older .main-container {
+      background: rgba(30, 20, 50, 0.75);
+      border-radius: 20px;
+      box-shadow: 0 5px 30px rgba(180, 110, 255, 0.7);
+      padding: 40px 30px;
+      border: 2px solid #b46eff;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(10px);
+    }
+    body.older h1 {
+      background: linear-gradient(90deg, #7f00ff, #ac00ff, #ff55d1);
+      display: inline-block;
+      padding: 14px 40px;
+      border-radius: 20px;
+      font-size: 2.4em;
+      margin-bottom: 25px;
+      color: white;
+      text-shadow: 0 0 12px #c388ff;
+      font-weight: 700;
+      letter-spacing: normal; /* normal text look */
+    }
+    body.older p {
+      background: rgba(85, 50, 110, 0.3);
+      font-size: 1.15em;
+      border-radius: 16px;
+      padding: 14px 20px;
+      margin-bottom: 30px;
+      color: #d0cce6;
+      line-height: 1.5em;
+      font-family: 'Comic Neue', cursive;
+    }
+    body.older .level-buttons-grid {
+      max-width: 680px;
+      gap: 24px 32px;
+    }
+    body.older .level-buttons-grid .button,
+    body.older .final-test-button {
+      background: linear-gradient(135deg, #a967ff, #554ebd);
+      color: #e6e6ff;
+      border-radius: 22px;
+      font-size: 1.12em;
+      font-weight: 600;
+      padding: 16px 22px;
+      box-shadow: 0 0 12px #b07fff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    body.older .level-buttons-grid .button:hover {
+      background: linear-gradient(135deg, #ff73e8, #8850ff);
+      box-shadow: 0 0 22px #db9eff;
+      transform: translateY(-4px);
+    }
+    /* Center the final assessment button nicely */
+    body.older .final-test-button {
+      grid-column: 1 / -1;
+      justify-self: center;
+      width: 60%;
+      text-align: center;
+    }
+    body.older .level-buttons-grid .button.special,
+    body.older .final-test-button {
+      background: linear-gradient(135deg, #ff69b4, #e75480);
+      box-shadow: 0 0 18px #fb63b0;
+    }
+    body.older .level-buttons-grid .button.special:hover,
+    body.older .final-test-button:hover {
+      background: linear-gradient(135deg, #ff9ad9, #db6aaa);
+      box-shadow: 0 0 28px #ffb0dd;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
       const ageString = localStorage.getItem('pyq_age');
       if (ageString) {
         const age = parseInt(ageString, 10);
         if (!isNaN(age) && age >= 12) {
           document.body.classList.add('older');
+          // update heading text
           const heading = document.getElementById('fukumean');
-          if (heading) heading.textContent = 'Welcome to PyQuest!';
+          if (heading) heading.textContent = 'PyQuest: Python & Beyond';
+          // Update intro for older audience
           const p = document.querySelector('.main-container > p');
           if (p) {
-            p.innerHTML = `Ready to deepen your Python expertise? Solve challenges, build projects, and master coding concepts.<br>
-                Prefer hands-on coding? Check out "Try It Yourself" below.<br>
-                Choose a level to begin or continue your journey:`;
+            p.innerHTML = `Master Python fundamentals and advance into Machine Learning concepts.<br>
+            Build projects, solve challenges, and apply your code skills to real-world problems.`;
           }
+          // Update button labels to mature style
+          const btns = document.querySelectorAll('.level-buttons-grid .button');
+          if (btns.length >= 6) {
+            btns[0].textContent = 'Level 1: Output & Print';
+            btns[1].textContent = 'Level 2: Variables & Data';
+            btns[2].textContent = 'Level 3: User Input';
+            btns[3].textContent = 'Level 4: Loops';
+            btns[4].textContent = 'Level 5: Functions';
+            btns[5].textContent = 'Python Editor';
+          }
+          const finalTestBtn = document.querySelector('.final-test-button');
+          if (finalTestBtn) finalTestBtn.textContent = 'Final Assessment';
         }
       }
     });
@@ -72,9 +225,10 @@
   <div class="main-container">
     <h1 id="fukumean">Welcome to <br>🐍 PyQuest! 🐍</h1>
     <p>
-      Ready to unleash your inner Python?! Play, code, and solve puzzles as you learn!<br>
-      Remember, if you ever want to try out some code, go to Try it Yourself!<br>
-      Choose a quest to begin your adventure:
+      Learn Python from the ground up, then take a leap into machine learning!<br>
+      Play, <code>code</code>, experiment, and solve puzzles as you grow your skills.<br>
+      Whenever you want, jump to the <strong>Try It Yourself</strong> section and unleash your ideas.<br>
+      Pick a quest to begin your adventure:
     </p>
     <div class="level-buttons-grid">
       <a href="level1.html" class="button">🌟 Level 1: Print Power</a>
@@ -90,7 +244,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
