@@ -239,7 +239,8 @@
           <div class="mt-4 d-none text-center" id="sectionChoice">
             <h4 class="mb-3">Where would you like to begin?</h4>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-              <a href="index.html" class="btn btn-primary btn-lg">🐍 Start with Python</a>
+              <!-- CHANGED: this now leads to userinfo.html -->
+              <a href="userinfo.html" class="btn btn-primary btn-lg">🐍 Start with Python</a>
               <a href="machine-learning-section.html" class="btn btn-success btn-lg">🤖 Go to Machine Learning</a>
             </div>
           </div>
@@ -269,7 +270,6 @@
     document.getElementById('backBtn2').onclick = () => showStep(0);
     document.getElementById('nextBtn2').onclick = () => { if (validateSection(1)) showStep(2); };
     document.getElementById('backBtn3').onclick = () => showStep(1);
-
     document.getElementById('pyquestForm').onsubmit = function (e) {
       e.preventDefault();
       if (!validateSection(2)) return;
@@ -287,4 +287,5 @@
   </script>
 </body>
 </html>
+
 
