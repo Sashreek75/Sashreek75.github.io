@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+  (function() {
+    const name = localStorage.getItem('pyq_name');
+    const age = localStorage.getItem('pyq_age');
+    if (name && age) {
+      window.location.replace('userinfo.html');
+    }
+  })();
+</script>
   <meta charset="UTF-8" />
   <title>PyQuest | Level Up Your Python!</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
